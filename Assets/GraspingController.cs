@@ -137,10 +137,18 @@ public class GraspingController : MonoBehaviour
                 {
 
                     //TODO: MAKE INTO RESET FUNC
-                    if(item.graspedObject)
+                    if (item.graspedObject)
+                    {
                         item.graspedObject.transform.parent = null;
+                        item.graspedObject = null;
+                    }
+                        
 
-                    item.HitPos = item.gameObject.transform.parent.parent.parent.parent.position;
+                    var palmTransform = item.gameObject.transform.parent.parent.parent.parent;
+                    //Debug.Log(palmTransform.gameObject.name);
+
+                    item.HitPos = item.fingerIKTarget.parent.InverseTransformPoint(palmTransform.position + palmTransform.forward * 1f);
+                    ///Debug.Log(item.fingerIKTarget.parent.gameObject.name);
 
                 }
             }

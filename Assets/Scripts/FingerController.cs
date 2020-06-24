@@ -23,12 +23,15 @@ public class FingerController : MonoBehaviour
 
     public Vector3 HitPos;
 
+    private DitzelGames.FastIK.FastIKFabric ikController;
+
     // Start is called before the first frame update
     void Start()
     {
-        initialPositionTarget = fingerIKTarget.position;
-        //initialPositionTarget = fingerIKTarget.localPosition;
+        //initialPositionTarget = fingerIKTarget.position;
+        initialPositionTarget = fingerIKTarget.localPosition;
         myCollider = gameObject.GetComponent<Collider>();
+        ikController = gameObject.GetComponent<DitzelGames.FastIK.FastIKFabric>();
     }
 
     //public void OnTriggerEnter(Collider other)
@@ -50,7 +53,7 @@ public class FingerController : MonoBehaviour
 
         //Debug.Log(other.name);
         Vector3 closestToLeftHand = other.ClosestPoint(transform.position);
-        HitPos = closestToLeftHand;
+        HitPos = fingerIKTarget.parent.InverseTransformPoint(closestToLeftHand);
 
     }
 
@@ -59,17 +62,19 @@ public class FingerController : MonoBehaviour
     void Update()
     {
 
+    
+
         //Debug.DrawLine(transform.position, debugHitPos);
         if (GraspingController.instance.grasp)
         {
-            fingerIKTarget.position = Vector3.Lerp(fingerIKTarget.position,  HitPos, trigger);
-            //fingerIKTarget.localPosition = Vector3.Lerp(fingerIKTarget.localPosition,  HitPos, trigger);
+            //fingerIKTarget.position = Vector3.Lerp(fingerIKTarget.position,  HitPos, trigger);
+            fingerIKTarget.localPosition = Vector3.Lerp(fingerIKTarget.localPosition,  HitPos, trigger);
 
         }
         else
         {
-            fingerIKTarget.position = Vector3.Lerp(fingerIKTarget.position, initialPositionTarget, trigger);
-            //fingerIKTarget.localPosition = Vector3.Lerp(fingerIKTarget.localPosition, initialPositionTarget, trigger);
+            //fingerIKTarget.position = Vector3.Lerp(fingerIKTarget.position, initialPositionTarget, trigger);
+            fingerIKTarget.localPosition = Vector3.Lerp(fingerIKTarget.localPosition, initialPositionTarget, trigger);
         }
     }
 }
