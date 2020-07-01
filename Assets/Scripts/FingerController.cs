@@ -51,17 +51,43 @@ public class FingerController : MonoBehaviour
         if (other.tag == "Hand") return;
         graspedObject = other.gameObject;
 
-        //Debug.Log(other.name);
+        Debug.Log(other.name);
         Vector3 closestToLeftHand = other.ClosestPoint(transform.position);
         HitPos = fingerIKTarget.parent.InverseTransformPoint(closestToLeftHand);
 
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Hand") return;
+        graspedObject = other.gameObject;
+
+        Debug.Log(other.name);
+        Vector3 closestToLeftHand = other.ClosestPoint(transform.position);
+        HitPos = fingerIKTarget.parent.InverseTransformPoint(closestToLeftHand);
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        var palmTransform = gameObject.transform.parent.parent.parent.parent;
+        //Debug.Log(palmTransform.gameObject.name);
+
+        HitPos = fingerIKTarget.parent.InverseTransformPoint(palmTransform.position + palmTransform.forward * 2f + palmTransform.up * 2f);
+
+    }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+
+    //}
 
 
     // Update is called once per frame
     void Update()
     {
 
+    
     
 
         //Debug.DrawLine(transform.position, debugHitPos);
@@ -76,5 +102,12 @@ public class FingerController : MonoBehaviour
             //fingerIKTarget.position = Vector3.Lerp(fingerIKTarget.position, initialPositionTarget, trigger);
             fingerIKTarget.localPosition = Vector3.Lerp(fingerIKTarget.localPosition, initialPositionTarget, trigger);
         }
+
+        //if(GraspingController.instance.mousePrimaryWasDown)
+        //{
+        //    trigger = 0f;
+        //    HitPos = Vector3.zero;
+        //}
+
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -14,7 +13,8 @@ public class GraspingController : MonoBehaviour
 
     public bool grasp = false;
 
-    private float animTime = 0f;
+    public float animTime = 0f;
+    public bool mousePrimaryWasDown;
     private float delta = 1f/30f;
 
     private bool mousePrimaryDown = false;
@@ -64,11 +64,12 @@ public class GraspingController : MonoBehaviour
     void Update()
     {
 
-
+        
 
         if (Input.GetMouseButtonUp(0))
         {
             animTime = 0f;
+            mousePrimaryWasDown = true;
             mousePrimaryDown = false;
             grasp = false;
         }
@@ -76,6 +77,7 @@ public class GraspingController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             animTime = 0f;
+            mousePrimaryWasDown = false;
             mousePrimaryDown = true;
             grasp = true;
         }
@@ -98,10 +100,7 @@ public class GraspingController : MonoBehaviour
             if (isMoving)
                 MoveObject();
         }
-        else
-        {
 
-        }
 
         if (mousePrimaryDown)
         {
@@ -118,20 +117,23 @@ public class GraspingController : MonoBehaviour
 
 
                 }
+
+
+
             }
 
             foreach (var item in fingers)
             {
-                item.trigger = Mathf.Clamp(animTime, 0f, 1f);
+                item.trigger = animTime;
             }
 
-            
 
+            animTime += delta;
 
         }
-        else
+        else 
         {
-            if (animTime > 0f)
+            if (animTime <= 0f)
             {
                 foreach (var item in fingers)
                 {
@@ -144,24 +146,29 @@ public class GraspingController : MonoBehaviour
                     }
                         
 
-                    var palmTransform = item.gameObject.transform.parent.parent.parent.parent;
-                    //Debug.Log(palmTransform.gameObject.name);
-
-                    item.HitPos = item.fingerIKTarget.parent.InverseTransformPoint(palmTransform.position + palmTransform.forward * 1f);
+                    
                     ///Debug.Log(item.fingerIKTarget.parent.gameObject.name);
+                    ///
+                     
 
                 }
+
+              
+
             }
 
             foreach (var item in fingers)
             {
-                item.trigger = Mathf.Clamp(animTime, 0f, 1f);
+                item.trigger = 1 - animTime;
             }
+
+            animTime -= delta;
+
         }
 
-        animTime += delta;
 
 
+        animTime = Mathf.Clamp(animTime, 0f, 1f);
 
     }
 
@@ -180,12 +187,12 @@ public class GraspingController : MonoBehaviour
     }
     void MoveObject()
     {
-        //transform.LookAt(targetPos);
+        transform.LookAt(targetPos);
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
 
         if (transform.position == targetPos)
             isMoving = false;
-        Debug.DrawLine(transform.position, targetPos, Color.red);
+        //Debug.DrawLine(transform.position, targetPos, Color.red);
 
     }
 
