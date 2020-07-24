@@ -87,10 +87,10 @@ public class FingerController : MonoBehaviour
     void Update()
     {
 
-    
-    
 
-        //Debug.DrawLine(transform.position, debugHitPos);
+
+
+        // Debug.DrawLine(fingerIKTarget.position, fingerIKTarget.parent.TransformPoint(HitPos), Color.black);
         if (GraspingController.instance.grasp)
         {
             //fingerIKTarget.position = Vector3.Lerp(fingerIKTarget.position,  HitPos, trigger);
