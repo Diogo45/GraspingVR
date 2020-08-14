@@ -60,7 +60,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8326910541983878966}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.02
   m_Height: 0.15
   m_Direction: 2
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8326910541983878966}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb8a74a15f4aab145898b5a273998900, type: 3}
   m_Name: 
@@ -254,27 +254,27 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 0
-    damper: 0
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -86
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_HighAngularXLimit:
     limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 0
-    damper: 0
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
-    limit: 27
-    bounciness: 0
-    contactDistance: 0
-  m_AngularZLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
+  m_AngularZLimit:
+    limit: 27
+    bounciness: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -297,13 +297,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -328,7 +328,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248465855897641}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -357,14 +357,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248465862060799}
-  m_LocalRotation: {x: 0.204691, y: 0.013205318, z: -0.0027617416, w: 0.97873366}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.000000007959898, y: 0.05466193, z: -0.000000015832484}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000001}
   m_Children:
   - {fileID: 1235022601269483788}
   m_Father: {fileID: 5838497878982891138}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 23.625002, y: 1.5460001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8928248465919486712
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +441,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000011466909, y: 0.039972287, z: 0.00000007245944}
+  m_ConnectedAnchor: {x: 0.00000014912803, y: 0.039972324, z: 0.000000107140295}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -458,27 +458,27 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -81
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_HighAngularXLimit:
     limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_AngularZLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -501,13 +501,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -561,7 +561,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466006746872}
-  m_LocalRotation: {x: 0.19928326, y: -0.017931543, z: 0.0036472357, w: 0.9797711}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.000000011175871, y: 0.04367431, z: -0.00000019744039}
   m_LocalScale: {x: 1, y: 0.9999999, z: 0.99999994}
   m_Children:
@@ -569,7 +569,7 @@ Transform:
   - {fileID: 8928248466229440327}
   m_Father: {fileID: 1196197325472343551}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 22.994001, y: -2.0970001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8928248466047749775
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,14 +593,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466047749775}
-  m_LocalRotation: {x: 0.2580278, y: -0.041187868, z: 0.011010832, w: 0.9651964}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.000000011175871, y: 0.05346247, z: -0.000000055879354}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Children:
   - {fileID: 1916447498729985152}
   m_Father: {fileID: 5651500734716073829}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 29.934002, y: -4.887, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8928248466081209506
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,14 +624,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466081209506}
-  m_LocalRotation: {x: 0.31669617, y: 0.032037426, z: -0.016107926, w: 0.947849}
+  m_LocalRotation: {x: -0.00020292179, y: 0.031636916, z: -0.0064107403, w: 0.9994788}
   m_LocalPosition: {x: 0.000000033527613, y: 0.039972223, z: 0.000000022351742}
   m_LocalScale: {x: 1, y: 0.9999999, z: 1}
   m_Children:
   - {fileID: 8928248467511419494}
   m_Father: {fileID: 1220389955463262641}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 36.97, y: 3.6260002, z: -0.735}
+  m_LocalEulerAnglesHint: {x: 0, y: 3.6260002, z: -0.735}
 --- !u!1 &8928248466089594289
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,14 +655,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466089594289}
-  m_LocalRotation: {x: 0.07417395, y: -0.06377202, z: 0.004753072, w: 0.9951928}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.02878923, z: 0.00000014901161}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8928248466392983594}
   m_Father: {fileID: 1916447498729985152}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 8.525001, y: -7.333, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8928248466123115047
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,11 +709,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &8928248466123115043
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -756,8 +756,8 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -107
     bounciness: 0
@@ -767,16 +767,16 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 150000
+    damper: 100
   m_AngularYLimit:
     limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 5
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -799,13 +799,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -830,7 +830,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466123115047}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -919,9 +919,9 @@ ConfigurableJoint:
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
-  m_AngularXMotion: 1
-  m_AngularYMotion: 1
-  m_AngularZMotion: 1
+  m_AngularXMotion: 0
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -973,13 +973,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -1004,7 +1004,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466131529435}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -1143,14 +1143,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466283918668}
-  m_LocalRotation: {x: 0.086303726, y: 0, z: 0, w: 0.99626887}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.000000029802322, y: 0.031198854, z: -0.000000040978193}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
   m_Children:
   - {fileID: 8928248466783121649}
   m_Father: {fileID: 1235022601269483788}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 9.902, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8928248466316683336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,14 +1174,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466316683336}
-  m_LocalRotation: {x: 0.18001753, y: -0.10665745, z: 0.01963881, w: 0.97766674}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.000000026077032, y: 0.0519121, z: -0.000000088941306}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000001}
   m_Children:
   - {fileID: 1855410581247737797}
   m_Father: {fileID: 3769627677282079725}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 20.866001, y: -12.452001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8928248466322382325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,27 +1384,27 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -66
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_HighAngularXLimit:
     limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_AngularZLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -1427,13 +1427,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -1458,7 +1458,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466372072261}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -1524,7 +1524,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8928248466392983596}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.02
   m_Height: 0.15
   m_Direction: 2
@@ -1536,7 +1536,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466392983596}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb8a74a15f4aab145898b5a273998900, type: 3}
   m_Name: 
@@ -1700,7 +1700,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8928248466542699060}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.02
   m_Height: 0.15
   m_Direction: 2
@@ -1712,7 +1712,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466542699060}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb8a74a15f4aab145898b5a273998900, type: 3}
   m_Name: 
@@ -1802,7 +1802,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466591828184}
-  m_LocalRotation: {x: 0.21627752, y: 0.054070897, z: -0.011997131, w: 0.9747597}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.000000029802322, y: 0.027699202, z: -0.000000044703484}
   m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
   m_Children:
@@ -1810,7 +1810,7 @@ Transform:
   - {fileID: 8928248465838059744}
   m_Father: {fileID: 5412240446320892544}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 25.02, y: 6.3500004, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8928248466617288060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1913,7 +1913,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466657197453}
-  m_LocalRotation: {x: 0.16711812, y: 0.018437032, z: -0.0031256727, w: 0.9857596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.000000044703484, y: 0.039117023, z: -0.000000092200935}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1921,7 +1921,7 @@ Transform:
   - {fileID: 8928248467361835288}
   m_Father: {fileID: 4999737227182438254}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 19.244001, y: 2.1430001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8928248466711916364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,7 +1945,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466711916364}
-  m_LocalRotation: {x: 0.28933662, y: 0.18904267, z: -0.050793182, w: 0.9369991}
+  m_LocalRotation: {x: 0.0017203905, y: 0.20034383, z: 0.008412766, w: 0.979688}
   m_LocalPosition: {x: 0.000000014901161, y: 0.050375834, z: -0.000000115484}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_Children:
@@ -1953,7 +1953,7 @@ Transform:
   - {fileID: 8928248466617288061}
   m_Father: {fileID: 1398686093952098048}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 34.154003, y: 23.115002, z: 0.984}
+  m_LocalEulerAnglesHint: {x: 0, y: 23.115002, z: 0.984}
 --- !u!1 &8928248466737336064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,11 +2030,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &8928248466775492315
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2046,9 +2046,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.008
-  m_Height: 0.05
+  m_Height: 0.06
   m_Direction: 1
-  m_Center: {x: 0.00031012253, y: 0.02491195, z: 0.00018724245}
+  m_Center: {x: 0.00031012253, y: 0.02, z: 0.00018724245}
 --- !u!153 &8928248466775492314
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -2067,7 +2067,7 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 1
-  m_AngularYMotion: 0
+  m_AngularYMotion: 1
   m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 0
@@ -2077,8 +2077,8 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -85
     bounciness: 0
@@ -2088,14 +2088,14 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
-    limit: 14
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 15
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -2120,13 +2120,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -2151,7 +2151,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466775492319}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -2217,7 +2217,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8928248466783121651}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.02
   m_Height: 0.15
   m_Direction: 2
@@ -2229,7 +2229,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466783121651}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb8a74a15f4aab145898b5a273998900, type: 3}
   m_Name: 
@@ -2378,13 +2378,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -2409,7 +2409,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466785031439}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -2469,14 +2469,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248466821469147}
-  m_LocalRotation: {x: 0.23119056, y: 0.039653495, z: -0.009431072, w: 0.9720543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.000000022351742, y: 0.059238564, z: 0.000000024214387}
   m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_Children:
   - {fileID: 866192428416419129}
   m_Father: {fileID: 5958432448621117922}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 26.757002, y: 4.6720004, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8928248466831136284
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,9 +2591,9 @@ ConfigurableJoint:
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
-  m_AngularXMotion: 1
-  m_AngularYMotion: 1
-  m_AngularZMotion: 1
+  m_AngularXMotion: 0
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -2645,13 +2645,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -2767,14 +2767,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467002202720}
-  m_LocalRotation: {x: 0.112432346, y: 0.47349012, z: 0.38514432, w: 0.7841109}
-  m_LocalPosition: {x: -0.0072042346, y: -0.029618338, z: 0.012039777}
+  m_LocalRotation: {x: -0.14924566, y: 0.55995554, z: 0.3639424, w: 0.72919244}
+  m_LocalPosition: {x: -0.0021, y: -0.0309, z: 0.019}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_Children:
   - {fileID: 1220389955463262641}
   m_Father: {fileID: 5958432448621117922}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -10.860001, y: 57.593002, z: 46.337}
+  m_LocalEulerAnglesHint: {x: -38.7, y: 65.119, z: 27.77}
 --- !u!1 &8928248467010762487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2851,7 +2851,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000017788261, y: 0.0503759, z: -0.00000016577542}
+  m_ConnectedAnchor: {x: 0.00000021699816, y: 0.050375883, z: -0.0000001611188}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2868,27 +2868,27 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -61
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_HighAngularXLimit:
     limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_AngularZLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -2911,13 +2911,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -3041,27 +3041,27 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -69
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_HighAngularXLimit:
     limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_AngularZLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -3084,13 +3084,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -3115,7 +3115,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467018399969}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -3234,7 +3234,7 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 1
-  m_AngularYMotion: 0
+  m_AngularYMotion: 1
   m_AngularZMotion: 1
   m_LinearLimitSpring:
     spring: 0
@@ -3244,8 +3244,8 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -80
     bounciness: 0
@@ -3255,14 +3255,14 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
-    limit: 16
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 15
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -3287,13 +3287,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -3318,7 +3318,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467063695948}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -3417,27 +3417,27 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -104
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_HighAngularXLimit:
     limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_AngularZLimit:
-    limit: 0
+    limit: 5
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -3460,13 +3460,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -3491,7 +3491,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467108713443}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -3554,7 +3554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467266535301}
   m_LocalRotation: {x: 0.46602333, y: -0.0041683605, z: 0.014948765, w: 0.88463634}
-  m_LocalPosition: {x: -1.213, y: 4.72, z: 1.225}
+  m_LocalPosition: {x: -1.003, y: 4.725, z: 1.229}
   m_LocalScale: {x: 0.19860905, y: 0.19860907, z: 0.19860907}
   m_Children: []
   m_Father: {fileID: 8928248467307922502}
@@ -3633,7 +3633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467268145589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.32999998, y: 5.038, z: 1.617}
+  m_LocalPosition: {x: -0.196, y: 4.94, z: 1.487}
   m_LocalScale: {x: 0.19860902, y: 0.19860907, z: 0.19860917}
   m_Children: []
   m_Father: {fileID: 8928248467307922502}
@@ -3768,9 +3768,9 @@ ConfigurableJoint:
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
-  m_AngularXMotion: 1
-  m_AngularYMotion: 1
-  m_AngularZMotion: 1
+  m_AngularXMotion: 0
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -3784,7 +3784,7 @@ ConfigurableJoint:
   m_LowAngularXLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_HighAngularXLimit:
     limit: 0
     bounciness: 0
@@ -3795,11 +3795,11 @@ ConfigurableJoint:
   m_AngularYLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_AngularZLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -3822,13 +3822,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -3853,7 +3853,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467275553742}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -3885,7 +3885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467275558767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.434, y: 4.761, z: 1.559}
+  m_LocalPosition: {x: 0.548, y: 4.688, z: 1.405}
   m_LocalScale: {x: 0.19860902, y: 0.19860904, z: 0.19860904}
   m_Children: []
   m_Father: {fileID: 8928248467307922502}
@@ -4021,8 +4021,8 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 0
   m_AngularXMotion: 1
-  m_AngularYMotion: 1
-  m_AngularZMotion: 1
+  m_AngularYMotion: 0
+  m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
     damper: 0
@@ -4031,12 +4031,12 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
-    limit: 0
+    limit: -10
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_HighAngularXLimit:
     limit: 0
     bounciness: 0
@@ -4047,11 +4047,11 @@ ConfigurableJoint:
   m_AngularYLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_AngularZLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -4074,13 +4074,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -4105,7 +4105,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467288452397}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -4240,7 +4240,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467302490185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.44, y: 4.059, z: 1.05}
+  m_LocalPosition: {x: 1.192, y: 4.059, z: 1.05}
   m_LocalScale: {x: 0.19860902, y: 0.198609, z: 0.1986091}
   m_Children: []
   m_Father: {fileID: 8928248467307922502}
@@ -4510,7 +4510,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8928248467511419496}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.02
   m_Height: 0.15
   m_Direction: 2
@@ -4522,7 +4522,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467511419496}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb8a74a15f4aab145898b5a273998900, type: 3}
   m_Name: 
@@ -4578,11 +4578,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &8928248467515012618
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4625,8 +4625,8 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -70
     bounciness: 0
@@ -4636,8 +4636,8 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
     limit: 0
     bounciness: 0
@@ -4645,7 +4645,7 @@ ConfigurableJoint:
   m_AngularZLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -4668,13 +4668,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -4699,7 +4699,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467515012622}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -4728,7 +4728,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467584623599}
-  m_LocalRotation: {x: 0.1298363, y: -0.01890505, z: 0.0024759735, w: 0.99135214}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.000000022351742, y: 0.039979495, z: 0.00000008032657}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4736,7 +4736,7 @@ Transform:
   - {fileID: 8928248467590978870}
   m_Father: {fileID: 7103725890594501624}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 14.923, y: -2.1850002, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8928248467585817008
 GameObject:
   m_ObjectHideFlags: 0
@@ -4760,14 +4760,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467585817008}
-  m_LocalRotation: {x: 0.114283346, y: 0.014572877, z: -0.0016766035, w: 0.9933399}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0000000037252903, y: 0.019208627, z: -0.00000003958121}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
   m_Children:
   - {fileID: 8326910541983878964}
   m_Father: {fileID: 866192428416419129}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 13.126, y: 1.6810001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8928248467590978873
 GameObject:
   m_ObjectHideFlags: 0
@@ -4870,14 +4870,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467643210426}
-  m_LocalRotation: {x: 0.010289906, y: -0.037792854, z: 0.00038918355, w: 0.9992326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.000000044703484, y: 0.02004613, z: -0.000000081025064}
   m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 1}
   m_Children:
   - {fileID: 8928248466542699056}
   m_Father: {fileID: 1855410581247737797}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 1.1800001, y: -4.3320003, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8928248467669390542
 GameObject:
   m_ObjectHideFlags: 0
@@ -4971,8 +4971,8 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -68
     bounciness: 0
@@ -4982,8 +4982,8 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
     limit: 0
     bounciness: 0
@@ -5014,13 +5014,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -5045,7 +5045,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467669390542}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -5144,8 +5144,8 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -104
     bounciness: 0
@@ -5155,14 +5155,14 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
     limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularZLimit:
-    limit: 0
+    limit: 5
     bounciness: 0
     contactDistance: 0
   m_TargetPosition: {x: 0, y: 0, z: 0}
@@ -5187,13 +5187,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -5218,7 +5218,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467675111362}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -5308,14 +5308,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467719089114}
-  m_LocalRotation: {x: -0.22210418, y: 0.433941, z: 0.38944897, w: 0.78146935}
-  m_LocalPosition: {x: 0, y: -0.029618338, z: 0.012039777}
+  m_LocalRotation: {x: -0.14924566, y: 0.55995554, z: 0.3639424, w: 0.72919244}
+  m_LocalPosition: {x: -0.0021, y: -0.0309, z: 0.019}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_Children:
   - {fileID: 8928248467010762480}
   m_Father: {fileID: 8928248466131529428}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -43.246002, y: 43.915, z: 34.820004}
+  m_LocalEulerAnglesHint: {x: -38.7, y: 65.119, z: 27.77}
 --- !u!54 &8928248467719089115
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5328,10 +5328,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!136 &8928248467719089110
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5357,7 +5357,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -4.6566134e-10, y: -0.029618245, z: 0.012039646}
+  m_ConnectedAnchor: {x: -0.0021000109, y: -0.030899942, z: 0.018999817}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -5378,23 +5378,23 @@ ConfigurableJoint:
     damper: 100
   m_LowAngularXLimit:
     limit: -49
-    bounciness: 1
-    contactDistance: 0
+    bounciness: 0
+    contactDistance: 0.01
   m_HighAngularXLimit:
     limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1500
+    spring: 15000
     damper: 100
   m_AngularYLimit:
     limit: 10
     bounciness: 1
-    contactDistance: 0
+    contactDistance: 0.01
   m_AngularZLimit:
     limit: 10
     bounciness: 1
-    contactDistance: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -5417,13 +5417,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -5516,9 +5516,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.009
-  m_Height: 0.05
+  m_Height: 0.04
   m_Direction: 1
-  m_Center: {x: 0.00000001545568, y: 0.018422786, z: -0.0000000022550986}
+  m_Center: {x: 0.00000001545568, y: 0.02, z: -0.0000000022550986}
 --- !u!153 &8928248467736034476
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -5547,27 +5547,27 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
-    limit: -107
+    limit: -87
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_HighAngularXLimit:
     limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
-    limit: 14
-    bounciness: 0
-    contactDistance: 0
-  m_AngularZLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
+  m_AngularZLimit:
+    limit: 14
+    bounciness: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -5590,13 +5590,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -5621,7 +5621,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467736034481}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
@@ -5887,27 +5887,27 @@ ConfigurableJoint:
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_LowAngularXLimit:
     limit: -107
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_HighAngularXLimit:
     limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
-    spring: 1000
-    damper: 10
+    spring: 15000
+    damper: 100
   m_AngularYLimit:
     limit: 0
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_AngularZLimit:
-    limit: 0
+    limit: 5
     bounciness: 0
-    contactDistance: 0
+    contactDistance: 0.01
   m_TargetPosition: {x: 0, y: 0, z: 0}
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
@@ -5930,13 +5930,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 150000
+    positionDamper: 1000
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 15000
+    positionDamper: 100
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -5961,7 +5961,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8928248467964689505}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e518ba8670eae2d4895e8b6f4e4d17fc, type: 3}
   m_Name: 
