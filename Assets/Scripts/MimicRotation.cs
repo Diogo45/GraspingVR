@@ -76,8 +76,10 @@ public class MimicRotation : MonoBehaviour
 
 
 
-        //myJoint.SetTargetRotation(Quaternion.Euler(target.eulerAngles.x, target.eulerAngles.y, target.eulerAngles.z), initialRotation);        
-        myJoint.SetTargetRotationLocal(target.transform.localRotation, initialRotation);        
+        //myJoint.SetTargetRotationLocal(Quaternion.Euler(target.eulerAngles.x, 0, target.eulerAngles.z), initialRotation);        
+        myJoint.SetTargetRotationLocal(target.localRotation, initialRotation);
         //myJoint.SetTargetRotationLocal(Quaternion.Euler(rot.x, rot.y, rot.z), initialRotation);
+
+       
     }
 }

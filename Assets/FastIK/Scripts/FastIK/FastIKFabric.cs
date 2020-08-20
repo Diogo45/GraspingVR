@@ -114,6 +114,12 @@ namespace DitzelGames.FastIK
         void LateUpdate()
         {
             ResolveIK();
+            foreach(var transform in Bones)
+            {
+                var newRot = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
+                transform.SetPositionAndRotation(transform.position, newRot);
+            }
+
         }
 
         private void ResolveIK()
@@ -191,9 +197,14 @@ namespace DitzelGames.FastIK
             for (int i = 0; i < Positions.Length; i++)
             {
                 if (i == Positions.Length - 1)
+                {
                     SetRotationRootSpace(Bones[i], Quaternion.Inverse(targetRotation) * StartRotationTarget * Quaternion.Inverse(StartRotationBone[i]));
+                }
                 else
+                {
                     SetRotationRootSpace(Bones[i], Quaternion.FromToRotation(StartDirectionSucc[i], Positions[i + 1] - Positions[i]) * Quaternion.Inverse(StartRotationBone[i]));
+                }
+                    
                 SetPositionRootSpace(Bones[i], Positions[i]);
             }
         }
@@ -226,6 +237,9 @@ namespace DitzelGames.FastIK
         private void SetRotationRootSpace(Transform current, Quaternion rotation)
         {
             //rotation.eulerAngles = new Vector3(rotation.eulerAngles.x, 0f, rotation.eulerAngles.z);
+
+           
+
             if (Root == null)
                 current.rotation = rotation;
             else
