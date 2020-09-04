@@ -38,7 +38,7 @@
 				struct v2f {
 					float4 position : SV_POSITION;
 					float2 uv : TEXCOORD0;
-					float4 tangent : TANGENT;
+
 					float4 normal : NORMAL;
 				};
 
@@ -52,7 +52,7 @@
 					//o.position = v.vertex;
 					o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 					//o.uv = v.uv;
-					o.tangent = v.tangent;
+					
 					o.normal = v.normal;
 					return o;
 				}
@@ -60,26 +60,15 @@
 				//the fragment shader
 				fixed4 frag(v2f i) : SV_TARGET{
 
-					/*float3 bitangent = cross(i.tangent.xyz, i.normal.xyz);
-					float3x3 tangent2object = { i.tangent.x , bitangent.x, i.normal.x, i.tangent.y , bitangent.y, i.normal.y, i.tangent.z, bitangent.z, i.normal.z };
-
-					float2 offset = float2(0, _Delta);
-
-					float3 XY = mul(tangent2object, (tex2D(_MainTex, i.uv)));
-					float3 ofX = mul(tangent2object, (tex2D(_MainTex, i.uv + offset.xy)));
-					float3 ofY = mul(tangent2object, (tex2D(_MainTex, i.uv + offset.yx)));*/
-
-					i.normal = mul(unity_WorldToObject, i.normal);
+					//i.normal = mul(unity_WorldToObject, i.normal);
 					//_Delta = 5;
 					float derivativeX = ddx(i.normal.x) + 1 / (_Delta * 2);
-					//float derivativeX = ddx(i.normal.x) / (_Delta);
-					//float derivativeX = (ofX - XY).x / _Delta;
+					//float derivativeX = abs(ddx(i.normal.x)) / (_Delta);
 					float derivativeY = ddy(i.normal.y) + 1 / (_Delta * 2);
-					//float derivativeY = ddy(i.normal.y) / (_Delta);
-					//float derivativeY = (ofY - XY).y / _Delta;
+					//float derivativeY = abs(ddy(i.normal.y)) / (_Delta);
 
-					//return fixed4(derivativeX, derivativeY, 0, 1);
-					return fixed4(i.normal.xy, 0, 1);
+					return fixed4(derivativeX, derivativeY, 0, 1);
+					//return fixed4(i.normal.xy, 0, 1);
 					//return fixed4(ofX.xy, 0, 1);
 				}
 

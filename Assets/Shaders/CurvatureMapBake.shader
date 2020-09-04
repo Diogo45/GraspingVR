@@ -3,7 +3,7 @@
 	Properties{
 		//_Factor("Factor", Range(0, 100)) = 1
 		_MainTex("Texture", 2D) = "white"{}
-		_Delta("Delta", Range(0.1,5)) = 0 // sliders
+		_Delta("Delta", Range(0.01,5)) = 0 // sliders
 	}
 
 		SubShader{
@@ -61,26 +61,16 @@
 				//the fragment shader
 				fixed4 frag(v2f i) : SV_TARGET{
 
-					/*float3 bitangent = cross(i.tangent.xyz, i.normal.xyz);
-					float3x3 tangent2object = { i.tangent.x , bitangent.x, i.normal.x, i.tangent.y , bitangent.y, i.normal.y, i.tangent.z, bitangent.z, i.normal.z };
 
-					float2 offset = float2(0, _Delta);
-
-					float3 XY = mul(tangent2object, (tex2D(_MainTex, i.uv)));
-					float3 ofX = mul(tangent2object, (tex2D(_MainTex, i.uv + offset.xy)));
-					float3 ofY = mul(tangent2object, (tex2D(_MainTex, i.uv + offset.yx)));*/
-
-					i.normal = mul(unity_WorldToObject, i.normal);
+					//i.normal = mul(unity_WorldToObject, i.normal);
 					//_Delta = 5;
-					//float derivativeX = ddx(i.normal.x) + 1 / (_Delta * 2);
-					float derivativeX = ddx(i.normal.x) / (_Delta);
-					//float derivativeX = (ofX - XY).x / _Delta;
-					//float derivativeY = ddy(i.normal.y) + 1 / (_Delta * 2);
-					float derivativeY = ddy(i.normal.y) / (_Delta);
-					//float derivativeY = (ofY - XY).y / _Delta;
+					float derivativeX = ddx(i.normal.x) + 1 / (_Delta * 2);
+					//float derivativeX = abs(ddx(i.normal.x)) / (_Delta);
+					float derivativeY = ddy(i.normal.y) + 1 / (_Delta * 2);
+					//float derivativeY = abs(ddy(i.normal.y)) / (_Delta);
 
-					//return fixed4(derivativeX, derivativeY, 0, 1);
-					return fixed4(i.normal.xy, 0, 1);
+					return fixed4(derivativeX, derivativeX, 0, 1);
+					//return fixed4(i.normal.xy, 0, 1);
 					//return fixed4(ofX.xy, 0, 1);
 				}
 

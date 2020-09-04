@@ -34,7 +34,7 @@ public class ShaderBaker : MonoBehaviour
         {
             RenderTexture rt = RenderTexture.GetTemporary(textureDim.x, textureDim.y);
             Mesh M = objectToBake.GetComponent<MeshFilter>().mesh;
-
+            
             Graphics.SetRenderTarget(rt);
             GL.Clear(true, true, backgroundColor);
             GL.PushMatrix(); 
