@@ -37,8 +37,11 @@ public class ShaderBaker : MonoBehaviour
             
             Graphics.SetRenderTarget(rt);
             GL.Clear(true, true, backgroundColor);
-            GL.PushMatrix(); 
-            GL.LoadOrtho(); 
+            GL.PushMatrix();
+            GL.LoadIdentity();
+            var proj = Matrix4x4.Ortho(0, 1, 0, 1, -1, 100);
+            GL.LoadProjectionMatrix(proj);
+            //GL.LoadOrtho(); 
             uvMaterial.SetPass(0);
             Graphics.DrawMeshNow(M, Matrix4x4.identity);
             Graphics.SetRenderTarget(null);
@@ -59,7 +62,7 @@ public class ShaderBaker : MonoBehaviour
     }
     Texture2D toTexture2D(RenderTexture rTex)
     {
-        Texture2D tex = new Texture2D(rTex.width, rTex.height, TextureFormat.RGB24, false);
+        Texture2D tex = new Texture2D(rTex.width, rTex.height, TextureFormat.RGBA32, false);
         RenderTexture.active = rTex;
         tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0);
         tex.Apply();

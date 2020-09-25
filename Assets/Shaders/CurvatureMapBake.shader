@@ -55,6 +55,15 @@
 					o.uv = v.uv;
 					o.tangent = v.tangent;
 					o.normal = v.normal;
+
+					/*
+					float4 sPos = v.vertex;
+					sPos.xy = v.texcoord.xy * 2.0 - 1.0;
+					sPos.z = 0;
+					o.position = sPos;
+					o.uv = v.texcoord.xy;*/
+
+
 					return o;
 				}
 

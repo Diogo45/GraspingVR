@@ -1,4 +1,8 @@
-﻿Shader "Curvature/GeometryCurvature"{
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Curvature/GeometryCurvature"{
 	//show values to edit in inspector
 	Properties{
 		//_Factor("Factor", Range(0, 100)) = 1
@@ -29,7 +33,7 @@
 				//the object data that's put into the vertex shader
 				struct appdata {
 					float4 vertex : POSITION;
-					float2 uv : TEXCOORD0;
+					float2 texcoord : TEXCOORD0;
 					float4 tangent : TANGENT;
 					float4 normal : NORMAL;
 				};
@@ -48,12 +52,21 @@
 					//The UnityObjectToClipPos function is inside the UnityCG.cginc file and allows us to not worry about matrix multiplication for now
 					//v.vertex = float4((v.uv.xy - float2(0.5, 0.5)) * 2, 0.0, 1.0);
 					//o.position = mul(UNITY_MATRIX_P, v.vertex);
+					//v.vertex += float4(0,0,0,1);
+					o.normal = v.normal;
+
 					o.position = UnityObjectToClipPos(v.vertex);
 					//o.position = v.vertex;
-					o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+					o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
 					//o.uv = v.uv;
-					
-					o.normal = v.normal;
+					/*	
+					float4 sPos = v.vertex;
+					sPos.xy = v.texcoord.xy * 2.0 - 1.0;
+					sPos.z = 0;
+					o.position = sPos;
+					o.uv = v.texcoord.xy;*/
+
+
 					return o;
 				}
 
