@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Meshes;
+using UnityEngine.Profiling;
+
 public class PrincipleDirectionsController : MonoBehaviour
 {
 
@@ -10,14 +12,16 @@ public class PrincipleDirectionsController : MonoBehaviour
     private MeshFilter meshFilter;
     private void Start()
     {
+        var begin = System.DateTime.Now;
         meshFilter = gameObject.GetComponent<MeshFilter>();
         float[] pointAreas; Vector3[] cornerAreas;
         MeshCurvature.ComputePointAndCornerAreas(meshFilter.mesh.vertices, meshFilter.mesh.triangles, out pointAreas, out cornerAreas);
         
         MeshCurvature.ComputeCurvature(meshFilter.mesh.vertices, meshFilter.mesh.normals,meshFilter.mesh.triangles, pointAreas, cornerAreas, out pdir1, out pdir2, out curv1, out curv2);
 
+        var end = System.DateTime.Now;
 
-
+        Debug.Log("Object " + gameObject.name + ": " + (end - begin).TotalMilliseconds + ", " + meshFilter.mesh.vertices.Length + " vertices");
     }
 
     private Vector3 Mult(Vector3 vec, Vector3 scale)
@@ -27,11 +31,27 @@ public class PrincipleDirectionsController : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < meshFilter.mesh.vertices.Length; i++)
+        List<int> neighboors; 
+        MeshSearch.GetNeighboors(meshFilter.mesh.triangles, meshFilter.mesh.vertices, 1, out neighboors);
+        var VecPos = Mult(meshFilter.mesh.vertices[1], transform.localScale) + transform.position;
+        for (int i = 0; i < neighboors.Count; i++)
         {
-            Debug.DrawLine(Mult(meshFilter.mesh.vertices[i],transform.localScale), Mult(meshFilter.mesh.vertices[i], transform.localScale) + pdir1[i], Color.red);
-            Debug.DrawLine(Mult(meshFilter.mesh.vertices[i], transform.localScale), Mult(meshFilter.mesh.vertices[i], transform.localScale) + pdir2[i], Color.green);
+            var VecPos2 = Mult(meshFilter.mesh.vertices[neighboors[i]], transform.localScale) + transform.position;
+            Debug.DrawLine(VecPos, VecPos2);
         }
     }
 
+#if UNITY_EDITOR
+    private void VisualizeDirections()
+    {
+        for (int i = 0; i < meshFilter.mesh.vertices.Length; i++)
+        {
+
+            var VecPos = Mult(meshFilter.mesh.vertices[i], transform.localScale) + transform.position;
+
+            Debug.DrawLine(VecPos, VecPos + pdir1[i], Color.red);
+            Debug.DrawLine(VecPos, VecPos + pdir2[i], Color.green);
+        }
+    }
+#endif
 }
