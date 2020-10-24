@@ -13,13 +13,16 @@ public class ParametrizedAnimation : MonoBehaviour
         public GameObject extreme;
     }
 
-
-
     public float timeF;
     public float timeC;
 
     public float[] flexTime;
     public float[] curlTime;
+
+    public float[] animTime;
+
+    public float[] spreadTime;
+    public float[] spreadMAX;
 
     public List<GameObject> fingers;
     private Quaternion[] OldFingers;
@@ -32,11 +35,11 @@ public class ParametrizedAnimation : MonoBehaviour
     private float[] flexSpeed;
     private float[] curlSpeed;
 
-    public float[] animTime;
 
     // Start is called before the first frame update
     void Start()
     {
+        #region Initialize Values 
         flexSpeed = new float[fingers.Count];
         curlSpeed = new float[fingers.Count];
         
@@ -63,15 +66,23 @@ public class ParametrizedAnimation : MonoBehaviour
             OldCurlFingers[i] = (quatCopy(curlFingers[i].middle.transform.localRotation), quatCopy(curlFingers[i].extreme.transform.localRotation));
         }
 
+        #endregion
 
-
+        #region Set MAX Values
         maxFingers = new Quaternion[fingers.Count];
+
         maxFingers[0] = new Quaternion(1.2f, fingers[0].transform.localRotation.y, fingers[0].transform.localRotation.z, fingers[0].transform.localRotation.w);
-        maxFingers[1] = new Quaternion(0.4f, fingers[1].transform.localRotation.y, fingers[1].transform.localRotation.z, fingers[1].transform.localRotation.w) ;
+
+        //maxFingers[1] = /*fingers[1].transform.rotation * */new Quaternion(0.4f, fingers[1].transform.localRotation.y, fingers[1].transform.localRotation.z, fingers[1].transform.localRotation.w);
+        maxFingers[1] = /*fingers[1].transform.rotation * */new Quaternion(0.4f, 0.7f, 0.2f, 0.6f);
+
         maxFingers[2] = new Quaternion(1.3f, fingers[2].transform.localRotation.y, fingers[2].transform.localRotation.z, fingers[2].transform.localRotation.w);
+
         maxFingers[3] = new Quaternion(1.4f, fingers[3].transform.localRotation.y, fingers[3].transform.localRotation.z, fingers[3].transform.localRotation.w);
+
         maxFingers[4] = new Quaternion(1.5f, fingers[4].transform.localRotation.y, fingers[4].transform.localRotation.z, fingers[4].transform.localRotation.w);
 
+        maxFingers[5] = new Quaternion(0.1f, -0.5f, fingers[4].transform.localRotation.z, fingers[4].transform.localRotation.w);
 
 
 
@@ -89,34 +100,46 @@ public class ParametrizedAnimation : MonoBehaviour
             }
         }
 
-
+        #endregion
     }
 
     // Update is called once per frame
     void Update()
     {
-        //foreach (var item in fingers)
-        //{
-        //    Debug.Log(item.name + " " + item.transform.rotation);
-        //}
         //0.7; 0.1f; 0.7; 0.7; 0.7
+        //0.4, 0.7, 0.2, 0.6
+
+        #region Update Phalanx Rotations
 
         for (int i = 0; i < fingers.Count; i++)
         {
-            fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], /*flexTime[i] * */animTime[i] * flexTime[i] * timeF);
-            //flexTime[i] += Time.deltaTime * animTime[i];
-            //Mathf.Clamp01(flexTime[i]);
+            fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
+            if (i == 1)
+            {
+                //fingers[i].transform.localRotation = OldFingers[i] * Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
+                fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
+            }
+            
         }
 
 
         for (int i = 0; i < curlFingers.Count; i++)
         {
             curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], /*curlTime[i] **/ animTime[i] * curlTime[i] * timeC);
+
             curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i],/* curlTime[i] **/ animTime[i] * curlTime[i] * timeC);
-            //curlTime[i] += Time.deltaTime * animTime[i];
-            //Mathf.Clamp01(curlTime[i]);
+           
         }
 
+        for (int i = 0; i < fingers.Count; i++)
+        {
+            spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
+            
+            maxFingers[i] = new Quaternion(maxFingers[i].x, maxFingers[i].y, spreadMAX[i] * spreadTime[i], maxFingers[i].w);
+        }
+
+
+        #endregion
     }
 
 
