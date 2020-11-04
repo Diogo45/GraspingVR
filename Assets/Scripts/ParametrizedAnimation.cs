@@ -13,15 +13,21 @@ public class ParametrizedAnimation : MonoBehaviour
         public GameObject extreme;
     }
 
+
+    public bool Grasp;
+
+    private bool DirGrasp;
+
     #region FingerData
 
-    public float timeF;
-    public float timeC;
+    //public float timeF;
+    public float timeMult;
 
-    public float[] flexTime;
-    public float[] curlTime;
+    public float[] flexMultiplier;
+    public float[] curlMultiplier;
 
-    public float[] animTime;
+    public float[] FlexAnimTime;
+    public float[] CurlAnimTime;
 
     public float[] spreadTime;
     public float[] spreadMAX;
@@ -34,17 +40,16 @@ public class ParametrizedAnimation : MonoBehaviour
     public (Quaternion, Quaternion)[] OldCurlFingers;
     private Quaternion[] maxCurl;
 
-    private float[] flexSpeed;
-    private float[] curlSpeed;
 
     #endregion
 
     #region AnimData
 
-    public float IndexFingerDistanceToObject;
+    private float IndexFingerDistanceToObject;
 
-    public (Vector3, Vector3, Vector3)[] PhalanxDistanceToObject;
+    private (Vector3, Vector3, Vector3)[] PhalanxDistanceToObject;
 
+    private (float, float, float)[] DistanceToObject;
 
     #endregion
 
@@ -52,17 +57,30 @@ public class ParametrizedAnimation : MonoBehaviour
     void Start()
     {
 
-        PhalanxDistanceToObject = new (Vector3, Vector3, Vector3)[fingers.Count-1];
 
         #region Initialize Values 
-        flexSpeed = new float[fingers.Count];
-        curlSpeed = new float[fingers.Count];
-        
+
+        PhalanxDistanceToObject = new (Vector3, Vector3, Vector3)[fingers.Count - 1];
+
+        DistanceToObject = new (float, float, float)[PhalanxDistanceToObject.Length];
+
+        for (int i = 0; i < DistanceToObject.Length; i++)
+        {
+            DistanceToObject[i].Item1 = 1f;
+            DistanceToObject[i].Item2 = 1f;
+            DistanceToObject[i].Item3 = 1f;
+        }
+
+        FlexAnimTime = new float[fingers.Count];
+        CurlAnimTime = new float[fingers.Count];
+
+
+
 
         for (int i = 0; i < fingers.Count; i++)
         {
-            flexSpeed[i] = 0f;
-            curlSpeed[i] = 0f;
+            FlexAnimTime[i] = 0f;
+            CurlAnimTime[i] = 0f;
         }
 
 
@@ -134,12 +152,33 @@ public class ParametrizedAnimation : MonoBehaviour
             Debug.DrawLine(curlFingers[i].middle.transform.position, PhalanxDistanceToObject[i].Item2);
             Debug.DrawLine(curlFingers[i].extreme.transform.position, PhalanxDistanceToObject[i].Item3);
         }
+
+
+
 #endif
 
 
-        //float indexDistance = Vector3 fingers[0]
+        for (int i = 0; i < DistanceToObject.Length; i++)
+        {
+            if (PhalanxDistanceToObject[i].Item1 != Vector3.zero)
+            {
+                DistanceToObject[i].Item1 = Vector3.Distance(PhalanxDistanceToObject[i].Item1, fingers[i].transform.position);
 
-#endregion
+            }
+            if (PhalanxDistanceToObject[i].Item2 != Vector3.zero)
+            {
+                DistanceToObject[i].Item2 = Vector3.Distance(PhalanxDistanceToObject[i].Item2, curlFingers[i].middle.transform.position);
+
+            }
+            if (PhalanxDistanceToObject[i].Item3 != Vector3.zero)
+            {
+                DistanceToObject[i].Item3 = Vector3.Distance(PhalanxDistanceToObject[i].Item3, curlFingers[i].extreme.transform.position);
+
+            }
+        }
+
+
+        #endregion
 
 
         #region Update Phalanx Rotations
@@ -147,40 +186,78 @@ public class ParametrizedAnimation : MonoBehaviour
         for (int i = 0; i < fingers.Count; i++)
         {
             //fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
-            fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * IndexFingerDistanceToObject);
+            fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], FlexAnimTime[i] * flexMultiplier[i] * IndexFingerDistanceToObject); ;
             //if (i == 1)
             //{
             //    //fingers[i].transform.localRotation = OldFingers[i] * Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
             //    fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
             //}
-            
+
         }
 
 
         for (int i = 0; i < curlFingers.Count; i++)
         {
-            curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], /*curlTime[i] **/ animTime[i] * curlTime[i] * timeC);
+            curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], (CurlAnimTime[i] * curlMultiplier[i]) / DistanceToObject[i].Item2);
 
-            curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i],/* curlTime[i] **/ animTime[i] * curlTime[i] * timeC);
+            curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i], (CurlAnimTime[i] * curlMultiplier[i]) / DistanceToObject[i].Item3);
             //curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], /*curlTime[i] **/ animTime[i] * curlTime[i] * timeC);
 
             //curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i],/* curlTime[i] **/ animTime[i] * curlTime[i] * timeC);
-           
+
         }
 
         for (int i = 0; i < fingers.Count; i++)
         {
             spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
-            
+
             maxFingers[i] = new Quaternion(maxFingers[i].x, maxFingers[i].y, spreadMAX[i] * spreadTime[i], maxFingers[i].w);
         }
 
 
         #endregion
+
+
+        if (Grasp)
+        {
+            if (DirGrasp)
+            {
+                for (int i = 0; i < FlexAnimTime.Length; i++)
+                {
+                    FlexAnimTime[i] += Time.deltaTime * timeMult;
+                    FlexAnimTime[i] = Mathf.Clamp(FlexAnimTime[i], -1, 1);
+                }
+                for (int i = 0; i < CurlAnimTime.Length; i++)
+                {
+                    CurlAnimTime[i] += Time.deltaTime * timeMult;
+                    CurlAnimTime[i] = Mathf.Clamp(CurlAnimTime[i], -1, 1);
+                }
+
+
+            }
+            else
+            {
+                for (int i = 0; i < FlexAnimTime.Length; i++)
+                {
+                    FlexAnimTime[i] -= Time.deltaTime * timeMult;
+                    FlexAnimTime[i] = Mathf.Clamp(FlexAnimTime[i], -1, 1);
+                }
+                for (int i = 0; i < CurlAnimTime.Length; i++)
+                {
+                    CurlAnimTime[i] -= Time.deltaTime * timeMult;
+                    CurlAnimTime[i] = Mathf.Clamp(CurlAnimTime[i], -1, 1);
+                }
+            }
+
+        }
+
+
     }
 
     private void OnTriggerStay(Collider collision)
     {
+        if (collision.gameObject.tag == "Hand") return;
+
         IndexFingerDistanceToObject = Vector3.Distance(fingers[0].transform.position, collision.gameObject.transform.position);
 
         for (int i = 0; i < PhalanxDistanceToObject.Length; i++)
@@ -211,8 +288,22 @@ public class ParametrizedAnimation : MonoBehaviour
 
         }
 
+        DirGrasp = true;
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        DirGrasp = false;
+        Reset();
+    }
+
+
+    private void Reset()
+    {
+        //PhalanxDistanceToObject = new (Vector3, Vector3, Vector3)[fingers.Count-1];
+        //IndexFingerDistanceToObject = 0f;
+
+    }
 
 
     private Quaternion quatCopy(Quaternion a)
