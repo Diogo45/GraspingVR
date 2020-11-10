@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5323234997184165895}
   - component: {fileID: 305033565176968788}
   - component: {fileID: 305033565176968789}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: forearm.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,9 +71,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3841940781355321782}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_index.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,9 +106,9 @@ GameObject:
   - component: {fileID: 532078717405505263}
   - component: {fileID: 532078717405505256}
   - component: {fileID: 532078717405505257}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_pinky.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,7 +169,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000048428767, y: 0.042943843, z: -0.000000015599653}
+  m_ConnectedAnchor: {x: -0.000000017695127, y: 0.042943954, z: -0.000000017695129}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -275,9 +275,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4553276022453313920}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_middle.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -306,9 +306,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4789373876011475923}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -337,9 +337,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7498980789446775231}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -368,9 +368,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 116945055794773491}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: metarig.001
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -403,9 +403,9 @@ GameObject:
   - component: {fileID: 1226280711807989827}
   - component: {fileID: 1226280711807989836}
   - component: {fileID: 1226280711807989837}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_pinky.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,7 +466,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000043306503, y: 0.036697857, z: -0.00000006635673}
+  m_ConnectedAnchor: {x: -0.0000000051222746, y: 0.036697824, z: -0.000000048195943}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -572,9 +572,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6706912467332583964}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_ring.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -603,9 +603,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4163350922576966282}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: palm.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -634,9 +634,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9174780514125994358}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_pinky.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -664,9 +664,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8639334590149811354}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_ring.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -699,9 +699,9 @@ GameObject:
   - component: {fileID: 2127213729077419734}
   - component: {fileID: 2127213729077419735}
   - component: {fileID: 2127213729077419728}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -762,7 +762,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000009452928, y: 0.039972093, z: -0.000000015832486}
+  m_ConnectedAnchor: {x: 0.00000012759124, y: 0.039972126, z: 0.000000023283068}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -869,13 +869,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5428442587102583714}
   - component: {fileID: 3655356876610133101}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ZBrush_defualt_group
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5428442587102583714
 Transform:
   m_ObjectHideFlags: 0
@@ -981,9 +981,9 @@ GameObject:
   - component: {fileID: 2500555227549882749}
   - component: {fileID: 2500555227549882750}
   - component: {fileID: 2500555227549882751}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_ring.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1044,7 +1044,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000004749746, y: 0.050508253, z: -0.00000038207514}
+  m_ConnectedAnchor: {x: -0.000000034226108, y: 0.0505082, z: -0.00000038347213}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1152,9 +1152,10 @@ GameObject:
   - component: {fileID: 3007644994281949989}
   - component: {fileID: 2519374229608599968}
   - component: {fileID: 6322212214252733453}
-  m_Layer: 0
+  - component: {fileID: 6322212214252733456}
+  m_Layer: 2
   m_Name: Anim
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1167,7 +1168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2519374229608599967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.87, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5246108131828064102}
@@ -1187,28 +1188,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ba4efdfe04ed9448ab02f2d06400b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeF: 1
-  timeC: 1
-  flexTime:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  curlTime:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  animTime:
-  - 0.001
-  - 0.001
-  - 0.001
-  - 0.001
-  - 0.001
-  - 0.001
+  Grasp: 0
+  timeMult: 0.1
+  flexMultiplier:
+  - 0.42
+  - 0.36
+  - 0.51
+  - 0.43
+  - 0.31
+  - 0.2
+  curlMultiplier:
+  - 0.06
+  - 0.3
+  - 0.3
+  - 0.3
+  - 0.3
+  FlexAnimTime:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  CurlAnimTime:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   spreadTime:
   - 0
   - 0
@@ -1249,11 +1256,27 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2519374229608599967}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.2459843
-  m_Center: {x: 0, y: 2.5135126, z: 2.1249325}
+  m_Radius: 1.6087404
+  m_Center: {x: 0, y: 2.5135126, z: 1.4876868}
+--- !u!54 &6322212214252733456
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2519374229608599967}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2708952851817185826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,9 +1286,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6918763290519240283}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: palm.04.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1294,9 +1317,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3509762758980343614}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_ring.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1329,9 +1352,9 @@ GameObject:
   - component: {fileID: 2837078533465753462}
   - component: {fileID: 2837078533465753463}
   - component: {fileID: 2837078533465753456}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: palm.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1392,7 +1415,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.009644469, y: 0.04004607, z: -0.006453733}
+  m_ConnectedAnchor: {x: 0.009644444, y: 0.040046006, z: -0.006453731}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1498,9 +1521,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7224186874427511540}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_index.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1529,9 +1552,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3919388437713878150}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_middle.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1560,9 +1583,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3115719681336794041}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: palm.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1596,9 +1619,9 @@ GameObject:
   - component: {fileID: 3977370067216609003}
   - component: {fileID: 3977370067216608980}
   - component: {fileID: 3977370067216608981}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1659,7 +1682,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0072043333, y: -0.029618233, z: 0.0120395655}
+  m_ConnectedAnchor: {x: -0.0072042784, y: -0.029618304, z: 0.012039554}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1769,9 +1792,9 @@ GameObject:
   - component: {fileID: 3994027033049793715}
   - component: {fileID: 3994027033049793724}
   - component: {fileID: 3994027033049793725}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_index.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1832,7 +1855,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: 0.053702254, z: -0.00000030174854}
+  m_ConnectedAnchor: {x: 0.000000047381036, y: 0.053702373, z: -0.00000030349477}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1942,9 +1965,9 @@ GameObject:
   - component: {fileID: 4206485011805862497}
   - component: {fileID: 4206485011805862498}
   - component: {fileID: 4206485011805862499}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_index.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2005,7 +2028,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00053269416, y: 0.045524962, z: 0.00015041283}
+  m_ConnectedAnchor: {x: -0.0005326737, y: 0.045524895, z: 0.00015041187}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2111,9 +2134,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3540079303713771867}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_middle.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2142,9 +2165,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7005773385197360521}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_pinky.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2177,9 +2200,9 @@ GameObject:
   - component: {fileID: 4445926194595253986}
   - component: {fileID: 4445926194595253987}
   - component: {fileID: 4445926194595253996}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: hand.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2353,9 +2376,9 @@ GameObject:
   - component: {fileID: 4492709357170968080}
   - component: {fileID: 4492709357170968081}
   - component: {fileID: 4492709357170968082}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_middle.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2416,7 +2439,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000039115545, y: 0.031198842, z: -0.000000277767}
+  m_ConnectedAnchor: {x: -0.000000008149072, y: 0.031198837, z: -0.0000002831221}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2522,9 +2545,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8530643490095678229}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_middle.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2557,9 +2580,9 @@ GameObject:
   - component: {fileID: 5021915103400045216}
   - component: {fileID: 5021915103400045217}
   - component: {fileID: 5021915103400045218}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2620,7 +2643,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000047497463, y: 0.050375827, z: -0.00000020628798}
+  m_ConnectedAnchor: {x: 0.00000047311198, y: 0.050375815, z: -0.0000002011657}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2726,9 +2749,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2396803606510629674}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2761,9 +2784,9 @@ GameObject:
   - component: {fileID: 5558208463383878179}
   - component: {fileID: 5558208463383878188}
   - component: {fileID: 5558208463383878189}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_index.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2824,7 +2847,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000006624032, y: 0.01920872, z: -0.00000025288324}
+  m_ConnectedAnchor: {x: 0.000000019790605, y: 0.019208588, z: -0.0000002503221}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2930,9 +2953,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 39825836560489106}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: forearm.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2961,9 +2984,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8819036951879553291}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_pinky.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2996,9 +3019,9 @@ GameObject:
   - component: {fileID: 5939786736557922351}
   - component: {fileID: 5939786736557922344}
   - component: {fileID: 5939786736557922345}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_ring.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3059,7 +3082,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000081490725, y: 0.028789299, z: -0.000000040396113}
+  m_ConnectedAnchor: {x: -0.00000006600749, y: 0.0287893, z: -0.000000038882714}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3165,9 +3188,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3891617098444782563}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_pinky.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3195,9 +3218,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6008329044010930146}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3226,9 +3249,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6322212213664602592}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hand
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3258,9 +3281,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6967233805756094750}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_pinky.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3289,9 +3312,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5246108131828064102}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: metarig.001
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3324,9 +3347,9 @@ GameObject:
   - component: {fileID: 6707973472364442666}
   - component: {fileID: 6707973472364442667}
   - component: {fileID: 6707973472364442644}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_ring.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3387,7 +3410,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000000144355, y: 0.041924678, z: -0.00000013504176}
+  m_ConnectedAnchor: {x: -0.00000002863817, y: 0.041924786, z: -0.00000012572853}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3497,9 +3520,9 @@ GameObject:
   - component: {fileID: 6717905320234210147}
   - component: {fileID: 6717905320234210156}
   - component: {fileID: 6717905320234210157}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: palm.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3560,7 +3583,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0056733834, y: 0.04197362, z: -0.008027808}
+  m_ConnectedAnchor: {x: -0.0056734025, y: 0.04197368, z: -0.008027808}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3666,9 +3689,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3248191313695109217}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_index.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3701,9 +3724,9 @@ GameObject:
   - component: {fileID: 7113777453405597314}
   - component: {fileID: 7113777453405597315}
   - component: {fileID: 7113777453405597324}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: palm.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3765,7 +3788,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0226336, y: 0.039411243, z: -0.006512967}
+  m_ConnectedAnchor: {x: -0.022633633, y: 0.039411303, z: -0.006512965}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3875,9 +3898,9 @@ GameObject:
   - component: {fileID: 7125928998290535926}
   - component: {fileID: 7125928998290535927}
   - component: {fileID: 7125928998290535920}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_middle.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3938,7 +3961,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000000027939677, y: 0.056393355, z: -0.000000094296425}
+  m_ConnectedAnchor: {x: -0.00000001071021, y: 0.056393236, z: -0.00000009709039}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -4045,9 +4068,9 @@ GameObject:
   m_Component:
   - component: {fileID: 146121384645294391}
   - component: {fileID: 8928664247712628472}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ZBrush_defualt_group
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4153,9 +4176,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6985045958508456368}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sim
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4185,9 +4208,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8692417001530241239}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_ring.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4216,9 +4239,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8784198263305663915}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_ring.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4251,9 +4274,9 @@ GameObject:
   - component: {fileID: 7839272858896081076}
   - component: {fileID: 7839272858896081077}
   - component: {fileID: 7839272858896081078}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: palm.04.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4314,7 +4337,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.024352474, y: 0.035992622, z: -0.003301729}
+  m_ConnectedAnchor: {x: 0.024352452, y: 0.035992682, z: -0.0033017308}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -4420,9 +4443,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2442579708459694468}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: palm.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4455,9 +4478,9 @@ GameObject:
   - component: {fileID: 8271460860211267331}
   - component: {fileID: 8271460860211267340}
   - component: {fileID: 8271460860211267341}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_middle.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4625,9 +4648,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1089293742280847037}
   - component: {fileID: 1710426603}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_index.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4668,9 +4691,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9127877729024588857}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: hand.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4706,9 +4729,9 @@ GameObject:
   - component: {fileID: 8470877440030942342}
   - component: {fileID: 8470877440030942343}
   - component: {fileID: 8470877440030942336}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_pinky.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4769,7 +4792,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000014645047, y: 0.020046324, z: -0.00000015762639}
+  m_ConnectedAnchor: {x: -0.00000011944212, y: 0.020046271, z: -0.0000001592562}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -4875,9 +4898,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2754779305772132005}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_middle.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4906,9 +4929,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3512265928949644372}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_index.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4938,9 +4961,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8609319370335711296}
   - component: {fileID: 350106646}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 //[ExecuteInEditMode]
@@ -17,6 +16,10 @@ public class ParametrizedAnimation : MonoBehaviour
     public bool Grasp;
 
     private bool DirGrasp;
+
+    private GameObject graspedObject;
+
+    private Bounds graspedObjectDim;
 
     #region FingerData
 
@@ -45,7 +48,9 @@ public class ParametrizedAnimation : MonoBehaviour
 
     #region AnimData
 
-    private float IndexFingerDistanceToObject;
+    public float IndexFingerDistanceToObject;
+
+    public float IndexFingerRaycastDistanceToObject;
 
     private (Vector3, Vector3, Vector3)[] PhalanxDistanceToObject;
 
@@ -107,7 +112,7 @@ public class ParametrizedAnimation : MonoBehaviour
         maxFingers[0] = new Quaternion(1.2f, fingers[0].transform.localRotation.y, fingers[0].transform.localRotation.z, fingers[0].transform.localRotation.w);
 
         //maxFingers[1] = /*fingers[1].transform.rotation * */new Quaternion(0.4f, fingers[1].transform.localRotation.y, fingers[1].transform.localRotation.z, fingers[1].transform.localRotation.w);
-        maxFingers[1] = /*fingers[1].transform.rotation * */new Quaternion(0.4f, 0.7f, 0.2f, 0.6f);
+        maxFingers[1] = /*fingers[1].transform.rotation * */new Quaternion(0.3f, 0.7f, 0.2f, 0.5f);
 
         maxFingers[2] = new Quaternion(1.3f, fingers[2].transform.localRotation.y, fingers[2].transform.localRotation.z, fingers[2].transform.localRotation.w);
 
@@ -128,10 +133,12 @@ public class ParametrizedAnimation : MonoBehaviour
 
             if (i == 1)
             {
-                maxCurl[i] = new Quaternion(0.7f, curlFingers[i].middle.transform.localRotation.y, curlFingers[i].middle.transform.localRotation.z, fingers[i].transform.localRotation.w);
-                maxCurl[i] = new Quaternion(0.7f, curlFingers[i].extreme.transform.localRotation.y, curlFingers[i].extreme.transform.localRotation.z, fingers[i].transform.localRotation.w);
+                maxCurl[i] = new Quaternion(0.5f, curlFingers[i].middle.transform.localRotation.y, curlFingers[i].middle.transform.localRotation.z, fingers[i].transform.localRotation.w);
+                maxCurl[i] = new Quaternion(0.5f, curlFingers[i].extreme.transform.localRotation.y, curlFingers[i].extreme.transform.localRotation.z, fingers[i].transform.localRotation.w);
             }
         }
+
+        
 
         #endregion
     }
@@ -148,32 +155,55 @@ public class ParametrizedAnimation : MonoBehaviour
 #if UNITY_EDITOR
         for (int i = 0; i < PhalanxDistanceToObject.Length; i++)
         {
-            Debug.DrawLine(fingers[i].transform.position, PhalanxDistanceToObject[i].Item1);
-            Debug.DrawLine(curlFingers[i].middle.transform.position, PhalanxDistanceToObject[i].Item2);
-            Debug.DrawLine(curlFingers[i].extreme.transform.position, PhalanxDistanceToObject[i].Item3);
+            Debug.DrawLine(fingers[i].transform.position, PhalanxDistanceToObject[i].Item1, Color.white);
+            Debug.DrawLine(curlFingers[i].middle.transform.position, PhalanxDistanceToObject[i].Item2, Color.green);
+            Debug.DrawLine(curlFingers[i].extreme.transform.position, PhalanxDistanceToObject[i].Item3, Color.blue);
         }
 
+        if (graspedObject)
+        {
+            Debug.DrawRay(fingers[0].transform.position, graspedObject.transform.position - fingers[0].transform.position, Color.red);
+
+            Debug.Log(Vector3.Scale(graspedObjectDim.size, graspedObject.transform.localScale));
+
+        }
+           
 
 
-#endif
+
+#endif 
 
 
         for (int i = 0; i < DistanceToObject.Length; i++)
         {
-            if (PhalanxDistanceToObject[i].Item1 != Vector3.zero)
+            if (PhalanxDistanceToObject[i].Item1 != -Vector3.up)
             {
                 DistanceToObject[i].Item1 = Vector3.Distance(PhalanxDistanceToObject[i].Item1, fingers[i].transform.position);
 
             }
-            if (PhalanxDistanceToObject[i].Item2 != Vector3.zero)
+            else
+            {
+                DistanceToObject[i].Item1 = 1f;
+            }
+
+            if (PhalanxDistanceToObject[i].Item2 != -Vector3.up)
             {
                 DistanceToObject[i].Item2 = Vector3.Distance(PhalanxDistanceToObject[i].Item2, curlFingers[i].middle.transform.position);
 
             }
-            if (PhalanxDistanceToObject[i].Item3 != Vector3.zero)
+            else
+            {
+                DistanceToObject[i].Item2 = 1f;
+            }
+
+            if (PhalanxDistanceToObject[i].Item3 != -Vector3.up)
             {
                 DistanceToObject[i].Item3 = Vector3.Distance(PhalanxDistanceToObject[i].Item3, curlFingers[i].extreme.transform.position);
 
+            }
+            else
+            {
+                DistanceToObject[i].Item3 = 1f;
             }
         }
 
@@ -258,26 +288,36 @@ public class ParametrizedAnimation : MonoBehaviour
     {
         if (collision.gameObject.tag == "Hand") return;
 
+        graspedObject = collision.gameObject;
+        //TODO: Object Dimentions for Skinned Mesh
+        graspedObjectDim = collision.gameObject.GetComponent<MeshFilter>().mesh.bounds;
+
         IndexFingerDistanceToObject = Vector3.Distance(fingers[0].transform.position, collision.gameObject.transform.position);
+
+        RaycastHit hit;
+
+        if(Physics.Raycast(fingers[0].transform.position, graspedObject.transform.position - fingers[0].transform.position, out hit))
+        {
+            IndexFingerRaycastDistanceToObject = Vector3.Distance(fingers[0].transform.position, hit.point);
+        }
 
         for (int i = 0; i < PhalanxDistanceToObject.Length; i++)
         {
 
-            RaycastHit hit;
-            if (Physics.Raycast(fingers[i].transform.position, fingers[i].transform.forward, out hit, 10))
+            if (Physics.Raycast(fingers[i].transform.position, fingers[i].transform.forward, out hit))
             {
                 PhalanxDistanceToObject[i].Item1 = hit.point;
 
             }
 
-            if (Physics.Raycast(curlFingers[i].middle.transform.position, curlFingers[i].middle.transform.forward, out hit, 10))
+            if (Physics.Raycast(curlFingers[i].middle.transform.position, curlFingers[i].middle.transform.forward, out hit))
             {
                 PhalanxDistanceToObject[i].Item2 = hit.point;
 
 
             }
 
-            if (Physics.Raycast(curlFingers[i].extreme.transform.position, curlFingers[i].extreme.transform.forward, out hit, 10))
+            if (Physics.Raycast(curlFingers[i].extreme.transform.position, curlFingers[i].extreme.transform.forward, out hit))
             {
                 PhalanxDistanceToObject[i].Item3 = hit.point;
 
@@ -294,13 +334,20 @@ public class ParametrizedAnimation : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         DirGrasp = false;
+        graspedObject = null;
         Reset();
     }
 
 
     private void Reset()
     {
-        //PhalanxDistanceToObject = new (Vector3, Vector3, Vector3)[fingers.Count-1];
+        PhalanxDistanceToObject = new (Vector3, Vector3, Vector3)[fingers.Count-1];
+        for (int i = 0; i < PhalanxDistanceToObject.Length; i++)
+        {
+            PhalanxDistanceToObject[i].Item1 = -Vector3.up;
+            PhalanxDistanceToObject[i].Item2 = -Vector3.up;
+            PhalanxDistanceToObject[i].Item3 = -Vector3.up;
+        }   
         //IndexFingerDistanceToObject = 0f;
 
     }

@@ -138,7 +138,6 @@ public class GraspingController : MonoBehaviour
                 foreach (var item in fingers)
                 {
 
-                    //TODO: MAKE INTO RESET FUNC
                     if (item.graspedObject)
                     {
                         item.graspedObject.transform.parent = null;
