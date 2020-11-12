@@ -28,13 +28,14 @@ namespace Meshes
     static public class MeshSearch
     {
 
-        public static void IndexFromPos(Vector3[] vert, Vector3 point, out List<int> pointIndex)
+        public static void IndexFromPos(Vector3[] vert, Vector3 point, Transform transform, out List<int> pointIndex)
         {
+            
             pointIndex = new List<int>();
             float minDist = float.PositiveInfinity;
             for (int i = 0; i < vert.Length; i++)
             {
-                var dist = Vector3.Distance(vert[i], point);
+                var dist = Vector3.Distance(transform.TransformPoint(vert[i]), point);
                 if (dist < minDist)
                 {
                     minDist = dist;
@@ -43,7 +44,7 @@ namespace Meshes
             //duplicates
             for (int i = 0; i < vert.Length; i++)
             {
-                if (Vector3.Distance(vert[i], point) == minDist)
+                if (Vector3.Distance(transform.TransformPoint(vert[i]), point) == minDist)
                 {
                     pointIndex.Add(i);
                 }
@@ -54,6 +55,7 @@ namespace Meshes
 
         public static void GetNeighboors(int[] triangles, Vector3[] vert, int point, out List<int> neighboors)
         {
+
             neighboors = new List<int>();
             var pos = vert[point];
             for (int i = 0; i < triangles.Length - 2; i += 3)

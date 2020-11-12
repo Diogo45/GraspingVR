@@ -17,9 +17,18 @@ public class ParametrizedAnimation : MonoBehaviour
 
     private bool DirGrasp;
 
+
+    #region ObjectData
+
     private GameObject graspedObject;
 
     private Bounds graspedObjectDim;
+
+   
+    public float3[] CurvatureAtPhalanx;
+
+
+    #endregion
 
     #region FingerData
 
@@ -52,6 +61,10 @@ public class ParametrizedAnimation : MonoBehaviour
 
     public float IndexFingerRaycastDistanceToObject;
 
+    public float IndexFingerLength;
+
+
+
     private (Vector3, Vector3, Vector3)[] PhalanxDistanceToObject;
 
     private (float, float, float)[] DistanceToObject;
@@ -61,9 +74,10 @@ public class ParametrizedAnimation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-
         #region Initialize Values 
+
+        IndexFingerDistanceToObject = 1f;
+        IndexFingerRaycastDistanceToObject = 1f;
 
         PhalanxDistanceToObject = new (Vector3, Vector3, Vector3)[fingers.Count - 1];
 
@@ -79,7 +93,7 @@ public class ParametrizedAnimation : MonoBehaviour
         FlexAnimTime = new float[fingers.Count];
         CurlAnimTime = new float[fingers.Count];
 
-
+        CurvatureAtPhalanx = new float3[curlFingers.Count];
 
 
         for (int i = 0; i < fingers.Count; i++)
@@ -107,6 +121,9 @@ public class ParametrizedAnimation : MonoBehaviour
         #endregion
 
         #region Set MAX Values
+
+        IndexFingerLength = Vector3.Distance(fingers[0].transform.position, curlFingers[0].middle.transform.position) + Vector3.Distance(curlFingers[0].middle.transform.position, curlFingers[0].extreme.transform.position);
+
         maxFingers = new Quaternion[fingers.Count];
 
         maxFingers[0] = new Quaternion(1.2f, fingers[0].transform.localRotation.y, fingers[0].transform.localRotation.z, fingers[0].transform.localRotation.w);
@@ -138,7 +155,7 @@ public class ParametrizedAnimation : MonoBehaviour
             }
         }
 
-        
+
 
         #endregion
     }
@@ -153,25 +170,34 @@ public class ParametrizedAnimation : MonoBehaviour
         #region Gather Data
 
 #if UNITY_EDITOR
-        for (int i = 0; i < PhalanxDistanceToObject.Length; i++)
-        {
-            Debug.DrawLine(fingers[i].transform.position, PhalanxDistanceToObject[i].Item1, Color.white);
-            Debug.DrawLine(curlFingers[i].middle.transform.position, PhalanxDistanceToObject[i].Item2, Color.green);
-            Debug.DrawLine(curlFingers[i].extreme.transform.position, PhalanxDistanceToObject[i].Item3, Color.blue);
-        }
+        //for (int i = 0; i < PhalanxDistanceToObject.Length; i++)
+        //{
+        //    //Debug.DrawLine(fingers[i].transform.position, PhalanxDistanceToObject[i].Item1, Color.white);
+        //    //Debug.DrawLine(curlFingers[i].middle.transform.position, PhalanxDistanceToObject[i].Item2, Color.green);
+        //    //Debug.DrawLine(curlFingers[i].extreme.transform.position, PhalanxDistanceToObject[i].Item3, Color.blue);
+        //    if (graspedObject)
+        //    {
+        //        //Debug.DrawLine(fingers[i].transform.position, fingers[i].transform.position + fingers[i].transform.forward + (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(fingers[i].transform.position, Vector3.up)));
+        //        //Debug.DrawLine(curlFingers[i].middle.transform.position, curlFingers[i].middle.transform.position + curlFingers[i].middle.transform.forward + (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(curlFingers[i].middle.transform.position, Vector3.up)), Color.green);
+        //        //Debug.DrawLine(curlFingers[i].extreme.transform.position, curlFingers[i].extreme.transform.position + curlFingers[i].extreme.transform.forward + (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(curlFingers[i].extreme.transform.position, Vector3.up)), Color.blue);
+        //    }
+        //}
 
-        if (graspedObject)
-        {
-            Debug.DrawRay(fingers[0].transform.position, graspedObject.transform.position - fingers[0].transform.position, Color.red);
-
-            Debug.Log(Vector3.Scale(graspedObjectDim.size, graspedObject.transform.localScale));
-
-        }
-           
+        //if (graspedObject)
+        //{
+        //    Debug.DrawRay(fingers[0].transform.position, graspedObject.transform.position - fingers[0].transform.position, Color.red);
+        //    Debug.DrawRay(fingers[0].transform.position, fingers[0].transform.forward + (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(fingers[0].transform.position, Vector3.up)), Color.blue);
 
 
 
-#endif 
+        //    //Debug.Log(Vector3.Scale(graspedObjectDim.size, graspedObject.transform.localScale));
+
+        //}
+
+
+
+
+#endif
 
 
         for (int i = 0; i < DistanceToObject.Length; i++)
@@ -183,7 +209,7 @@ public class ParametrizedAnimation : MonoBehaviour
             }
             else
             {
-                DistanceToObject[i].Item1 = 1f;
+                DistanceToObject[i].Item1 = 0f;
             }
 
             if (PhalanxDistanceToObject[i].Item2 != -Vector3.up)
@@ -193,7 +219,7 @@ public class ParametrizedAnimation : MonoBehaviour
             }
             else
             {
-                DistanceToObject[i].Item2 = 1f;
+                DistanceToObject[i].Item2 = 0f;
             }
 
             if (PhalanxDistanceToObject[i].Item3 != -Vector3.up)
@@ -203,9 +229,12 @@ public class ParametrizedAnimation : MonoBehaviour
             }
             else
             {
-                DistanceToObject[i].Item3 = 1f;
+                DistanceToObject[i].Item3 = 0f;
             }
         }
+
+
+
 
 
         #endregion
@@ -216,7 +245,7 @@ public class ParametrizedAnimation : MonoBehaviour
         for (int i = 0; i < fingers.Count; i++)
         {
             //fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
-            fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], FlexAnimTime[i] * flexMultiplier[i] * IndexFingerDistanceToObject); ;
+            fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], FlexAnimTime[i] * (flexMultiplier[i] /IndexFingerRaycastDistanceToObject)); ;
             //if (i == 1)
             //{
             //    //fingers[i].transform.localRotation = OldFingers[i] * Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
@@ -228,9 +257,9 @@ public class ParametrizedAnimation : MonoBehaviour
 
         for (int i = 0; i < curlFingers.Count; i++)
         {
-            curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], (CurlAnimTime[i] * curlMultiplier[i]) / DistanceToObject[i].Item2);
+            curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], CurlAnimTime[i] * (curlMultiplier[i] * DistanceToObject[i].Item2));
 
-            curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i], (CurlAnimTime[i] * curlMultiplier[i]) / DistanceToObject[i].Item3);
+            curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i], CurlAnimTime[i] * (curlMultiplier[i] * DistanceToObject[i].Item3));
             //curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], /*curlTime[i] **/ animTime[i] * curlTime[i] * timeC);
 
             //curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i],/* curlTime[i] **/ animTime[i] * curlTime[i] * timeC);
@@ -287,39 +316,55 @@ public class ParametrizedAnimation : MonoBehaviour
     private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.tag == "Hand") return;
-
+        //TODO: Generalize a procedure to handle multiple objects close to one another, like keeping the closest to the centre of the palm
         graspedObject = collision.gameObject;
         //TODO: Object Dimentions for Skinned Mesh
         graspedObjectDim = collision.gameObject.GetComponent<MeshFilter>().mesh.bounds;
 
-        IndexFingerDistanceToObject = Vector3.Distance(fingers[0].transform.position, collision.gameObject.transform.position);
+        IndexFingerDistanceToObject = Vector3.Distance(fingers[0].transform.position, collision.gameObject.transform.position) / IndexFingerLength;
 
         RaycastHit hit;
 
-        if(Physics.Raycast(fingers[0].transform.position, graspedObject.transform.position - fingers[0].transform.position, out hit))
+
+        
+
+
+
+        if (Physics.Raycast(fingers[0].transform.position, fingers[0].transform.forward + (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(fingers[0].transform.position, Vector3.up)), out hit))
         {
-            IndexFingerRaycastDistanceToObject = Vector3.Distance(fingers[0].transform.position, hit.point);
+            IndexFingerRaycastDistanceToObject = Vector3.Distance(fingers[0].transform.position, hit.point) / IndexFingerLength;
         }
 
         for (int i = 0; i < PhalanxDistanceToObject.Length; i++)
         {
+            //TODO: This does not account for hand rotation
+            var dir = fingers[i].transform.forward + (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(fingers[i].transform.position, Vector3.up));
 
-            if (Physics.Raycast(fingers[i].transform.position, fingers[i].transform.forward, out hit))
+            if (Physics.Raycast(fingers[i].transform.position, dir, out hit))
             {
                 PhalanxDistanceToObject[i].Item1 = hit.point;
 
+                Debug.DrawLine(fingers[i].transform.position, hit.point);
+              
+                CurvatureAtPhalanx[i].x = graspedObject.GetComponent<PrincipleDirectionsController>().GetCurvature(hit.point);
+
             }
 
-            if (Physics.Raycast(curlFingers[i].middle.transform.position, curlFingers[i].middle.transform.forward, out hit))
+            dir = curlFingers[i].middle.transform.forward + (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(curlFingers[i].middle.transform.position, Vector3.up));
+
+            if (Physics.Raycast(curlFingers[i].middle.transform.position, dir, out hit))
             {
                 PhalanxDistanceToObject[i].Item2 = hit.point;
-
+                CurvatureAtPhalanx[i].y = graspedObject.GetComponent<PrincipleDirectionsController>().GetCurvature(hit.point);
 
             }
 
-            if (Physics.Raycast(curlFingers[i].extreme.transform.position, curlFingers[i].extreme.transform.forward, out hit))
+            dir = curlFingers[i].extreme.transform.forward + (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(curlFingers[i].extreme.transform.position, Vector3.up));
+
+            if (Physics.Raycast(curlFingers[i].extreme.transform.position, dir, out hit))
             {
                 PhalanxDistanceToObject[i].Item3 = hit.point;
+                CurvatureAtPhalanx[i].z = graspedObject.GetComponent<PrincipleDirectionsController>().GetCurvature(hit.point);
 
 
             }
@@ -331,8 +376,21 @@ public class ParametrizedAnimation : MonoBehaviour
         DirGrasp = true;
     }
 
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+
+    //    if (other.gameObject.tag == "Hand") return;
+    //    //TODO: Generalize a procedure to handle multiple objects close to one another, like keeping the closest to the centre of the palm
+    //    graspedObject = other.gameObject;
+
+      
+    //}
+
     private void OnTriggerExit(Collider other)
     {
+        IndexFingerRaycastDistanceToObject = 1f;
+        IndexFingerDistanceToObject = 1f;
         DirGrasp = false;
         graspedObject = null;
         Reset();
@@ -341,13 +399,13 @@ public class ParametrizedAnimation : MonoBehaviour
 
     private void Reset()
     {
-        PhalanxDistanceToObject = new (Vector3, Vector3, Vector3)[fingers.Count-1];
+        PhalanxDistanceToObject = new (Vector3, Vector3, Vector3)[fingers.Count - 1];
         for (int i = 0; i < PhalanxDistanceToObject.Length; i++)
         {
             PhalanxDistanceToObject[i].Item1 = -Vector3.up;
             PhalanxDistanceToObject[i].Item2 = -Vector3.up;
             PhalanxDistanceToObject[i].Item3 = -Vector3.up;
-        }   
+        }
         //IndexFingerDistanceToObject = 0f;
 
     }
@@ -356,5 +414,18 @@ public class ParametrizedAnimation : MonoBehaviour
     private Quaternion quatCopy(Quaternion a)
     {
         return new Quaternion(a.x, a.y, a.z, a.w);
+    }
+
+    [System.Serializable]
+    public class float3
+    {
+        public float x;
+        public float y;
+        public float z;
+
+        public float3()
+        {
+            x = y = z = 0f;
+        }
     }
 }
