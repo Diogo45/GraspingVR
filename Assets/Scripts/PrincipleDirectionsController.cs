@@ -11,7 +11,7 @@ public class PrincipleDirectionsController : MonoBehaviour
     private float[] curv1, curv2;
     private MeshFilter meshFilter;
 
-    private List<int> DebugNeigh;
+    private List<int> DebugNeigh = new List<int>();
     private Vector3 DebugPoint;
 
     private void Start()

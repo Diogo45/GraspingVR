@@ -283,8 +283,8 @@ Material:
     - _SPECULAR_WEIGHT: 0
     - _SSRefractionProjectionModel: 0
     - _Smoothness: 0.5
-    - _SmoothnessRemapMax: 0.4287637
-    - _SmoothnessRemapMin: 0
+    - _SmoothnessRemapMax: 0.46701136
+    - _SmoothnessRemapMin: 0.038247563
     - _SmoothnessTextureChannel: 0
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
@@ -313,7 +313,7 @@ Material:
     - _TessellationShapeFactor: 0.167
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
-    - _Thickness: 0.164
+    - _Thickness: 0.134
     - _ThicknessMultiplier: 1
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
