@@ -97,7 +97,7 @@ public class ParametrizedAnimation : MonoBehaviour
     {
 
         //TODO: Notifying of colliders from curl list
-        //TODO: DIMINUIR COLLIDREEERS
+        //TODO: DIMINUIR COLLIDREEERS, TALVEZ AUMENTAR AGORAA
 
         Collided = new bool[curlFingers.Count];
 
@@ -297,24 +297,17 @@ public class ParametrizedAnimation : MonoBehaviour
         {
             RController = rightHandedControllers[0];
             bool triggerValue;
-            if (RController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out triggerValue) && triggerValue)
+            if (RController.TryGetFeatureValue(UnityEngine.XR.CommonUsages.gripButton, out triggerValue))
             {
                 //Debug.Log("Grip button is pressed.");
-                Grasp = true;
+                Grasp = triggerValue;
             }
-            else
-            {
-                Grasp = false;
-            }
+           
         }
 
         #endregion
 
         #region Update Phalanx Rotations
-
-
-
-
 
 
 
@@ -330,7 +323,7 @@ public class ParametrizedAnimation : MonoBehaviour
                 var log = 1d / (1d + Math.Pow(Math.E, -(FlexAnimTime[i] * flexMultiplier[i] * DistanceToObject[i].Item1)));
                 log = log * 2d - 1d;
 
-                Debug.Log(String.Format("Flex {0,12:F5}", log));
+                //Debug.Log(String.Format("Flex {0,12:F5}", log));
 
                 fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], (float)log);
 
@@ -358,7 +351,7 @@ public class ParametrizedAnimation : MonoBehaviour
 
                 var log = 1f / (1 + Math.Pow(Math.E, -(CurlAnimTime[i] * (curlMultiplier[i] * ((DistanceToObject[i].Item2 + DistanceToObject[i].Item3) / 2)))));
                 log = log * 2d - 1d;
-                Debug.Log(String.Format("Curl {0,12:F5}", log));
+                //Debug.Log(String.Format("Curl {0,12:F5}", log));
 
                 curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], (float)log);
 
@@ -398,7 +391,7 @@ public class ParametrizedAnimation : MonoBehaviour
                 CurlAnimTime[i] = Mathf.Clamp(CurlAnimTime[i], -1, 1);
             }
 
-            if(!grasped && FlexAnimTime[0] >= 0.98)
+            if(!grasped && graspedObject && FlexAnimTime[0] >= 0.98)
             {
                 grasped = true;
                 graspedObject.transform.SetParent(transform);
@@ -449,10 +442,10 @@ public class ParametrizedAnimation : MonoBehaviour
                     rig.useGravity = true;
                     rig.isKinematic = false;
                 }
-
+                grasped = false;
+                graspedObject = null;
                 StartCoroutine(EnablePhysics());
             }
-            grasped = false;
         }
 
 
