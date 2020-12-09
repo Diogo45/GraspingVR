@@ -425,16 +425,16 @@ public class ParametrizedAnimation : MonoBehaviour
                 if (rig)
                 {
                     //gameObject.
-                    //rig.useGravity = false;
-                    //rig.isKinematic = false;
+                    rig.useGravity = false;
+                    rig.isKinematic = false;
                 }
 
-                //var hinge = graspedObject.AddComponent<HingeJoint>();
-                //hinge.connectedBody = Palm.GetComponent<Rigidbody>();
-                //hinge.useSpring = true;
-                //hinge.spring = new JointSpring() { spring = 100f };
+                var hinge = graspedObject.AddComponent<HingeJoint>();
+                hinge.connectedBody = Palm.GetComponent<Rigidbody>();
+                hinge.useSpring = true;
+                hinge.spring = new JointSpring() { spring = 100f };
 
-                //hinge.useLimits = true;
+                hinge.useLimits = true;
                 //hinge.limits = new JointLimits() { };
 
                 for (int i = 0; i < SimulatedFingers.Count; i++)
