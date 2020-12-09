@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 7984678556812529528}
   - component: {fileID: 7984678556809105246}
   - component: {fileID: 7984678556810104222}
-  m_Layer: 0
+  - component: {fileID: 733133487}
+  m_Layer: 2
   m_Name: Table_97_Top
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 65
   m_IsActive: 1
 --- !u!4 &7984678556812529528
 Transform:
@@ -54,10 +55,11 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 45ec38a7e171b1e4c8924671e27554ba, type: 2}
+  - {fileID: 2100000, guid: 4e5d77e737d61bc4582d0aff8c34e9ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,6 +80,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &733133487
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7984678556812366680}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3500006, y: 0.049068216, z: 0.85000044}
+  m_Center: {x: -0.00000015258792, y: 0.69502765, z: -3.6379787e-14}
 --- !u!1 &7984678556812366684
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,12 +102,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7984678556812529532}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Table_97_Artek
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 65
   m_IsActive: 1
 --- !u!4 &7984678556812529532
 Transform:
@@ -101,9 +116,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7984678556812366684}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 25, y: 16.757, z: 25}
   m_Children:
   - {fileID: 7984678556812529534}
   - {fileID: 7984678556812529528}
@@ -121,12 +136,12 @@ GameObject:
   - component: {fileID: 7984678556812529534}
   - component: {fileID: 7984678556809105244}
   - component: {fileID: 7984678556810104220}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Table_97_Frame
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 65
   m_IsActive: 1
 --- !u!4 &7984678556812529534
 Transform:
@@ -164,6 +179,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

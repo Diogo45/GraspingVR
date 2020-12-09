@@ -9,6 +9,7 @@ public class ComponentCopy : MonoBehaviour
     // Start is called before the first frame update
     public GameObject parentA;
     public GameObject parentB;
+    //public bool on = false;
     
     void Awake()
     {
@@ -39,9 +40,17 @@ public class ComponentCopy : MonoBehaviour
         var components = from.GetComponents<Component>();
         foreach (var item in components)
         {
-            UnityEditorInternal.ComponentUtility.CopyComponent(item);
+            if (target.GetComponent(item.GetType()))
+            {
+                Debug.Log("bleh " + item.GetType());
+            }
+            else
+            {
+                UnityEditorInternal.ComponentUtility.CopyComponent(item);
 
-            UnityEditorInternal.ComponentUtility.PasteComponentAsNew(target);
+                UnityEditorInternal.ComponentUtility.PasteComponentAsNew(target);
+
+            }
         }
     }
 }

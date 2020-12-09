@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 2298488487913773808}
   - component: {fileID: 2298488487912446672}
   - component: {fileID: 2298488487911479312}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Basket_Pot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 65
   m_IsActive: 1
 --- !u!4 &2298488487913773808
 Transform:
@@ -54,6 +54,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -89,12 +90,12 @@ GameObject:
   - component: {fileID: 2298488487913773810}
   - component: {fileID: 2298488487912446674}
   - component: {fileID: 2298488487911479314}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plant_Monstera_Deliciosa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 65
   m_IsActive: 1
 --- !u!4 &2298488487913773810
 Transform:
@@ -132,6 +133,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -165,12 +167,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2298488487913773812}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plant_Potted_Monstera_Deliciosa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 65
   m_IsActive: 1
 --- !u!4 &2298488487913773812
 Transform:
@@ -179,9 +181,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2298488487913670356}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 25, y: 25, z: 25}
   m_Children:
   - {fileID: 2298488487913773808}
   - {fileID: 2298488487913773810}
@@ -200,12 +202,12 @@ GameObject:
   - component: {fileID: 2298488487913773814}
   - component: {fileID: 2298488487912446676}
   - component: {fileID: 2298488487911479316}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pot_Garvel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 65
   m_IsActive: 1
 --- !u!4 &2298488487913773814
 Transform:
@@ -243,6 +245,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

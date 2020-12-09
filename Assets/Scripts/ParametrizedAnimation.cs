@@ -66,7 +66,7 @@ public class ParametrizedAnimation : MonoBehaviour
     public (Quaternion, Quaternion)[] OldCurlFingers;
     private Quaternion[] maxCurl;
 
-
+    public bool[] DistalPhalanx;
     #endregion
 
     #region AnimData
@@ -100,18 +100,20 @@ public class ParametrizedAnimation : MonoBehaviour
         //TODO: DIMINUIR COLLIDREEERS, TALVEZ AUMENTAR AGORAA
 
         Collided = new bool[curlFingers.Count];
-
+        DistalPhalanx = new bool[curlFingers.Count];
         for (int i = 0; i < curlFingers.Count; i++)
         {
             Collided[i] = false;
+            DistalPhalanx[i] = false;
         }
+
 
 
         visuText = new GameObject[fingers.Count - 1];
 
         for (int i = 0; i < visuText.Length; i++)
         {
-            visuText[i] = Instantiate(TextPrefab, GameObject.FindObjectOfType<Canvas>().transform);
+            visuText[i] = Instantiate(TextPrefab, GameObject.Find("WorldSpaceCanvas").transform);
             visuText[i].transform.position = SimulatedFingers[i].transform.position;
             //visuText[i].GetComponent<RectTransform>().rect.xMax = 0f;
             //visuText[i].GetComponent<RectTransform>().rect.set = 0f;
@@ -219,7 +221,7 @@ public class ParametrizedAnimation : MonoBehaviour
 #if UNITY_EDITOR
         for (int i = 0; i < PhalanxDistanceToObject.Length; i++)
         {
-            Debug.DrawLine(fingers[i].transform.position + fingers[i].transform.up * Y - fingers[i].transform.forward * Z, PhalanxDistanceToObject[i].Item1, Color.white);
+            Debug.DrawLine(fingers[i].transform.position /*+ fingers[i].transform.up * Y - fingers[i].transform.forward * Z*/, PhalanxDistanceToObject[i].Item1, Color.white);
             Debug.DrawLine(curlFingers[i].middle.transform.position + curlFingers[i].extreme.transform.up * Y - curlFingers[i].extreme.transform.forward * Z, PhalanxDistanceToObject[i].Item2, Color.green);
             Debug.DrawLine(curlFingers[i].extreme.transform.position + curlFingers[i].extreme.transform.up * Y - curlFingers[i].extreme.transform.forward * Z, PhalanxDistanceToObject[i].Item3, Color.blue);
             if (graspedObject)
@@ -302,7 +304,7 @@ public class ParametrizedAnimation : MonoBehaviour
                 //Debug.Log("Grip button is pressed.");
                 Grasp = triggerValue;
             }
-           
+
         }
 
         #endregion
@@ -311,69 +313,91 @@ public class ParametrizedAnimation : MonoBehaviour
 
 
 
-        if (!grasped)
+
+        for (int i = 0; i < fingers.Count - 1; i++)
         {
-            for (int i = 0; i < fingers.Count - 1; i++)
+            //TODO: THIS IS A HACK
+            if (Collided[i]) continue;
+            //fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
+            //fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], (float)(/*FlexAnimTime[i] * */(flexMultiplier[i] / PalmDistanceToObject)));
+            //fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], (float)(FlexAnimTime[i] * (flexMultiplier[i] / (PalmDistanceToObject * DistanceToObject[i].Item1))));
+            //fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], (float)(FlexAnimTime[i] * (flexMultiplier[i] * DistanceToObject[i].Item1)));
+            var log = 1d / (1d + Math.Pow(Math.E, -(flexMultiplier[i] * DistanceToObject[i].Item1)));
+            log = log * 2d - 1d;
+
+            if (!DistalPhalanx[i])
             {
-                if (Collided[i]) continue;
-                //fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
-                //fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], (float)(/*FlexAnimTime[i] * */(flexMultiplier[i] / PalmDistanceToObject)));
-                //fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], (float)(FlexAnimTime[i] * (flexMultiplier[i] / (PalmDistanceToObject * DistanceToObject[i].Item1))));
-                //fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], (float)(FlexAnimTime[i] * (flexMultiplier[i] * DistanceToObject[i].Item1)));
-                var log = 1d / (1d + Math.Pow(Math.E, -(FlexAnimTime[i] * flexMultiplier[i] * DistanceToObject[i].Item1)));
-                log = log * 2d - 1d;
-
-                //Debug.Log(String.Format("Flex {0,12:F5}", log));
-
-                fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], (float)log);
-
-                //if (i == 2)
-                //{
-                //    Debug.Log(flexMultiplier[i] * DistanceToObject[i].Item1 * DistanceToObject[i].Item2 * DistanceToObject[i].Item3 + " " + DistanceToObject[i].Item1);
-                //}
 
 
-                visuText[i].transform.position = SimulatedFingers[i].transform.position + (Camera.main.transform.position - SimulatedFingers[i].transform.position) * 0.2f;
-                visuText[i].transform.LookAt(Camera.main.transform.position);
-                visuText[i].GetComponentInChildren<TMP_Text>().text = String.Format("{0,12:F2}", log);
-
-                //if (i == 1)
-                //{
-                //    //fingers[i].transform.localRotation = OldFingers[i] * Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
-                //    fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
-                //}
-
+                fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], FlexAnimTime[i] * (float)log);
             }
 
 
-            for (int i = 0; i < curlFingers.Count; i++)
-            {
+            //if (!grasped)
+            //{
+            //Debug.Log(String.Format("Flex {0,12:F5}", log));
 
-                var log = 1f / (1 + Math.Pow(Math.E, -(CurlAnimTime[i] * (curlMultiplier[i] * ((DistanceToObject[i].Item2 + DistanceToObject[i].Item3) / 2)))));
-                log = log * 2d - 1d;
-                //Debug.Log(String.Format("Curl {0,12:F5}", log));
+            //}
+            //if (i == 2)
+            //{
+            //    Debug.Log(flexMultiplier[i] * DistanceToObject[i].Item1 * DistanceToObject[i].Item2 * DistanceToObject[i].Item3 + " " + DistanceToObject[i].Item1);
+            //}
 
-                curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], (float)log);
 
-                curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i], (float)log);
+            visuText[i].transform.position = SimulatedFingers[i].transform.position + (Camera.main.transform.position - SimulatedFingers[i].transform.position) * 0.2f;
+            visuText[i].transform.LookAt(Camera.main.transform.position);
+            visuText[i].GetComponentInChildren<TMP_Text>().text = String.Format("{0,12:F2}", log);
 
-                //curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], CurlAnimTime[i] * (curlMultiplier[i] * (DistanceToObject[i].Item2 + DistanceToObject[i].Item3)/2));
+            //if (i == 1)
+            //{
+            //    //fingers[i].transform.localRotation = OldFingers[i] * Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
+            //    fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], animTime[i] * flexTime[i] * timeF);
+            //}
 
-                //curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i], CurlAnimTime[i] * (curlMultiplier[i] * (DistanceToObject[i].Item2 + DistanceToObject[i].Item3) / 2));
-
-                //curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], /*curlTime[i] * animTime[i] * curlTime[i] * timeC);
-
-                //curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i],/* curlTime[i] **/ animTime[i] * curlTime[i] * timeC);
-
-            }
-
-            for (int i = 0; i < fingers.Count; i++)
-            {
-                spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
-
-                maxFingers[i] = new Quaternion(maxFingers[i].x, maxFingers[i].y, spreadMAX[i] * spreadTime[i], maxFingers[i].w);
-            }
         }
+
+
+        for (int i = 0; i < curlFingers.Count; i++)
+        {
+
+            //var log = 1f / (1 + Math.Pow(Math.E, -((curlMultiplier[i] * ((DistanceToObject[i].Item2 + DistanceToObject[i].Item3) / 2)))));
+            //TODO: THIS IS A HACK
+            if (Collided[i]) continue;
+
+
+
+            var log = 1f / (1 + Math.Pow(Math.E, -((curlMultiplier[i] * (DistanceToObject[i].Item2)))));
+            log = log * 2d - 1d;
+            //Debug.Log(String.Format("Curl {0,12:F5}", log));
+
+            curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], CurlAnimTime[i] * (float)log);
+            log = 1f / (1 + Math.Pow(Math.E, -((curlMultiplier[i] * (DistanceToObject[i].Item3)))));
+            log = log * 2d - 1d;
+
+
+            curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i], CurlAnimTime[i] * (float)log);
+
+
+
+
+
+            //curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], CurlAnimTime[i] * (curlMultiplier[i] * (DistanceToObject[i].Item2 + DistanceToObject[i].Item3)/2));
+
+            //curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i], CurlAnimTime[i] * (curlMultiplier[i] * (DistanceToObject[i].Item2 + DistanceToObject[i].Item3) / 2));
+
+            //curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], /*curlTime[i] * animTime[i] * curlTime[i] * timeC);
+
+            //curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i],/* curlTime[i] **/ animTime[i] * curlTime[i] * timeC);
+
+        }
+
+        for (int i = 0; i < fingers.Count; i++)
+        {
+            spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
+
+            maxFingers[i] = new Quaternion(maxFingers[i].x, maxFingers[i].y, spreadMAX[i] * spreadTime[i], maxFingers[i].w);
+        }
+
 
         #endregion
 
@@ -383,39 +407,40 @@ public class ParametrizedAnimation : MonoBehaviour
             for (int i = 0; i < FlexAnimTime.Length; i++)
             {
                 FlexAnimTime[i] += Time.deltaTime * timeMult;
-                FlexAnimTime[i] = Mathf.Clamp(FlexAnimTime[i], -1, 1);
+                FlexAnimTime[i] = Mathf.Clamp(FlexAnimTime[i], 0, 1);
             }
             for (int i = 0; i < CurlAnimTime.Length; i++)
             {
                 CurlAnimTime[i] += Time.deltaTime * timeMult;
-                CurlAnimTime[i] = Mathf.Clamp(CurlAnimTime[i], -1, 1);
+                CurlAnimTime[i] = Mathf.Clamp(CurlAnimTime[i], 0, 1);
             }
 
-            if(!grasped && graspedObject && FlexAnimTime[0] >= 0.98)
+            if (!grasped && graspedObject && FlexAnimTime[0] >= 0.5f)
             {
                 grasped = true;
                 graspedObject.transform.SetParent(transform);
-                var rig = graspedObject.GetComponent<Rigidbody>();
-                if (rig)
-                {
-                    rig.useGravity = false;
-                    rig.isKinematic = true;
-                }
-                for (int i = 0; i < SimulatedFingers.Count; i++)
-                {
-                    rig = SimulatedFingers[i].GetComponent<Rigidbody>();
-                    rig.detectCollisions = false;
-                    //rig.isKinematic = true;
+                //var rig = graspedObject.GetComponent<Rigidbody>();
+                //if (rig)
+                //{
+                //    //gameObject.
+                //    //rig.useGravity = false;
+                //    //rig.isKinematic = true;
+                //}
+                //for (int i = 0; i < SimulatedFingers.Count; i++)
+                //{
+                //    rig = SimulatedFingers[i].GetComponent<Rigidbody>();
+                //    //rig.detectCollisions = false;
+                //    //rig.isKinematic = true;
 
-                    rig = SimulatedCurlFingers[i].middle.GetComponent<Rigidbody>();
+                //    rig = SimulatedCurlFingers[i].middle.GetComponent<Rigidbody>();
 
-                    //rig.isKinematic = true;
+                //    //rig.isKinematic = true;
 
-                    rig = SimulatedCurlFingers[i].extreme.GetComponent<Rigidbody>();
-                    rig.detectCollisions = false;
+                //    rig = SimulatedCurlFingers[i].extreme.GetComponent<Rigidbody>();
+                //    //rig.detectCollisions = false;
 
-                    //rig.isKinematic = true;
-                }
+                //    //rig.isKinematic = true;
+                //}
 
             }
 
@@ -425,12 +450,12 @@ public class ParametrizedAnimation : MonoBehaviour
             for (int i = 0; i < FlexAnimTime.Length; i++)
             {
                 FlexAnimTime[i] -= Time.deltaTime * timeMult;
-                FlexAnimTime[i] = Mathf.Clamp(FlexAnimTime[i], -1, 1);
+                FlexAnimTime[i] = Mathf.Clamp(FlexAnimTime[i], 0, 1);
             }
             for (int i = 0; i < CurlAnimTime.Length; i++)
             {
                 CurlAnimTime[i] -= Time.deltaTime * timeMult;
-                CurlAnimTime[i] = Mathf.Clamp(CurlAnimTime[i], -1, 1);
+                CurlAnimTime[i] = Mathf.Clamp(CurlAnimTime[i], 0, 1);
             }
 
             if (grasped && graspedObject && FlexAnimTime[0] <= 0f)
@@ -439,12 +464,12 @@ public class ParametrizedAnimation : MonoBehaviour
                 var rig = graspedObject.GetComponent<Rigidbody>();
                 if (rig)
                 {
-                    rig.useGravity = true;
-                    rig.isKinematic = false;
+                    //rig.useGravity = true;
+                    //rig.isKinematic = false;
                 }
                 grasped = false;
                 graspedObject = null;
-                StartCoroutine(EnablePhysics());
+                //StartCoroutine(EnablePhysics());
             }
         }
 
@@ -461,7 +486,7 @@ public class ParametrizedAnimation : MonoBehaviour
         //TODO: Generalize a procedure to handle multiple objects close to one another, like keeping the closest to the centre of the palm
         graspedObject = collision.gameObject;
         //TODO: Object Dimentions for Skinned Mesh
-        graspedObjectDim = collision.gameObject.GetComponent<MeshFilter>().mesh.bounds;
+        //graspedObjectDim = collision.gameObject.GetComponent<MeshFilter>().mesh.bounds;
 
         //IndexFingerDistanceToObject = Vector3.Distance(fingers[0].transform.position, collision.gameObject.transform.position) / IndexFingerLength;
 
@@ -478,10 +503,11 @@ public class ParametrizedAnimation : MonoBehaviour
         for (int i = 0; i < PhalanxDistanceToObject.Length; i++)
         {
             //TODO: This does not account for hand rotation
-            var dir = fingers[i].transform.forward + (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(fingers[i].transform.position, Vector3.up));
+            var dir = fingers[i].transform.forward /*+ (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(fingers[i].transform.position, Vector3.up))*/;
 
-            if (Physics.Raycast(fingers[i].transform.position /*+ fingers[i].transform.up * Y - fingers[i].transform.forward * Z*/, dir, out hit))
+            if (Physics.Raycast(fingers[i].transform.position + fingers[i].transform.up * Y - fingers[i].transform.forward * Z, dir, out hit, 10f))
             {
+
                 PhalanxDistanceToObject[i].Item1 = hit.point;
 
                 //Debug.DrawLine(fingers[i].transform.position, hit.point);
@@ -490,18 +516,18 @@ public class ParametrizedAnimation : MonoBehaviour
 
             }
 
-            dir = curlFingers[i].middle.transform.forward + (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(curlFingers[i].middle.transform.position, Vector3.up));
+            dir = curlFingers[i].middle.transform.forward /*+ (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(curlFingers[i].middle.transform.position, Vector3.up))*/;
 
-            if (Physics.Raycast(curlFingers[i].middle.transform.position + curlFingers[i].extreme.transform.up * Y - curlFingers[i].extreme.transform.forward * Z, dir, out hit))
+            if (Physics.Raycast(curlFingers[i].middle.transform.position + curlFingers[i].extreme.transform.up * Y - curlFingers[i].extreme.transform.forward * Z, dir, out hit, 10f))
             {
                 PhalanxDistanceToObject[i].Item2 = hit.point;
                 //CurvatureAtPhalanx[i].y = graspedObject.GetComponent<PrincipleDirectionsController>().GetCurvature(hit.point);
 
             }
 
-            dir = curlFingers[i].extreme.transform.forward + (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(curlFingers[i].extreme.transform.position, Vector3.up));
+            dir = curlFingers[i].extreme.transform.forward/* + (Vector3.Scale(graspedObject.transform.position, Vector3.up) - Vector3.Scale(curlFingers[i].extreme.transform.position, Vector3.up))*/;
 
-            if (Physics.Raycast(curlFingers[i].extreme.transform.position + curlFingers[i].extreme.transform.up * Y - curlFingers[i].extreme.transform.forward * Z, dir, out hit))
+            if (Physics.Raycast(curlFingers[i].extreme.transform.position + curlFingers[i].extreme.transform.up * Y - curlFingers[i].extreme.transform.forward * Z, dir, out hit, 10f))
             {
                 PhalanxDistanceToObject[i].Item3 = hit.point;
                 //CurvatureAtPhalanx[i].z = graspedObject.GetComponent<PrincipleDirectionsController>().GetCurvature(hit.point);
@@ -519,7 +545,7 @@ public class ParametrizedAnimation : MonoBehaviour
 
     IEnumerator EnablePhysics()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5f);
 
         Rigidbody rig;
         for (int i = 0; i < SimulatedFingers.Count; i++)

@@ -26,7 +26,7 @@ public class NotifyCollision : MonoBehaviour
     {
         if (collision.gameObject.tag == "Hand") return;
 
-        AnimScript.Collided[index] = false;
+        //AnimScript.Collided[index] = false;
     }
 
     // Update is called once per frame

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4728637937637796}
   - component: {fileID: 33821978808893694}
   - component: {fileID: 23939272190031252}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Succulent_Planter_Ceramic_Pot
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,6 +54,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -89,9 +90,9 @@ GameObject:
   - component: {fileID: 4502622100320938}
   - component: {fileID: 33457733841550062}
   - component: {fileID: 23879642232473260}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Succulent_Planter_Ceramic_Plants
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,6 +133,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -166,9 +168,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4220841288260508}
   - component: {fileID: 65200366406821606}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Succulent_Planter_Ceramic
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,9 +182,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267658129422508}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 25, y: 25, z: 25}
   m_Children:
   - {fileID: 4502622100320938}
   - {fileID: 4728637937637796}
