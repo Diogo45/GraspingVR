@@ -22,7 +22,7 @@ MonoBehaviour:
     type: 2}
   globalLeftControllerModel: {fileID: 1370450866519632, guid: 626257b1a6cd47c2a32a18cf75b2fb23,
     type: 3}
-  globalRightControllerModel: {fileID: 6322212213664602593, guid: 63adaf079c2c22a4db9aed31e4d024b3,
+  globalRightControllerModel: {fileID: 1533755051764054898, guid: 1d83f89e08c5a674097b601d6395e36b,
     type: 3}
   globalLeftHandVisualizer: {fileID: 1227372834072826, guid: 378f91dbbff9e2343b27a467467750bf,
     type: 3}

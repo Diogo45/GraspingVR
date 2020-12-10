@@ -259,7 +259,7 @@ Material:
     - _TessellationShapeFactor: 1
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
-    - _Thickness: 0.149
+    - _Thickness: 0.152
     - _ThicknessMultiplier: 1
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
