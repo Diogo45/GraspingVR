@@ -501,8 +501,7 @@ public class ParametrizedAnimation : MonoBehaviour
             if (grasped && graspedObject && FlexAnimTime[0] <= 0.9f)
             {
                 
-                grasped = false;
-                graspedObject = null;
+              
                 StartCoroutine(EnablePhysics());
             }
         }
@@ -579,7 +578,7 @@ public class ParametrizedAnimation : MonoBehaviour
 
     IEnumerator EnablePhysics()
     {
-        yield return new WaitForSeconds(2f);
+       
 
         graspedObject.transform.SetParent(null);
         var rig = graspedObject.GetComponent<Rigidbody>();
@@ -588,6 +587,7 @@ public class ParametrizedAnimation : MonoBehaviour
         {
             rig.useGravity = true;
             rig.isKinematic = false;
+            rig.detectCollisions = false;
 
         }
         if (joint)
@@ -595,7 +595,14 @@ public class ParametrizedAnimation : MonoBehaviour
             Destroy(joint);
         }
 
+        grasped = false;
+        graspedObject = null;
 
+        yield return new WaitForSeconds(0.5f);
+        if (rig) rig.detectCollisions = true;
+
+
+        
         //for (int i = 0; i < SimulatedFingers.Count; i++)
         //{
         //    rig = SimulatedFingers[i].GetComponent<Rigidbody>();
