@@ -6,6 +6,11 @@ using UnityEditor;
 using UnityEngine;
 
 
+public enum Fingers
+{
+    Index, Thumb, Middle, Ring, Pinky
+}
+
 //[ExecuteInEditMode]
 public class ParametrizedAnimation : MonoBehaviour
 {
@@ -310,27 +315,33 @@ public class ParametrizedAnimation : MonoBehaviour
 
         #region Update Phalanx Rotations
 
-
-
-
-
         for (int i = 0; i < fingers.Count - 1; i++)
         {
             //TODO: THIS IS A HACK
-            if (Collided[i]) continue;
             var log = 1d / (1d + Math.Pow(Math.E, -(flexMultiplier[i] * DistanceToObject[i].Item1)));
             log = log * 2d - 1d;
-
-            if (!DistalPhalanx[i])
-            {
-                fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], maxFingers[i], FlexAnimTime[i] * (float)log);
-            }
-
 
             visuText[i].transform.position = SimulatedFingers[i].transform.position + 0.4f * -SimulatedFingers[i].transform.forward;
             //visuText[i].transform.LookAt(-SimulatedFingers[i].transform.forward);
             visuText[i].transform.rotation = SimulatedFingers[i].transform.rotation;
-            visuText[i].GetComponentInChildren<TMP_Text>().text = String.Format("{0,12:F2}", log);
+            visuText[i].GetComponentInChildren<TMP_Text>().text = String.Format("{0,12:F2}", FlexAnimTime[i] * log);
+
+            if (Collided[i]) continue;
+
+            if (!DistalPhalanx[i])
+            {
+                Quaternion final = Quaternion.Lerp(OldFingers[i], maxFingers[i], FlexAnimTime[i] * (float)log);
+
+                if (i != 1)
+                {
+                    final.z = final.z * spreadTime[i];
+                }
+               
+                fingers[i].transform.localRotation = final;
+            }
+
+
+            
 
         }
 
@@ -346,7 +357,6 @@ public class ParametrizedAnimation : MonoBehaviour
             var log = 1f / (1 + Math.Pow(Math.E, -((curlMultiplier[i] * (DistanceToObject[i].Item2)))));
             log = log * 2d - 1d;
             //Debug.Log(String.Format("Curl {0,12:F5}", log));
-
             curlFingers[i].middle.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item1, maxCurl[i], CurlAnimTime[i] * (float)log);
             log = 1f / (1 + Math.Pow(Math.E, -((curlMultiplier[i] * (DistanceToObject[i].Item3)))));
             log = log * 2d - 1d;
@@ -361,8 +371,8 @@ public class ParametrizedAnimation : MonoBehaviour
         for (int i = 0; i < fingers.Count; i++)
         {
             spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
-
-            maxFingers[i] = new Quaternion(maxFingers[i].x, maxFingers[i].y, spreadMAX[i] * spreadTime[i], maxFingers[i].w);
+            spreadTime[i] = Mathf.Clamp(spreadTime[i], -1, 1);
+            maxFingers[i].z = spreadMAX[i];
         }
 
         #endregion
@@ -437,15 +447,19 @@ public class ParametrizedAnimation : MonoBehaviour
         {
             for (int i = 0; i < FlexAnimTime.Length; i++)
             {
-                FlexAnimTime[i] -= Time.deltaTime * timeMult;
-                FlexAnimTime[i] = Mathf.Clamp(FlexAnimTime[i], 0, 1);
+                //FlexAnimTime[i] -= Time.deltaTime * timeMult;
+                //FlexAnimTime[i] = Mathf.Clamp(FlexAnimTime[i], 0, 1);
+
+                FlexAnimTime[i] = 0f;
+
 
             }
             for (int i = 0; i < CurlAnimTime.Length; i++)
             {
-                CurlAnimTime[i] -= Time.deltaTime * timeMult;
-                CurlAnimTime[i] = Mathf.Clamp(CurlAnimTime[i], 0, 1);
-
+                //CurlAnimTime[i] -= Time.deltaTime * timeMult;
+                //CurlAnimTime[i] = Mathf.Clamp(CurlAnimTime[i], 0, 1);
+              
+                CurlAnimTime[i] = 0f;
                 Collided[i] = false;
 
 
