@@ -5,33 +5,35 @@ using UnityEngine;
 public class NotifyCollision : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject Anim;
-    public int index;
-    private ParametrizedAnimation AnimScript;
-
-    void Start()
-    {
-        AnimScript = Anim.GetComponent<ParametrizedAnimation>();
-    }
-
+    public bool collided { get; private set; }
+    public bool triggered { get; private set; }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Hand") return;
+        if (collision.gameObject.tag == "Hand") return;
 
-        AnimScript.Collided[index] = true;
+        collided = true;
     }
 
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "Hand") return;
 
-        //AnimScript.Collided[index] = false;
+        collided = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.tag == "Hand") return;
+
+        triggered = true;
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Hand") return;
+
+        triggered = false;
+    }
+
 }

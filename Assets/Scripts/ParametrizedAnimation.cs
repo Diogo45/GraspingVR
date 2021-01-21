@@ -6,9 +6,10 @@ using UnityEditor;
 using UnityEngine;
 
 
+
 public enum Fingers
 {
-    Index, Thumb, Middle, Ring, Pinky
+    Index = 0, Thumb = 1, Middle = 2, Ring = 3, Pinky = 4
 }
 
 //[ExecuteInEditMode]
@@ -21,6 +22,8 @@ public class ParametrizedAnimation : MonoBehaviour
         public GameObject middle;
         public GameObject extreme;
     }
+
+    public static ParametrizedAnimation inst;
 
 
     #region Anim Logic
@@ -89,7 +92,14 @@ public class ParametrizedAnimation : MonoBehaviour
     private (float, float, float)[] DistanceToObject;
 
 
-    public bool[] Collided;
+    public bool[] CollidedDistal;
+    public bool[] CollidedMiddle;
+    public bool[] CollidedProximal;
+
+    public bool[] TriggerDistal;
+    public bool[] TriggerMiddle;
+    public bool[] TriggerProximal;
+
     #endregion
 
     #region Debug
@@ -103,17 +113,37 @@ public class ParametrizedAnimation : MonoBehaviour
     void Start()
     {
         //TODO: Do this on a scene controller
+
+        if(inst == null)
+        {
+            inst = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+
         Time.timeScale = 2f;
         UnityEngine.XR.XRSettings.eyeTextureResolutionScale = 2;
 
         //TODO: Notifying of colliders from curl list
         //TODO: DIMINUIR COLLIDREEERS, TALVEZ AUMENTAR AGORAA
 
-        Collided = new bool[curlFingers.Count];
+        CollidedDistal = new bool[curlFingers.Count];
+        CollidedMiddle = new bool[curlFingers.Count];
+        CollidedProximal = new bool[curlFingers.Count];
+
+        TriggerDistal = new bool[curlFingers.Count];
+        TriggerMiddle = new bool[curlFingers.Count];
+        TriggerProximal = new bool[curlFingers.Count];
+
+
+
         DistalPhalanx = new bool[curlFingers.Count];
         for (int i = 0; i < curlFingers.Count; i++)
         {
-            Collided[i] = false;
+            CollidedDistal[i] = false;
             DistalPhalanx[i] = false;
         }
 
@@ -206,6 +236,9 @@ public class ParametrizedAnimation : MonoBehaviour
                 maxCurl[i] = new Quaternion(0.5f, curlFingers[i].middle.transform.localRotation.y, curlFingers[i].middle.transform.localRotation.z, fingers[i].transform.localRotation.w);
                 maxCurl[i] = new Quaternion(0.5f, curlFingers[i].extreme.transform.localRotation.y, curlFingers[i].extreme.transform.localRotation.z, fingers[i].transform.localRotation.w);
             }
+
+            spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
+            spreadTime[i] = Mathf.Clamp(spreadTime[i], -1, 1);
         }
 
 
@@ -326,7 +359,7 @@ public class ParametrizedAnimation : MonoBehaviour
             visuText[i].transform.rotation = SimulatedFingers[i].transform.rotation;
             visuText[i].GetComponentInChildren<TMP_Text>().text = String.Format("{0,12:F2}", FlexAnimTime[i] * log);
 
-            if (Collided[i]) continue;
+            if (CollidedDistal[i]) continue;
 
             if (!DistalPhalanx[i])
             {
@@ -350,7 +383,7 @@ public class ParametrizedAnimation : MonoBehaviour
         {
 
             //TODO: THIS IS A HACK
-            if (Collided[i]) continue;
+            if (CollidedDistal[i]) continue;
 
 
 
@@ -370,8 +403,8 @@ public class ParametrizedAnimation : MonoBehaviour
 
         for (int i = 0; i < fingers.Count; i++)
         {
-            spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
-            spreadTime[i] = Mathf.Clamp(spreadTime[i], -1, 1);
+            //spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
+            //spreadTime[i] = Mathf.Clamp(spreadTime[i], -1, 1);
             maxFingers[i].z = spreadMAX[i];
         }
 
@@ -404,7 +437,7 @@ public class ParametrizedAnimation : MonoBehaviour
                 SimulatedCurlFingers[i].extreme.GetComponent<NotifyCollision>().enabled = true;
             }
 
-            if (!grasped && graspedObject && (Collided[0] || Collided[1] || Collided[2] || Collided[3] || Collided[4]))
+            if (!grasped && graspedObject && (CollidedDistal[0] || CollidedDistal[1] || CollidedDistal[2] || CollidedDistal[3] || CollidedDistal[4]))
             {
                 grasped = true;
                 graspedObject.transform.SetParent(transform);
@@ -460,7 +493,7 @@ public class ParametrizedAnimation : MonoBehaviour
                 //CurlAnimTime[i] = Mathf.Clamp(CurlAnimTime[i], 0, 1);
               
                 CurlAnimTime[i] = 0f;
-                Collided[i] = false;
+                CollidedDistal[i] = false;
 
 
 
