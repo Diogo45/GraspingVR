@@ -12,6 +12,11 @@ public enum Fingers
     Index = 0, Thumb = 1, Middle = 2, Ring = 3, Pinky = 4
 }
 
+public enum GraspType
+{
+    Pad, Side, Palm
+}
+
 //[ExecuteInEditMode]
 public class ParametrizedAnimation : MonoBehaviour
 {
@@ -100,6 +105,9 @@ public class ParametrizedAnimation : MonoBehaviour
     public bool[] TriggerMiddle;
     public bool[] TriggerProximal;
 
+
+    private GraspType graspType;
+
     #endregion
 
     #region Debug
@@ -119,7 +127,8 @@ public class ParametrizedAnimation : MonoBehaviour
             inst = this;
         }
         else
-        {
+        {//TODO: Modify the singleton here to support two hands
+            //Maybe have two instances with different tags
             Destroy(gameObject);
         }
 
@@ -237,8 +246,8 @@ public class ParametrizedAnimation : MonoBehaviour
                 maxCurl[i] = new Quaternion(0.5f, curlFingers[i].extreme.transform.localRotation.y, curlFingers[i].extreme.transform.localRotation.z, fingers[i].transform.localRotation.w);
             }
 
-            spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
-            spreadTime[i] = Mathf.Clamp(spreadTime[i], -1, 1);
+            //spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
+            //spreadTime[i] = Mathf.Clamp(spreadTime[i], -1, 1);
         }
 
 
@@ -280,7 +289,14 @@ public class ParametrizedAnimation : MonoBehaviour
         }
 
 
-
+        if(Array.Exists(TriggerMiddle, x => x == true))
+        {
+            graspType = GraspType.Side;
+        }
+        else
+        {
+            graspType = GraspType.Palm;
+        }
 
 #endif
 
@@ -373,19 +389,12 @@ public class ParametrizedAnimation : MonoBehaviour
                 fingers[i].transform.localRotation = final;
             }
 
-
-            
-
         }
-
 
         for (int i = 0; i < curlFingers.Count; i++)
         {
-
             //TODO: THIS IS A HACK
             if (CollidedDistal[i]) continue;
-
-
 
             var log = 1f / (1 + Math.Pow(Math.E, -((curlMultiplier[i] * (DistanceToObject[i].Item2)))));
             log = log * 2d - 1d;
@@ -394,10 +403,7 @@ public class ParametrizedAnimation : MonoBehaviour
             log = 1f / (1 + Math.Pow(Math.E, -((curlMultiplier[i] * (DistanceToObject[i].Item3)))));
             log = log * 2d - 1d;
 
-
             curlFingers[i].extreme.transform.localRotation = Quaternion.Lerp(OldCurlFingers[i].Item2, maxCurl[i], CurlAnimTime[i] * (float)log);
-
-
 
         }
 
@@ -405,7 +411,7 @@ public class ParametrizedAnimation : MonoBehaviour
         {
             //spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
             //spreadTime[i] = Mathf.Clamp(spreadTime[i], -1, 1);
-            maxFingers[i].z = spreadMAX[i];
+            //maxFingers[i].z = spreadMAX[i];
         }
 
         #endregion
@@ -437,7 +443,7 @@ public class ParametrizedAnimation : MonoBehaviour
                 SimulatedCurlFingers[i].extreme.GetComponent<NotifyCollision>().enabled = true;
             }
 
-            if (!grasped && graspedObject && (CollidedDistal[0] || CollidedDistal[1] || CollidedDistal[2] || CollidedDistal[3] || CollidedDistal[4]))
+            if (!grasped && graspedObject && Array.Exists(CollidedDistal, x => x == true))
             {
                 grasped = true;
                 graspedObject.transform.SetParent(transform);
@@ -496,7 +502,7 @@ public class ParametrizedAnimation : MonoBehaviour
                 CollidedDistal[i] = false;
 
 
-
+                //TODO: See if turning off notify collisions here does anything really
                 SimulatedCurlFingers[i].extreme.GetComponent<NotifyCollision>().enabled = false;
             }
 
@@ -507,16 +513,11 @@ public class ParametrizedAnimation : MonoBehaviour
             }
         }
 
-
-
-        //}
-
-
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Hand") return;
+        if (collision.gameObject.tag == "Hand" || graspType == GraspType.Side) return;
         if (!graspedObject)
         {
             graspedObject = collision.gameObject;
@@ -547,7 +548,7 @@ public class ParametrizedAnimation : MonoBehaviour
 
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.tag == "Hand") return;
+        if (collision.gameObject.tag == "Hand" || graspType == GraspType.Side) return;
         if (graspedObject)
         {
             var tempGraspedObject = collision.gameObject;
@@ -578,7 +579,7 @@ public class ParametrizedAnimation : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.tag == "Hand") return;
+        if (collision.gameObject.tag == "Hand" || graspType == GraspType.Side) return;
         if (!Grasp || !graspedObject) return;
         //TODO: Generalize a procedure to handle multiple objects close to one another, like keeping the closest to the centre of the palm
 

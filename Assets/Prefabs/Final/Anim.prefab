@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1311043851555942762}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,9 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8541454593302905046}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_index.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,13 +72,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6732654747907105726}
   - component: {fileID: 3919324578322582466}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ZBrush_defualt_group
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6732654747907105726
 Transform:
   m_ObjectHideFlags: 0
@@ -108,6 +108,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -174,9 +175,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7191514093094296978}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_index.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,14 +189,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 595289625518560823}
-  m_LocalRotation: {x: 0.038528327, y: 0.10772516, z: 0.04810026, w: 0.9922687}
+  m_LocalRotation: {x: 0.04294081, y: 0.106043614, z: 0.08900473, w: 0.9894388}
   m_LocalPosition: {x: -0.0005207686, y: 0.04554944, z: 0.000094923176}
   m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
   m_Children:
   - {fileID: 963127745709894483}
   m_Father: {fileID: 6046214743809699720}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 3.7900002, y: 12.59, z: 5.9690003}
+  m_LocalEulerAnglesHint: {x: 3.7900002, y: 12.59, z: 10.699}
 --- !u!1 &634065477609002430
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,9 +206,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5351621038281979114}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_pinky.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,9 +237,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4539537638372878362}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_pinky.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,9 +268,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4829953586478814313}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: metarig.001
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,9 +299,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2500188505053808207}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: hand.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -332,9 +333,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1794505160404046255}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_pinky.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -363,9 +364,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5791171841873492200}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: palm.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,9 +397,10 @@ GameObject:
   - component: {fileID: 1677099012844445848}
   - component: {fileID: 5113551019371912127}
   - component: {fileID: 4307122611893237181}
-  m_Layer: 0
-  m_Name: Anim 1
-  m_TagString: Untagged
+  - component: {fileID: 2449145254383358248}
+  m_Layer: 2
+  m_Name: Anim
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,10 +430,10 @@ SphereCollider:
   m_GameObject: {fileID: 2386091356307493515}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 1.5477601
-  m_Center: {x: -0.000000112790666, y: 1.8290455, z: 0.3729799}
+  m_Radius: 1.4043779
+  m_Center: {x: -0.21401988, y: 1.5570781, z: 0.9880911}
 --- !u!114 &4307122611893237181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,10 +447,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Grasp: 0
+  grasped: 0
   Z: 0.25
   Y: 0.35
   CurvatureAtPhalanx: []
-  timeMult: 0.28
+  timeMult: 1
+  thumbTimeMult: 0.2
   flexMultiplier:
   - 1.5
   - 0.5
@@ -476,26 +480,26 @@ MonoBehaviour:
   - 0
   - 0
   spreadTime:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
   spreadMAX:
+  - 0.1
   - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
   fingers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 595289625518560823}
+  - {fileID: 230586157966161078}
+  - {fileID: 5593202766704969099}
+  - {fileID: 3648367986388168346}
+  - {fileID: 634065477609002430}
+  - {fileID: 2774784074133026378}
   SimulatedFingers:
   - {fileID: 0}
   - {fileID: 0}
@@ -503,16 +507,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   curlFingers:
-  - middle: {fileID: 0}
-    extreme: {fileID: 0}
-  - middle: {fileID: 0}
-    extreme: {fileID: 0}
-  - middle: {fileID: 0}
-    extreme: {fileID: 0}
-  - middle: {fileID: 0}
-    extreme: {fileID: 0}
-  - middle: {fileID: 0}
-    extreme: {fileID: 0}
+  - middle: {fileID: 5402802871202262403}
+    extreme: {fileID: 232648473672544381}
+  - middle: {fileID: 3699766129117182980}
+    extreme: {fileID: 8783156315700478902}
+  - middle: {fileID: 7084471655932044355}
+    extreme: {fileID: 4196679138895295306}
+  - middle: {fileID: 5046835302422663590}
+    extreme: {fileID: 6040746360307779985}
+  - middle: {fileID: 1802396350810403491}
+    extreme: {fileID: 665452241661371081}
   SimulatedCurlFingers:
   - middle: {fileID: 0}
     extreme: {fileID: 0}
@@ -527,9 +531,28 @@ MonoBehaviour:
   DistalPhalanx: 
   PalmDistanceToObject: 0
   Palm: {fileID: 0}
-  Collided: 
+  CollidedDistal: 
+  CollidedMiddle: 
+  CollidedProximal: 
+  TriggerDistal: 
+  TriggerMiddle: 
+  TriggerProximal: 
   TextPrefab: {fileID: 1415730028240764731, guid: 3094023b62cde1949bce00af2e1041e8,
     type: 3}
+--- !u!136 &2449145254383358248
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2386091356307493515}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.3709462
+  m_Height: 3.3224072
+  m_Direction: 2
+  m_Center: {x: -0.19038849, y: 1.5540155, z: 1.0034428}
 --- !u!1 &2475793436348530846
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,9 +562,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5707972787090815247}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: palm.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,9 +593,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3821456695995514247}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: palm.04.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -601,9 +624,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4916312848343881988}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_ring.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -615,14 +638,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3648367986388168346}
-  m_LocalRotation: {x: 0.043609027, y: 0.0009515485, z: -0.021794038, w: 0.9988105}
+  m_LocalRotation: {x: 0.043584302, y: 0.0017496926, z: -0.04007173, w: 0.9982443}
   m_LocalPosition: {x: -0.0018, y: 0.0497, z: 0.0008}
   m_LocalScale: {x: 0.9999999, y: 0.9999997, z: 0.9999999}
   m_Children:
   - {fileID: 1999725919614548714}
   m_Father: {fileID: 5707972787090815247}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 5, y: 0, z: -2.5}
+  m_LocalEulerAnglesHint: {x: 5, y: 0, z: -4.597}
 --- !u!1 &3699766129117182980
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,9 +655,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1276577850051207131}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -663,9 +686,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8254125377216785950}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_middle.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -694,9 +717,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7676472372004688288}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: forearm.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -725,9 +748,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2084800566368256505}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -755,9 +778,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1999725919614548714}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_ring.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -786,9 +809,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 963127745709894483}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_index.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -817,9 +840,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1279406957563054997}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_middle.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -848,9 +871,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1127486352244263827}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_ring.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -879,9 +902,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5264427260439701497}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_pinky.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -909,9 +932,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6046214743809699720}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: palm.01.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -941,9 +964,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1187627019929106278}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_middle.02.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -972,9 +995,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3926652216668968592}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_ring.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1002,9 +1025,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5442491879195779828}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_middle.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1032,9 +1055,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1273988700773345821}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: f_index.03.R_end
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1062,9 +1085,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8784993391954279578}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: thumb.03.R
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

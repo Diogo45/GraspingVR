@@ -315,16 +315,16 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 10.6
+    m_Value: 12.668966
   compensation:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: -1.2
   limitMin:
-    m_OverrideState: 0
-    m_Value: -10
+    m_OverrideState: 1
+    m_Value: 13
   limitMax:
     m_OverrideState: 1
-    m_Value: 11
+    m_Value: 15
   curveMap:
     m_OverrideState: 0
     m_Value:
@@ -404,8 +404,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   adaptationMode:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0
   adaptationSpeedDarkToLight:
     m_OverrideState: 0
     m_Value: 3
