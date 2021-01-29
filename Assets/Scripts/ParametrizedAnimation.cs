@@ -122,7 +122,7 @@ public class ParametrizedAnimation : MonoBehaviour
     {
         //TODO: Do this on a scene controller
 
-        if(inst == null)
+        if (inst == null)
         {
             inst = this;
         }
@@ -289,7 +289,7 @@ public class ParametrizedAnimation : MonoBehaviour
         }
 
 
-        if(Array.Exists(TriggerMiddle, x => x == true))
+        if (Array.Exists(TriggerMiddle, x => x == true))
         {
             graspType = GraspType.Side;
         }
@@ -297,6 +297,9 @@ public class ParametrizedAnimation : MonoBehaviour
         {
             graspType = GraspType.Palm;
         }
+
+
+
 
 #endif
 
@@ -385,7 +388,7 @@ public class ParametrizedAnimation : MonoBehaviour
                 {
                     final.z = final.z * spreadTime[i];
                 }
-               
+
                 fingers[i].transform.localRotation = final;
             }
 
@@ -407,12 +410,27 @@ public class ParametrizedAnimation : MonoBehaviour
 
         }
 
-        for (int i = 0; i < fingers.Count; i++)
+        if (graspType == GraspType.Side)
         {
-            //spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
-            //spreadTime[i] = Mathf.Clamp(spreadTime[i], -1, 1);
-            //maxFingers[i].z = spreadMAX[i];
+
+
+            for (int i = 0; i < TriggerMiddle.Length; i++)
+            {
+
+                if (CollidedDistal[i] || CollidedMiddle[i] || CollidedProximal[i]) continue;
+
+                Quaternion tempFinalRot = new Quaternion(OldFingers[i].x, OldFingers[i].y, spreadMAX[i], OldFingers[i].w);
+
+                fingers[i].transform.localRotation = Quaternion.Lerp(OldFingers[i], tempFinalRot, spreadTime[i]); 
+
+
+                //spreadMAX[i] = Mathf.Clamp01(spreadMAX[i]);
+                //spreadTime[i] = Mathf.Clamp(spreadTime[i], -1, 1);
+                //maxFingers[i].z = spreadMAX[i];
+            }
         }
+
+
 
         #endregion
 
@@ -420,14 +438,15 @@ public class ParametrizedAnimation : MonoBehaviour
         {
             for (int i = 0; i < FlexAnimTime.Length; i++)
             {
-
+                spreadTime[i] += Time.deltaTime * timeMult;
                 FlexAnimTime[i] += Time.deltaTime * timeMult;
                 if (i == 1)
                 {
                     FlexAnimTime[i] += Time.deltaTime * thumbTimeMult;
-
+                    spreadTime[i] += Time.deltaTime * thumbTimeMult;
                 }
                 FlexAnimTime[i] = Mathf.Clamp(FlexAnimTime[i], 0, 1);
+                spreadTime[i] = Mathf.Clamp(spreadTime[i], 0, 1);
 
             }
             for (int i = 0; i < CurlAnimTime.Length; i++)
@@ -497,7 +516,7 @@ public class ParametrizedAnimation : MonoBehaviour
             {
                 //CurlAnimTime[i] -= Time.deltaTime * timeMult;
                 //CurlAnimTime[i] = Mathf.Clamp(CurlAnimTime[i], 0, 1);
-              
+
                 CurlAnimTime[i] = 0f;
                 CollidedDistal[i] = false;
 
@@ -575,7 +594,6 @@ public class ParametrizedAnimation : MonoBehaviour
 
         }
     }
-
 
     private void OnTriggerStay(Collider collision)
     {
