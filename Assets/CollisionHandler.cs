@@ -19,6 +19,8 @@ public class CollisionHandler : MonoBehaviour
 
     public FingerCollisions[] fingerCollisions;
 
+    //TODO: Maybe in the future use a list to keep track of grasped objects so that is possible to grab several at a time
+    public GameObject graspedObject;
 
 
     void Start()
@@ -33,6 +35,8 @@ public class CollisionHandler : MonoBehaviour
             //Maybe have two instances with different tags
             Destroy(gameObject);
         }
+
+
     }
 
     // Update is called once per frame
@@ -42,6 +46,10 @@ public class CollisionHandler : MonoBehaviour
         {
             var finger = fingerCollisions[i];
 
+            if (finger.Item1.graspedObject) ParametrizedAnimation.inst.graspedObject = finger.Item1.graspedObject;
+            if (finger.Item2.graspedObject) ParametrizedAnimation.inst.graspedObject = finger.Item2.graspedObject;
+            if (finger.Item3.graspedObject) ParametrizedAnimation.inst.graspedObject = finger.Item3.graspedObject;
+
             ParametrizedAnimation.inst.CollidedDistal[i] = finger.Item3.collided;
             ParametrizedAnimation.inst.CollidedMiddle[i] = finger.Item2.collided;
             ParametrizedAnimation.inst.CollidedProximal[i] = finger.Item1.collided;
@@ -49,6 +57,8 @@ public class CollisionHandler : MonoBehaviour
             ParametrizedAnimation.inst.TriggerDistal[i] = finger.Item3.triggered;
             ParametrizedAnimation.inst.TriggerMiddle[i] = finger.Item2.triggered;
             ParametrizedAnimation.inst.TriggerProximal[i] = finger.Item1.triggered;
+
+            
 
         }
     }
