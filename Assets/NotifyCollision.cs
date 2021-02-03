@@ -12,24 +12,16 @@ public class NotifyCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Hand") return;
+        //if (collision.gameObject.tag == "Hand") return;
 
-        graspedObject = collision.gameObject;
-
-        //TODO: Modify parent search to handle undesired objects being selected, like a organizing parent
-        //Handle objects defined by several child componentes, e. g. for complex colliders
-        while (graspedObject.transform.parent && graspedObject.transform.parent != gameObject && graspedObject.transform.parent.name != gameObject.name)
-        {
-            graspedObject = graspedObject.transform.parent.gameObject;
-
-        }
+        
         collided = true;
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Hand") return;
-        graspedObject = null;
+        //if (collision.gameObject.tag == "Hand") return;
+        
         collided = false;
     }
 

@@ -453,32 +453,32 @@ PrefabInstance:
     - target: {fileID: 4307122611893237181, guid: ac8232f7308628d438fc0c48d8561fd2,
         type: 3}
       propertyPath: spreadMAX.Array.data[0]
-      value: 0.2
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 4307122611893237181, guid: ac8232f7308628d438fc0c48d8561fd2,
         type: 3}
       propertyPath: spreadMAX.Array.data[1]
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4307122611893237181, guid: ac8232f7308628d438fc0c48d8561fd2,
         type: 3}
       propertyPath: spreadMAX.Array.data[2]
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4307122611893237181, guid: ac8232f7308628d438fc0c48d8561fd2,
         type: 3}
       propertyPath: spreadMAX.Array.data[3]
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4307122611893237181, guid: ac8232f7308628d438fc0c48d8561fd2,
         type: 3}
       propertyPath: spreadMAX.Array.data[4]
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4307122611893237181, guid: ac8232f7308628d438fc0c48d8561fd2,
         type: 3}
       propertyPath: spreadMAX.Array.data[5]
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4307122611893237181, guid: ac8232f7308628d438fc0c48d8561fd2,
         type: 3}

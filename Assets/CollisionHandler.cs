@@ -40,15 +40,16 @@ public class CollisionHandler : MonoBehaviour
     }
 
     // Update is called once per frame
+    //TODO: Use events to update collision, triggers and graspedObject variables
     void Update()
     {
         for (int i = 0; i < fingerCollisions.Length; i++)
         {
             var finger = fingerCollisions[i];
 
-            if (finger.Item1.graspedObject) ParametrizedAnimation.inst.graspedObject = finger.Item1.graspedObject;
-            if (finger.Item2.graspedObject) ParametrizedAnimation.inst.graspedObject = finger.Item2.graspedObject;
-            if (finger.Item3.graspedObject) ParametrizedAnimation.inst.graspedObject = finger.Item3.graspedObject;
+            if (finger.Item1.graspedObject && !ParametrizedAnimation.inst.graspedObject) ParametrizedAnimation.inst.graspedObject = finger.Item1.graspedObject;
+            if (finger.Item2.graspedObject && !ParametrizedAnimation.inst.graspedObject) ParametrizedAnimation.inst.graspedObject = finger.Item2.graspedObject;
+            if (finger.Item3.graspedObject && !ParametrizedAnimation.inst.graspedObject) ParametrizedAnimation.inst.graspedObject = finger.Item3.graspedObject;
 
             ParametrizedAnimation.inst.CollidedDistal[i] = finger.Item3.collided;
             ParametrizedAnimation.inst.CollidedMiddle[i] = finger.Item2.collided;

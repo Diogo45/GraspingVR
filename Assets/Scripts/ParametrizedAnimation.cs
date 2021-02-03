@@ -446,7 +446,7 @@ public class ParametrizedAnimation : MonoBehaviour
 
                 if (graspType == GraspType.Side)
                 {
-                    Debug.Log(i);
+                    //Debug.Log(i);
                     visuText[i].transform.position = SimulatedFingers[i].transform.position + 0.4f * -SimulatedFingers[i].transform.forward;
                     //visuText[i].transform.LookAt(-SimulatedFingers[i].transform.forward);
                     visuText[i].transform.rotation = SimulatedFingers[i].transform.rotation;
@@ -548,7 +548,6 @@ public class ParametrizedAnimation : MonoBehaviour
                 //FlexAnimTime[i] = Mathf.Clamp(FlexAnimTime[i], 0, 1);
 
                 FlexAnimTime[i] = 0f;
-                spreadTime[i] = 0f;
 
             }
             for (int i = 0; i < CurlAnimTime.Length; i++)
@@ -558,6 +557,7 @@ public class ParametrizedAnimation : MonoBehaviour
 
                 CurlAnimTime[i] = 0f;
                 CollidedDistal[i] = false;
+                spreadTime[i] = 0f;
 
 
                 //TODO: See if turning off notify collisions here does anything really
@@ -565,7 +565,7 @@ public class ParametrizedAnimation : MonoBehaviour
             }
 
 
-            if (grasped && graspedObject && FlexAnimTime[0] <= 0.9f)
+            if (grasped && graspedObject && (Array.Exists(FlexAnimTime, x => x <= 0.9f) || Array.Exists(spreadTime, x => x <= 0.9f)))
             {
                 StartCoroutine(EnablePhysics());
             }
