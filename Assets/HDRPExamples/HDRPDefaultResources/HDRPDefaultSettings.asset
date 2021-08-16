@@ -43,7 +43,7 @@ MonoBehaviour:
     m_Value: 0
   exposure:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 16
   multiplier:
     m_OverrideState: 0
     m_Value: 1
@@ -72,7 +72,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: {fileID: 8900000, guid: 656a59a5ff93c46498416d97e5c16b66, type: 3}
   enableDistortion:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   procedural:
     m_OverrideState: 0
@@ -153,14 +153,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5ab44aadfb1804db5fd470983ac1b8, type: 3}
   m_Name: LiftGammaGain
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   lift:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0.1}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.039181083}
+    m_Value: {x: 1, y: 1, z: 1, w: 0.537743}
   gain:
     m_OverrideState: 1
     m_Value: {x: 1, y: 1, z: 1, w: 1}
@@ -274,10 +274,10 @@ MonoBehaviour:
     m_Value: -1.2
   limitMin:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 14.97
   limitMax:
     m_OverrideState: 1
-    m_Value: 13
+    m_Value: 15.26
   curveMap:
     m_OverrideState: 0
     m_Value:

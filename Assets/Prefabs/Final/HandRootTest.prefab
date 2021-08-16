@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &7971423578682781754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782664321459523718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1404918961d99c242a9a32799b202266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightGrip:
+    actionPath: /actions/default/in/GrabGrip
+    needsReinit: 0
+  rightHand: 2
 --- !u!1 &1533755051764054898
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +25,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5432960362492617100}
-  - component: {fileID: 2580874883499560147}
   m_Layer: 2
   m_Name: HandRootTest
   m_TagString: Hand
@@ -33,25 +48,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -80, y: 0, z: 22.851}
---- !u!114 &2580874883499560147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533755051764054898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef91a627a11b4a22b41dd9109dfd8703, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOnSourceLost: 1
-  useSourcePoseData: 1
-  poseAction:
-    id: 0
-    description: None
-    axisConstraint: 0
-  handedness: 2
 --- !u!1001 &2316393349242731166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64,6 +60,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 3685862664054772642}
+    - target: {fileID: 842941846144575301, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 876897331086071090, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: m_Constraints
@@ -74,11 +75,21 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 8908098504362834661}
+    - target: {fileID: 1261828309326504272, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1261828309326504275, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 4174923785319920487}
+    - target: {fileID: 1264198984382555524, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1264198984382555527, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: target
@@ -89,6 +100,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 681160978655495234}
+    - target: {fileID: 1908815938811641944, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1908815938811641944, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: m_AngularZMotion
@@ -106,7 +122,17 @@ PrefabInstance:
       objectReference: {fileID: 5191787841347706783}
     - target: {fileID: 1941959671581737950, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1941959671581737950, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
       propertyPath: m_AngularZMotion
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1985515154304366376, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1985515154304366379, guid: 2649c0f8419d30c43a7462c013edc4bc,
@@ -114,6 +140,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1530697283725306391}
+    - target: {fileID: 2310423095461231484, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2310423095461231484, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: m_AngularZMotion
@@ -129,11 +160,21 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 4212797173358534102}
+    - target: {fileID: 2443743189917297134, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2921789130992297644, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 6434807360692825107}
+    - target: {fileID: 2921789130992297645, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3524655813472654694, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: m_Constraints
@@ -154,6 +195,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2218311858349719434}
+    - target: {fileID: 4712124231752670320, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4712124231752670323, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: target
@@ -214,6 +260,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 6104676835953214528, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6104676835953214531, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: target
@@ -224,11 +275,21 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2782164550328084830}
+    - target: {fileID: 6362251865425016933, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6858650741027852396, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 4179570967646079384}
+    - target: {fileID: 6858650741027852397, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6858650741027852397, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: m_AngularZMotion
@@ -239,11 +300,21 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 5920857531407122071}
+    - target: {fileID: 7734322030917424721, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8133720440568213924, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 4303963519669679467}
+    - target: {fileID: 8133720440568213925, guid: 2649c0f8419d30c43a7462c013edc4bc,
+        type: 3}
+      propertyPath: m_AngularYMotion
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8318038582385927106, guid: 2649c0f8419d30c43a7462c013edc4bc,
         type: 3}
       propertyPath: m_Constraints
@@ -587,6 +658,12 @@ PrefabInstance:
       objectReference: {fileID: 8627156474952123726}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac8232f7308628d438fc0c48d8561fd2, type: 3}
+--- !u!4 &681160978655495234 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2500188505053808207, guid: ac8232f7308628d438fc0c48d8561fd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3152955695328985613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8658720286597754245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6046214743809699720, guid: ac8232f7308628d438fc0c48d8561fd2,
@@ -647,9 +724,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3152955695328985613}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4361679980764160661 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1677099012844445848, guid: ac8232f7308628d438fc0c48d8561fd2,
+--- !u!1 &782664321459523718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2386091356307493515, guid: ac8232f7308628d438fc0c48d8561fd2,
     type: 3}
   m_PrefabInstance: {fileID: 3152955695328985613}
   m_PrefabAsset: {fileID: 0}
@@ -701,9 +778,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3152955695328985613}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &681160978655495234 stripped
+--- !u!4 &4361679980764160661 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2500188505053808207, guid: ac8232f7308628d438fc0c48d8561fd2,
+  m_CorrespondingSourceObject: {fileID: 1677099012844445848, guid: ac8232f7308628d438fc0c48d8561fd2,
     type: 3}
   m_PrefabInstance: {fileID: 3152955695328985613}
   m_PrefabAsset: {fileID: 0}

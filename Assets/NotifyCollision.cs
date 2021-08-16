@@ -18,12 +18,20 @@ public class NotifyCollision : MonoBehaviour
         collided = true;
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         //if (collision.gameObject.tag == "Hand") return;
-        
-        collided = false;
+
+
+        collided = true;
     }
+
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    //if (collision.gameObject.tag == "Hand") return;
+
+    //    //collided = false;
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -49,4 +57,19 @@ public class NotifyCollision : MonoBehaviour
         triggered = false;
     }
 
+
+    private void OnEnable()
+    {
+        ParametrizedAnimation.OnLetGoEvent += Inst_OnLetGoEvent;
+    }
+    private void OnDisable()
+    {
+        ParametrizedAnimation.OnLetGoEvent -= Inst_OnLetGoEvent;
+    }
+
+    private void Inst_OnLetGoEvent()
+    {
+        collided = false;
+        triggered = false;
+    }
 }
