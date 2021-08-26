@@ -19,6 +19,9 @@ public class InputHandler : MonoBehaviour
     [field: SerializeField]
     public SteamVR_Input_Sources rightHand { get; private set; }
 
+    [field: SerializeField]
+    public bool mouseDown { get; private set; }
+
    
 
     void Start()
@@ -32,6 +35,18 @@ public class InputHandler : MonoBehaviour
 
     }
 
-   
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            mouseDown = true;
+        }
+        else if(Input.GetMouseButtonUp(0))
+        {
+            mouseDown = false;
+        }
+    }
+
+
 
 }

@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93a02defb4615624bae737b6fe6dde85, type: 3}
-  m_Name: IndexDistalL
+  m_Name: Index3
   m_EditorClassIdentifier: 
-  <Rotation>k__BackingField: {x: 0, y: 0, z: 0}
+  Rotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}

@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(), System.Serializable]
 public class RotationAsset : ScriptableObject
 {
-    [field: SerializeField] public Vector3 Rotation { get; private set; }
+    [SerializeField] public Quaternion Rotation;
 }
