@@ -9,8 +9,11 @@ public class FingerPoseController : MonoBehaviour
     [SerializeField] private RotationAsset[] _initialRotations;
     [SerializeField] private RotationAsset[] _finalRotations;
 
-    private float time;
-    private float animSpeed = 1f;
+    private float flexTime;
+    private float flexAnimSpeed = 1f;
+
+    private float curlTime;
+    private float curlAnimSpeed = 1f;
 
     private void Awake()
     {
@@ -30,19 +33,24 @@ public class FingerPoseController : MonoBehaviour
             var initialRotation = _initialRotations[i].Rotation;
             var finalRotation = _finalRotations[i].Rotation;
 
-            _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, time);
+            if(i < 1)
+                _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, flexTime);
+            else
+                _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, curlTime);
         }
 
         if (InputHandler.instance.mouseDown)
         {
-            time += Time.deltaTime * animSpeed;
+            flexTime += Time.deltaTime * flexAnimSpeed;
+            curlTime += Time.deltaTime * curlAnimSpeed;
         }
         else
         {
-            time -= Time.deltaTime * animSpeed;
+            flexTime -= Time.deltaTime * flexAnimSpeed;
+            curlTime -= Time.deltaTime * curlAnimSpeed;
         }
 
-        time = Mathf.Clamp01(time);
+        flexTime = Mathf.Clamp01(flexTime);
 
 
     }
