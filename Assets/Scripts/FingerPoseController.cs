@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class FingerPoseController : MonoBehaviour
 {
-    [SerializeField] private Transform[] _bones;
+    [field: SerializeField] public Transform[] _bones { get; private set; }
 
-    [SerializeField] private RotationAsset[] _initialRotations;
-    [SerializeField] private RotationAsset[] _finalRotations;
+    [field: SerializeField] public FingerData _fingerData { get; private set; }
 
     private float flexTime;
     private float flexAnimSpeed = 1f;
@@ -17,12 +16,11 @@ public class FingerPoseController : MonoBehaviour
 
     private void Awake()
     {
-        _initialRotations = new RotationAsset[_bones.Length];
+        _fingerData.InitialRotations = new Quaternion[_bones.Length];
 
         for (int i = 0; i < _bones.Length; i++)
         {
-            _initialRotations[i] = ScriptableObject.CreateInstance<RotationAsset>();
-            _initialRotations[i].Rotation = _bones[i].localRotation;
+            _fingerData.InitialRotations[i] = _bones[i].localRotation;
         }           
     }
 
@@ -30,13 +28,15 @@ public class FingerPoseController : MonoBehaviour
     {
         for (int i = 0; i < _bones.Length; i++)
         {
-            var initialRotation = _initialRotations[i].Rotation;
-            var finalRotation = _finalRotations[i].Rotation;
+            var initialRotation = _fingerData.InitialRotations[i];
+            var finalRotation = _fingerData.FinalRotations[i];
 
-            if(i < 1)
+            if(i < _fingerData.flexGroupMaxIndex)
                 _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, flexTime);
             else
+            {
                 _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, curlTime);
+            }
         }
 
         if (InputHandler.instance.mouseDown)
@@ -51,6 +51,7 @@ public class FingerPoseController : MonoBehaviour
         }
 
         flexTime = Mathf.Clamp01(flexTime);
+        curlTime = Mathf.Clamp01(curlTime);
 
 
     }

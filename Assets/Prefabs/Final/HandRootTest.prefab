@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1404918961d99c242a9a32799b202266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightGrip:
-    actionPath: /actions/default/in/GrabGrip
+  <Grip>k__BackingField:
+    actionPath: 
     needsReinit: 0
-  rightHand: 2
+  <rightHand>k__BackingField: 0
+  <mouseDown>k__BackingField: 0
 --- !u!1 &1533755051764054898
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +657,11 @@ PrefabInstance:
       propertyPath: SimulatedCurlFingers.Array.data[4].extreme
       value: 
       objectReference: {fileID: 8627156474952123726}
+    - target: {fileID: 5113551019371912127, guid: ac8232f7308628d438fc0c48d8561fd2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac8232f7308628d438fc0c48d8561fd2, type: 3}
 --- !u!4 &681160978655495234 stripped
