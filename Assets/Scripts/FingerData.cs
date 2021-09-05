@@ -14,4 +14,6 @@ public class FingerData  : ScriptableObject
 
     public int flexGroupMaxIndex;
 
+    public float flexMultiplier;
+    public float curlMultiplier;
 }

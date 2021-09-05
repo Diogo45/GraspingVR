@@ -21,7 +21,9 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
   - {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
   RayOffsets:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: -0.25, y: -0.1, z: 0}
+  - {x: -0.25, y: -0.1, z: 0}
+  - {x: -0.5, y: -0.1, z: 0}
   flexGroupMaxIndex: 1
+  flexMultiplier: 1
+  curlMultiplier: 1.5

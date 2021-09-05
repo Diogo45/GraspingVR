@@ -69,8 +69,9 @@ public class FingerPoseController : MonoBehaviour
             curlTime -= Time.deltaTime * curlAnimSpeed;
         }
 
-       
 
+        flexTime = Mathf.Clamp01(flexTime);
+        curlTime = Mathf.Clamp01(curlTime);
 
     }
 
@@ -84,8 +85,9 @@ public class FingerPoseController : MonoBehaviour
         }
         else
         {
-            
             StopAllCoroutines();
+
+            StartCoroutine(AnimateBonesToRest());
         }
     }
 
@@ -103,18 +105,43 @@ public class FingerPoseController : MonoBehaviour
             var normalizedDistance = (float) Sigmoid(phalanxDistanceToObject.magnitude);
 
             
-            Debug.Log(curlTime * normalizedDistance);
+            //Debug.Log(curlTime * normalizedDistance);
 
             if (i < _fingerData.flexGroupMaxIndex)
-                _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, flexTime * normalizedDistance);
+                _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, _fingerData.flexMultiplier * flexTime * normalizedDistance);
             else
             {
-                _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, curlTime * normalizedDistance);
+                _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, _fingerData.curlMultiplier * curlTime * normalizedDistance);
             }
         }
 
-        flexTime = Mathf.Clamp01(flexTime);
-        curlTime = Mathf.Clamp01(curlTime);
+    
+
+        yield return new WaitForEndOfFrame();
+        yield return AnimateBones();
+
+
+    }
+
+    private IEnumerator AnimateBonesToRest()
+    {
+
+
+        for (int i = 0; i < _bones.Length; i++)
+        {
+            var initialRotation = _fingerData.InitialRotations[i];
+            var finalRotation = _fingerData.FinalRotations[i];
+
+
+            if (i < _fingerData.flexGroupMaxIndex)
+                _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, flexTime);
+            else
+            {
+                _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, curlTime);
+            }
+        }
+
+
 
         yield return new WaitForEndOfFrame();
         yield return AnimateBones();
