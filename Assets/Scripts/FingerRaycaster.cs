@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,73 +8,109 @@ public class FingerRaycaster : MonoBehaviour
 
     private FingerPoseController _fingerController;
 
-    public HandController _handController { get; private set; }
 
-    public (bool hit, float distance)[] Hits { get; private set; }
+    public (bool hit, Vector3 distance)[] Hits { get; private set; }
 
     private Transform[] _bones;
     private Vector3[] _rayOffsets;
 
     private Ray[] _rays;
 
+    int i = 0;
 
-    void UpdateRays()
-    {
 
-        for (int i = 0; i < _rays.Length; i++)
-        {
-            _rays[i] = new Ray(_bones[i].position + _rayOffsets[i], _bones[i].forward);
-        }
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
-        
+        // When building assign these as the finger raycaster is created
         _fingerController = GetComponent<FingerPoseController>();
-        _handController = GetComponentInParent<HandController>();
+        //
 
         _bones = _fingerController._bones;
         _rayOffsets = _fingerController._fingerData.RayOffsets;
 
-        Hits = new (bool hit, float distance)[_bones.Length];
+        Hits = new (bool hit, Vector3 distance)[_bones.Length];
 
-        _rays = new Ray[Hits.Length];
+        _rays = new Ray[_bones.Length];
 
-        UpdateRays();
+        UpdateRays(Vector3.zero);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
+        HandController.onGrasp += OnGrasp;
+    }
 
-        UpdateRays();
+    private void OnDisable()
+    {
+        HandController.onGrasp -= OnGrasp;
+    }
+
+    void UpdateRays(Vector3 objPos)
+    {
 
         for (int i = 0; i < _rays.Length; i++)
         {
+            _rays[i] = new Ray(_bones[i].position + _rayOffsets[i], objPos - _bones[i].position);
+        }
+    }
+
+    private void OnGrasp(bool state, GameObject graspableObject)
+    {
+        if (state)
+        {
+            
+            StartCoroutine(CastRays(graspableObject));
+        }
+        else
+        {
+            UpdateRays(Vector3.zero);
+            StopAllCoroutines();
+        }
+    }
 
 #if DEBUG
-            Debug.DrawRay(_rays[i].origin, _rays[i].direction);
+
+    public void Update()
+    {
+        for (int i = 0; i < _rays.Length; i++)
+            Debug.DrawLine(_rays[i].origin, _rays[i].origin + Hits[i].distance, Color.blue);
+    }
+
 #endif
+
+
+    private IEnumerator CastRays(GameObject graspableObject)
+    {
+
+        UpdateRays(graspableObject.transform.position);
+
+        for (int i = 0; i < _rays.Length; i++)
+        {
+            int layerMask = ~( 1 << 6 );
 
             RaycastHit hit;
 
-            if (!Physics.Raycast(_rays[i], out hit, 10f))
+            if (!Physics.Raycast(_rays[i], out hit, 10f, layerMask))
             {
                 Hits[i].hit = false;
-                Hits[i].distance = 0f;
+                Hits[i].distance = Vector3.zero;
                 continue;
             }
 
             Hits[i].hit = true;
-            Hits[i].distance = hit.distance;
+            Hits[i].distance = hit.point - _rays[i].origin;
 
         }
 
-
-
-
+        yield return new WaitForEndOfFrame();
+        yield return CastRays(graspableObject);
 
 
     }
+
+   
+   
+
+  
+
 }
