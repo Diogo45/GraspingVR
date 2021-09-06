@@ -962,7 +962,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2a47094839f11429cc5010d2198bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _grabWithPhysics: 0
+  _handData: {fileID: 11400000, guid: 42eb4fd3e6c7b8346be269275c0fce6f, type: 2}
+  <PhysicsHand>k__BackingField: {fileID: 1389589337}
+  <UsePhysics>k__BackingField: 0
 --- !u!1001 &1160134651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1052,6 +1054,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be4b13b06526f60428b34b3a62afbd21, type: 3}
+--- !u!1 &1389589337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5341187305619734105, guid: 0cf80e20bf60ff24b8ee05c2e245c0f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2439599286534133827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1443518397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,7 +1672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1690640931
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2377,7 +2385,7 @@ PrefabInstance:
     - target: {fileID: 8700846083699215044, guid: 0cf80e20bf60ff24b8ee05c2e245c0f8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cf80e20bf60ff24b8ee05c2e245c0f8, type: 3}
@@ -2493,6 +2501,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2138604491221686462, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2742120563201114060, guid: f4cb6261c22650146bc02631b43d84c4,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -2560,16 +2573,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4314446143369923603, guid: f4cb6261c22650146bc02631b43d84c4,
         type: 3}
+      propertyPath: <FingerId>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314446143369923603, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
       propertyPath: <_fingerData>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
         type: 2}
     - target: {fileID: 4314446143474792087, guid: f4cb6261c22650146bc02631b43d84c4,
         type: 3}
+      propertyPath: <FingerId>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314446143474792087, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
       propertyPath: <_fingerData>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
         type: 2}
+    - target: {fileID: 4314446144080975801, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: <FingerId>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4314446144080975801, guid: f4cb6261c22650146bc02631b43d84c4,
         type: 3}
       propertyPath: <_fingerData>k__BackingField
@@ -2582,6 +2610,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
         type: 2}
+    - target: {fileID: 4314446144711055278, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: <FingerId>k__BackingField
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4314446144711055278, guid: f4cb6261c22650146bc02631b43d84c4,
         type: 3}
       propertyPath: <_fingerData>k__BackingField
@@ -2752,6 +2785,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043477448581757593, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9043647156514254302, guid: f4cb6261c22650146bc02631b43d84c4,
         type: 3}

@@ -8,6 +8,8 @@ public class MimicRotation : MonoBehaviour
     Quaternion initialRotation;
     public Transform target;
 
+    [SerializeField] private bool collided;
+
     private void Start()
     {
         myJoint = GetComponent<ConfigurableJoint>();
@@ -15,6 +17,19 @@ public class MimicRotation : MonoBehaviour
     }
     void Update()
     {
+        //if(!collided)
         myJoint.SetTargetRotationLocal(target.localRotation, initialRotation);
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    collided = true;
+    //}
+
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    collided = false;
+    //}
+
+
 }

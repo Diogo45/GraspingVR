@@ -11,10 +11,11 @@ public class FingerPoseController : MonoBehaviour
         Rest, Ongoing, Ended, Interrupted
     }
 
-    public delegate void OnEndPose(int id, PoseState poseState);
+    public delegate void OnEndPose();
     public static OnEndPose onEndPose;
 
-    private int _fingerId;
+
+    [field: SerializeField] public int FingerId { get; private set; }
     public HandController _handController { get; private set; }
     private FingerRaycaster _raycaster;
 
@@ -27,6 +28,8 @@ public class FingerPoseController : MonoBehaviour
     private float curlTime;
     private float curlAnimSpeed = 1f;
 
+    public bool _grasped { get; private set; }
+    private bool[] _phalanxOnFinalRotation;
 
 
     public PoseState poseState { get; private set; }
@@ -40,12 +43,12 @@ public class FingerPoseController : MonoBehaviour
         _raycaster = GetComponent<FingerRaycaster>();
 
         _fingerData.InitialRotations = new Quaternion[_bones.Length];
-
+        _phalanxOnFinalRotation = new bool[_bones.Length];
 
         for (int i = 0; i < _bones.Length; i++)
         {
             _fingerData.InitialRotations[i] = _bones[i].localRotation;
-        }           
+        }
     }
 
     private double Sigmoid(float distance)
@@ -81,45 +84,80 @@ public class FingerPoseController : MonoBehaviour
         if (state)
         {
 
-            StartCoroutine(AnimateBones());
+            StartCoroutine(AnimateGrasp());
         }
         else
         {
             StopAllCoroutines();
-
+            Reset();
             StartCoroutine(AnimateBonesToRest());
         }
     }
 
-    private IEnumerator AnimateBones()
+    private IEnumerator AnimateGrasp()
     {
 
 
         for (int i = 0; i < _bones.Length; i++)
         {
+            //if (_phalanxOnFinalRotation[i]) continue;
+
             var initialRotation = _fingerData.InitialRotations[i];
             var finalRotation = _fingerData.FinalRotations[i];
 
             var phalanxDistanceToObject = _raycaster.Hits[i].distance;
 
-            var normalizedDistance = (float) Sigmoid(phalanxDistanceToObject.magnitude);
+            var normalizedDistance = (float)Sigmoid(phalanxDistanceToObject.magnitude);
 
-            
-            //Debug.Log(curlTime * normalizedDistance);
+
+            Quaternion adjustedFinalRotation = Quaternion.identity;
 
             if (i < _fingerData.flexGroupMaxIndex)
-                _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, _fingerData.flexMultiplier * flexTime * normalizedDistance);
+                adjustedFinalRotation = Quaternion.Slerp(initialRotation, finalRotation, _fingerData.flexMultiplier * 1f * normalizedDistance);
+            else
+                adjustedFinalRotation = Quaternion.Slerp(initialRotation, finalRotation, _fingerData.curlMultiplier * 1f * normalizedDistance);
+
+
+            if (i < _fingerData.flexGroupMaxIndex)
+                _bones[i].localRotation = Quaternion.Slerp(initialRotation, adjustedFinalRotation, flexTime);
+            else
+                _bones[i].localRotation = Quaternion.Slerp(initialRotation, adjustedFinalRotation, curlTime);
+
+                    
+
+            var angle = Quaternion.Angle(_bones[i].localRotation, adjustedFinalRotation);
+
+            //angle /= i < _fingerData.flexGroupMaxIndex ? _fingerData.flexMultiplier : _fingerData.curlMultiplier * curlTime;
+
+            if (angle <= 0f)
+            {
+                _phalanxOnFinalRotation[i] = true;
+            }
             else
             {
-                _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, _fingerData.curlMultiplier * curlTime * normalizedDistance);
+                _phalanxOnFinalRotation[i] = false;
             }
+
+
         }
 
-    
+        var notFinished = Array.Exists(_phalanxOnFinalRotation, x => x == false);
+
+        if (!notFinished)
+        {
+            onEndPose?.Invoke();
+            yield break;
+        }
 
         yield return new WaitForEndOfFrame();
-        yield return AnimateBones();
+        yield return AnimateGrasp();
 
+    }
+
+
+    private void Reset()
+    {
+        _phalanxOnFinalRotation = new bool[_bones.Length];
 
     }
 
@@ -144,7 +182,7 @@ public class FingerPoseController : MonoBehaviour
 
 
         yield return new WaitForEndOfFrame();
-        yield return AnimateBones();
+        yield return AnimateBonesToRest();
 
 
     }

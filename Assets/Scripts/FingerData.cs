@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(), System.Serializable]
+[CreateAssetMenu(menuName = "ProceduralAnimation/FingerData", fileName = "FingerData", order = 1), System.Serializable]
 public class FingerData  : ScriptableObject
 {
 

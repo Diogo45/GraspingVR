@@ -8,39 +8,45 @@ public class HandController : MonoBehaviour
     public delegate void OnGrasp(bool state, GameObject graspableObject);
     public static OnGrasp onGrasp;
 
-    private GameObject _graspableObject;
+    [SerializeField] private HandData _handData;
+    [field: SerializeField] public GameObject PhysicsHand { get; private set; }
+    [field: SerializeField] public bool UsePhysics { get; private set; }
 
-    [SerializeField] private bool _grabWithPhysics;
 
-    // Start is called before the first frame update
-    void Start()
+    public GameObject _graspableObject { get; private set; }
+
+    private int graspedFingers;
+
+    public void BuildPhysicsHand()
     {
+
+    }
+    
+
+    private void OnEndPose()
+    {
+        //Debug.Log("ENDED POSE");
+        graspedFingers++;
+
+        if (graspedFingers >= _handData.FingerQuantity)
+            Grasp();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Grasp()
     {
 
-        if (!_grabWithPhysics)
+        graspedFingers = 0;
+
+        if (!UsePhysics)
         {
             //NOTE: If the rigidbody is kinematic and through the editor it moves into the trigger the position stays the same value, but as a child so the grasped object goes to the worlPos value but as a local position
-            //_graspedObject.transform.SetParent(transform, worldPositionStays: true);
+            _graspableObject.transform.SetParent(transform, worldPositionStays: true);
         }
         else
         {
             //Fixed Joint
         }
-    }
-
-    
-    private void OnEnable()
-    {
-        FingerPoseController.onEndPose += OnEndPose;
-    }
-
-    private void OnEndPose(int id, FingerPoseController.PoseState state)
-    {
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,6 +68,16 @@ public class HandController : MonoBehaviour
         onGrasp?.Invoke(false, _graspableObject);
 
 
+    }
+
+    private void OnEnable()
+    {
+        FingerPoseController.onEndPose += OnEndPose;
+    }
+
+    private void OnDisable()
+    {
+        FingerPoseController.onEndPose -= OnEndPose;
     }
 
 
