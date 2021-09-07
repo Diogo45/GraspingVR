@@ -20,9 +20,10 @@ public class InputHandler : MonoBehaviour
     public SteamVR_Input_Sources rightHand { get; private set; }
 
     [field: SerializeField]
-    public bool mouseDown { get; private set; }
+    public bool debugGrip { get; private set; }
 
-   
+    public delegate void OnGrip(bool value);
+    public static OnGrip onGrip;
 
     void Start()
     {
@@ -39,12 +40,13 @@ public class InputHandler : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            mouseDown = true;
+            debugGrip = !debugGrip;
+            onGrip?.Invoke(debugGrip);
         }
-        else if(Input.GetMouseButtonUp(0))
-        {
-            mouseDown = false;
-        }
+        //else if(Input.GetMouseButtonUp(0))
+        //{
+        //    debugGrip = false;
+        //}
     }
 
 

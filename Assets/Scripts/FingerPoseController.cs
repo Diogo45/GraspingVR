@@ -61,7 +61,7 @@ public class FingerPoseController : MonoBehaviour
     {
         
 
-        if (InputHandler.instance.mouseDown)
+        if (InputHandler.instance.debugGrip)
         {
             flexTime += Time.deltaTime * flexAnimSpeed;
             curlTime += Time.deltaTime * curlAnimSpeed;
@@ -84,17 +84,17 @@ public class FingerPoseController : MonoBehaviour
         if (state)
         {
 
-            StartCoroutine(AnimateGrasp());
+            StartCoroutine(AnimateGrasp(true));
         }
         else
         {
             StopAllCoroutines();
             Reset();
-            StartCoroutine(AnimateBonesToRest());
+            StartCoroutine(AnimateGrasp(false));
         }
     }
 
-    private IEnumerator AnimateGrasp()
+    private IEnumerator AnimateGrasp(bool direction)
     {
 
 
@@ -123,37 +123,45 @@ public class FingerPoseController : MonoBehaviour
             else
                 _bones[i].localRotation = Quaternion.Slerp(initialRotation, adjustedFinalRotation, curlTime);
 
-                    
-
-            var angle = Quaternion.Angle(_bones[i].localRotation, adjustedFinalRotation);
-
-            //angle /= i < _fingerData.flexGroupMaxIndex ? _fingerData.flexMultiplier : _fingerData.curlMultiplier * curlTime;
-
-            if (angle <= 0f)
+            if (direction)
             {
-                _phalanxOnFinalRotation[i] = true;
-            }
-            else
-            {
-                _phalanxOnFinalRotation[i] = false;
-            }
+                var angle = Quaternion.Angle(_bones[i].localRotation, adjustedFinalRotation);
 
+                //angle /= i < _fingerData.flexGroupMaxIndex ? _fingerData.flexMultiplier : _fingerData.curlMultiplier * curlTime;
 
+                if (angle <= 0f)
+                {
+                    _phalanxOnFinalRotation[i] = true;
+                }
+                else
+                {
+                    _phalanxOnFinalRotation[i] = false;
+                }
+            }
         }
 
-        var notFinished = Array.Exists(_phalanxOnFinalRotation, x => x == false);
-
-        if (!notFinished)
+        if (direction)
         {
-            onEndPose?.Invoke();
-            yield break;
+            var notFinished = Array.Exists(_phalanxOnFinalRotation, x => x == false);
+
+            if (!notFinished)
+            {
+                onEndPose?.Invoke();
+                yield break;
+            }
         }
+        //else
+        //{
+        //    onEndPose?.Invoke();
+        //    yield break;
+        //}
 
         yield return new WaitForEndOfFrame();
-        yield return AnimateGrasp();
+        yield return AnimateGrasp(direction);
 
     }
 
+ 
 
     private void Reset()
     {

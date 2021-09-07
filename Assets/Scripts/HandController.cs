@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,31 +22,73 @@ public class HandController : MonoBehaviour
     {
 
     }
-    
 
-    private void OnEndPose()
+    private void HandleGrip(bool value)
     {
-        //Debug.Log("ENDED POSE");
-        graspedFingers++;
-
-        if (graspedFingers >= _handData.FingerQuantity)
-            Grasp();
+        if (value && _graspableObject)
+            onGrasp?.Invoke(true, _graspableObject);
+        else
+        {
+            onGrasp?.Invoke(false, _graspableObject);
+            Grasp(false);
+        }
+            
 
     }
 
-    private void Grasp()
+    private void OnEndPose()
+    {
+        graspedFingers++;
+
+        if (InputHandler.instance.debugGrip)
+        {
+            if (graspedFingers >= _handData.FingerQuantity)
+                Grasp(true);
+        }
+        else
+        {
+            if (graspedFingers >= _handData.FingerQuantity)
+                Grasp(false);
+        }
+
+
+
+    }
+
+    private void Grasp(bool value)
     {
 
         graspedFingers = 0;
 
-        if (!UsePhysics)
+        if (UsePhysics)
         {
-            //NOTE: If the rigidbody is kinematic and through the editor it moves into the trigger the position stays the same value, but as a child so the grasped object goes to the worlPos value but as a local position
-            _graspableObject.transform.SetParent(transform, worldPositionStays: true);
+            //Fixed Joint
+
+            if (value)
+            {
+
+            }
+            else
+            {
+
+            }
+
         }
         else
         {
-            //Fixed Joint
+
+            if (value)
+            {
+
+                //NOTE: If the rigidbody is kinematic and through the editor it moves into the trigger the position stays the same value, but as a child so the grasped object goes to the worlPos value but as a local position
+                _graspableObject.transform.SetParent(transform, worldPositionStays: true);
+            }
+            else
+            {
+                //NOTE: If the rigidbody is kinematic and through the editor it moves into the trigger the position stays the same value, but as a child so the grasped object goes to the worlPos value but as a local position
+                _graspableObject.transform.SetParent(null, worldPositionStays: true);
+            }
+           
         }
     }
 
@@ -55,7 +98,7 @@ public class HandController : MonoBehaviour
 
         _graspableObject = other.gameObject;
 
-        onGrasp?.Invoke(true, _graspableObject);
+
     }
 
 
@@ -65,19 +108,21 @@ public class HandController : MonoBehaviour
 
         _graspableObject = null;
 
-        onGrasp?.Invoke(false, _graspableObject);
-
-
     }
 
     private void OnEnable()
     {
         FingerPoseController.onEndPose += OnEndPose;
+        InputHandler.onGrip += HandleGrip;
     }
+
+
 
     private void OnDisable()
     {
         FingerPoseController.onEndPose -= OnEndPose;
+        InputHandler.onGrip -= HandleGrip;
+
     }
 
 
