@@ -38,11 +38,14 @@ public class FingerRaycaster : MonoBehaviour
     private void OnEnable()
     {
         HandController.onGrasp += OnGrasp;
+        FingerPoseController.onEndPose += OnEndPose;
     }
 
     private void OnDisable()
     {
         HandController.onGrasp -= OnGrasp;
+        FingerPoseController.onEndPose -= OnEndPose;
+
     }
 
     void UpdateRays(Vector3 objPos)
@@ -68,9 +71,20 @@ public class FingerRaycaster : MonoBehaviour
         }
     }
 
+    private void OnEndPose(FingerPoseController finger)
+    {
+
+        if(finger == _fingerController)
+        {
+            UpdateRays(Vector3.zero);
+            StopAllCoroutines();
+        }
+    }
+
+
 #if DEBUG
 
-    public void Update()
+    private void Update()
     {
         for (int i = 0; i < _rays.Length; i++)
             Debug.DrawLine(_rays[i].origin, _rays[i].origin + Hits[i].distance, Color.blue);

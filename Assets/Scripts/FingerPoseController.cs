@@ -11,7 +11,7 @@ public class FingerPoseController : MonoBehaviour
         Rest, Ongoing, Ended, Interrupted
     }
 
-    public delegate void OnEndPose();
+    public delegate void OnEndPose(FingerPoseController finger);
     public static OnEndPose onEndPose;
 
 
@@ -146,7 +146,7 @@ public class FingerPoseController : MonoBehaviour
 
             if (!notFinished)
             {
-                onEndPose?.Invoke();
+                onEndPose?.Invoke(this);
                 yield break;
             }
         }

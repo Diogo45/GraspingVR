@@ -36,7 +36,7 @@ public class HandController : MonoBehaviour
 
     }
 
-    private void OnEndPose()
+    private void OnEndPose(FingerPoseController finger)
     {
         graspedFingers++;
 
@@ -59,6 +59,11 @@ public class HandController : MonoBehaviour
     {
 
         graspedFingers = 0;
+
+        if (!_graspableObject)
+        {
+            return;
+        }
 
         if (UsePhysics)
         {
