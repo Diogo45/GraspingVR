@@ -38,7 +38,9 @@ public class InputHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+
+
+        if (Input.GetMouseButtonDown(0) || Grip.state)
         {
             debugGrip = !debugGrip;
             onGrip?.Invoke(debugGrip);
