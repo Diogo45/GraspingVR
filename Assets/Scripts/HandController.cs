@@ -87,31 +87,61 @@ public class HandController : MonoBehaviour
 
                 //NOTE: If the rigidbody is kinematic and through the editor it moves into the trigger the position stays the same value, but as a child so the grasped object goes to the worlPos value but as a local position
                 _graspableObject.transform.SetParent(transform, worldPositionStays: true);
+#if DEBUG
+                _graspableObject.GetComponent<Renderer>().material.color = Color.red;
+#endif
+                Debug.Log("Object " + _graspableObject.name + " has GRASPED at " + Time.time);
+
             }
             else
             {
                 //NOTE: If the rigidbody is kinematic and through the editor it moves into the trigger the position stays the same value, but as a child so the grasped object goes to the worlPos value but as a local position
                 _graspableObject.transform.SetParent(null, worldPositionStays: true);
+#if DEBUG
+                _graspableObject.GetComponent<Renderer>().material.color = Color.white;
+#endif
+
+                Debug.Log("Object " + _graspableObject.name + " has UNGRASPED at " + Time.time);
+
+                //_graspableObject = null;
+
             }
-           
+
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Graspable")) return;
+        if (_graspableObject) return;
 
-        _graspableObject = other.gameObject;
+            _graspableObject = other.gameObject;
+
+        Debug.Log("Object " + other.name + " has ENTERED at " + Time.time);
 
 
+#if DEBUG
+        _graspableObject.GetComponent<Renderer>().material.color = Color.blue;
+#endif
     }
 
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Graspable")) return;
+        if (!other == _graspableObject) return;
+
+
+        Debug.Log("Object " + other.name + " has EXITED at " + Time.time);
+
+
+#if DEBUG
+        _graspableObject.GetComponent<Renderer>().material.color = Color.white;
+#endif
 
         _graspableObject = null;
+
+
 
     }
 

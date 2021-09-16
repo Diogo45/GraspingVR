@@ -25,5 +25,5 @@ MonoBehaviour:
   - {x: -0.25, y: -0.1, z: 0}
   - {x: -0.25, y: -0.1, z: 0}
   flexGroupMaxIndex: 1
-  flexMultiplier: 1.75
-  curlMultiplier: 1.5
+  flexMultiplier: 1
+  curlMultiplier: 1

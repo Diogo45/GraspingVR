@@ -16,7 +16,7 @@ MonoBehaviour:
     actionPath: 
     needsReinit: 0
   <rightHand>k__BackingField: 0
-  <mouseDown>k__BackingField: 0
+  <debugGrip>k__BackingField: 0
 --- !u!1 &1533755051764054898
 GameObject:
   m_ObjectHideFlags: 0

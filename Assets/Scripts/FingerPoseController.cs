@@ -23,10 +23,10 @@ public class FingerPoseController : MonoBehaviour
     [field: SerializeField] public FingerData _fingerData { get; private set; }
 
     private float flexTime;
-    private float flexAnimSpeed = 1f;
+    private float flexAnimSpeed = 2f;
 
     private float curlTime;
-    private float curlAnimSpeed = 1f;
+    private float curlAnimSpeed = 2f;
 
     public bool _grasped { get; private set; }
     private bool[] _phalanxOnFinalRotation;

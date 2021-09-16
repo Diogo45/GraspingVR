@@ -96,7 +96,7 @@ public class FingerRaycaster : MonoBehaviour
     private IEnumerator CastRays(GameObject graspableObject)
     {
 
-        UpdateRays(graspableObject.transform.position);
+        UpdateRays(graspableObject.GetComponent<Collider>().bounds.center);
 
         for (int i = 0; i < _rays.Length; i++)
         {

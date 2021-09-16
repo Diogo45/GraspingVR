@@ -32,15 +32,21 @@ public class InputHandler : MonoBehaviour
         else
             Destroy(gameObject);
 
+        Grip.onStateDown += Grip_onStateDown;
 
+    }
 
+    private void Grip_onStateDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        debugGrip = !debugGrip;
+        onGrip?.Invoke(debugGrip);
     }
 
     private void Update()
     {
 
 
-        if (Input.GetMouseButtonDown(0) || Grip.state)
+        if (Input.GetMouseButtonDown(0))
         {
             debugGrip = !debugGrip;
             onGrip?.Invoke(debugGrip);
