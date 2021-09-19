@@ -114,8 +114,8 @@ public class HandController : MonoBehaviour
     {
         if (!other.CompareTag("Graspable")) return;
         if (_graspableObject) return;
-
-            _graspableObject = other.gameObject;
+        
+        _graspableObject = other.gameObject;
 
         Debug.Log("Object " + other.name + " has ENTERED at " + Time.time);
 
@@ -129,7 +129,8 @@ public class HandController : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Graspable")) return;
-        if (!other == _graspableObject) return;
+        //TODO: Use different method to compare
+        if (other.name != _graspableObject.name) return;
 
 
         Debug.Log("Object " + other.name + " has EXITED at " + Time.time);

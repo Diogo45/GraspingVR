@@ -25,8 +25,8 @@ public class MimicTransform : MonoBehaviour
 
         for (int i = 0; i < source.Length; i++)
         {
-            target[i].transform.position = source[i].transform.position;
-            target[i].transform.rotation = source[i].transform.rotation;
+            target[i].transform.localPosition = source[i].transform.localPosition;
+            target[i].transform.localRotation = source[i].transform.localRotation;
        
         }
     }

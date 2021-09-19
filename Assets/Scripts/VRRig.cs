@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Management;
 
 public class VRRig : MonoBehaviour
 {
@@ -17,9 +18,25 @@ public class VRRig : MonoBehaviour
     public float speedOffset;
 
 
+#if UNITY_EDITOR
+    private void Awake()
+    {
+        if (XRGeneralSettings.Instance.InitManagerOnStart)
+        {
+            this.enabled = true;
+        }
+        else
+        {
+            this.enabled = false;
+        }
+    }
+#endif
     // Start is called before the first frame update
+
+
     void Start()
     {
+
         headBodyOffset = transform.position - headConstraint.position;
     }
 

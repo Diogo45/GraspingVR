@@ -127,8 +127,6 @@ public class FingerPoseController : MonoBehaviour
             {
                 var angle = Quaternion.Angle(_bones[i].localRotation, adjustedFinalRotation);
 
-                //angle /= i < _fingerData.flexGroupMaxIndex ? _fingerData.flexMultiplier : _fingerData.curlMultiplier * curlTime;
-
                 if (angle <= 0f)
                 {
                     _phalanxOnFinalRotation[i] = true;
