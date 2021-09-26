@@ -34,13 +34,59 @@ public class FingerPoseController : MonoBehaviour
 
     public PoseState poseState { get; private set; }
 
-    private void Awake()
+
+    private bool _isInitialized;
+    public void Initialize(int fingerId, FingerData data, HandController handController, FingerRaycaster fingerRaycaster)
+    {
+        if (_isInitialized) return;
+
+        FingerId = fingerId;
+
+        _fingerData = data;
+
+        _handController = handController;
+        _raycaster = fingerRaycaster;
+
+        Set();
+
+        _isInitialized = true;
+    }
+
+
+    private void Set()
+    {
+
+        var qtdPhalanxs = _fingerData.InitialRotations.Length;
+        _bones = new Transform[qtdPhalanxs];
+
+        Transform t = transform;
+
+        for (int i = 0; i < _bones.Length; i++)
+        {
+            _bones[i] = t;
+            t = t.GetChild(0);
+        }
+
+        poseState = PoseState.Rest;
+
+        _fingerData.InitialRotations = new Quaternion[_bones.Length];
+        _phalanxOnFinalRotation = new bool[_bones.Length];
+
+        for (int i = 0; i < _bones.Length; i++)
+        {
+            _fingerData.InitialRotations[i] = _bones[i].localRotation;
+        }
+    }
+
+    private void Start()
     {
         poseState = PoseState.Rest;
 
         // When building assign this as the finger controller is created
-        _handController = GetComponentInParent<HandController>();
-        _raycaster = GetComponent<FingerRaycaster>();
+        //_handController = GetComponentInParent<HandController>();
+
+        if(!_raycaster)
+            _raycaster = GetComponent<FingerRaycaster>();
 
         _fingerData.InitialRotations = new Quaternion[_bones.Length];
         _phalanxOnFinalRotation = new bool[_bones.Length];
@@ -96,7 +142,7 @@ public class FingerPoseController : MonoBehaviour
 
     private IEnumerator AnimateGrasp(bool direction)
     {
-
+        Debug.Log(_raycaster.Hits.Length);
 
         for (int i = 0; i < _bones.Length; i++)
         {

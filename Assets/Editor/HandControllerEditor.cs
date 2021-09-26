@@ -17,14 +17,14 @@ public class HandControllerEditor : Editor
         {
             if (GUILayout.Button("Build Physics Hand"))
             {
-
+                
             }
         }
 
 
         if (GUILayout.Button("Build"))
         {
-
+            handController.BuildHand();
         }
 
         

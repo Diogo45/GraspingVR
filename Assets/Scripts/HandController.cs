@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class HandController : MonoBehaviour
 {
 
@@ -10,7 +11,10 @@ public class HandController : MonoBehaviour
     public static OnGrasp onGrasp;
 
     [SerializeField] private HandData _handData;
-    [field: SerializeField] public GameObject PhysicsHand { get; private set; }
+
+    [SerializeField] private Collider _handTriggerCollider;
+
+    //[field: SerializeField] public GameObject PhysicsHand { get; private set; }
     [field: SerializeField] public bool UsePhysics { get; private set; }
 
 
@@ -23,6 +27,51 @@ public class HandController : MonoBehaviour
 
     }
 
+    public void BuildHand()
+    {
+        if (!_handTriggerCollider)
+        {
+            _handTriggerCollider = GetComponent<Collider>();
+        }
+
+        _handTriggerCollider.isTrigger = true;
+
+        if (!_handData)
+        {
+            Debug.LogError("No hand data assigned, assign it on the inspector!");
+            return;
+        }
+
+        if (_handData.FingerData.Count != transform.childCount)
+        {
+            Debug.LogError("Finger Count on Hand Data does not match child count");
+            return;
+        }
+
+        for (int i = 0; i < _handData.FingerData.Count; i++)
+        {
+            var fingerTransform = transform.GetChild(i);
+
+            var fingerController = fingerTransform.gameObject.GetComponent<FingerPoseController>();
+
+            if (!fingerController)
+                fingerController = fingerTransform.gameObject.AddComponent<FingerPoseController>();
+
+
+            var fingerRayCaster = fingerTransform.gameObject.GetComponent<FingerRaycaster>();
+
+            if (!fingerRayCaster)
+                fingerRayCaster = fingerTransform.gameObject.AddComponent<FingerRaycaster>();
+
+            fingerController.Initialize(i, _handData.FingerData[i], this, fingerRayCaster);
+
+            
+
+            fingerRayCaster.Initialize(fingerController);
+
+        }
+    }
+
     private void HandleGrip(bool value)
     {
         if (value && _graspableObject)
@@ -32,7 +81,7 @@ public class HandController : MonoBehaviour
             onGrasp?.Invoke(false, _graspableObject);
             Grasp(false);
         }
-            
+
 
     }
 
@@ -42,12 +91,12 @@ public class HandController : MonoBehaviour
 
         if (InputHandler.instance.debugGrip)
         {
-            if (graspedFingers >= _handData.FingerQuantity)
+            if (graspedFingers >= _handData.FingerData.Count)
                 Grasp(true);
         }
         else
         {
-            if (graspedFingers >= _handData.FingerQuantity)
+            if (graspedFingers >= _handData.FingerData.Count)
                 Grasp(false);
         }
 
@@ -114,7 +163,7 @@ public class HandController : MonoBehaviour
     {
         if (!other.CompareTag("Graspable")) return;
         if (_graspableObject) return;
-        
+
         _graspableObject = other.gameObject;
 
         Debug.Log("Object " + other.name + " has ENTERED at " + Time.time);

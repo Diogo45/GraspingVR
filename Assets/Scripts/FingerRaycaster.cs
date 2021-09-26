@@ -18,12 +18,24 @@ public class FingerRaycaster : MonoBehaviour
 
     int i = 0;
 
+    private bool isInitialized = false;
+
+    public void Initialize(FingerPoseController fingerController)
+    {
+        if (isInitialized) return;
+
+        _fingerController = fingerController;
+        Set();
+
+        isInitialized = true;
+    }
+
 
     void Start()
     {
-        // When building assign these as the finger raycaster is created
-        _fingerController = GetComponent<FingerPoseController>();
-        //
+
+        if (!_fingerController)
+            _fingerController = GetComponent<FingerPoseController>();
 
         _bones = _fingerController._bones;
         _rayOffsets = _fingerController._fingerData.RayOffsets;
@@ -37,9 +49,23 @@ public class FingerRaycaster : MonoBehaviour
 
     private void OnEnable()
     {
+       
         HandController.onGrasp += OnGrasp;
         FingerPoseController.onEndPose += OnEndPose;
     }
+
+    private void Set()
+    {
+        _bones = _fingerController._bones;
+        _rayOffsets = _fingerController._fingerData.RayOffsets;
+
+        Hits = new (bool hit, Vector3 distance)[_bones.Length];
+
+        _rays = new Ray[_bones.Length];
+
+        UpdateRays(Vector3.zero);
+    }
+
 
     private void OnDisable()
     {
@@ -95,6 +121,8 @@ public class FingerRaycaster : MonoBehaviour
 
     private IEnumerator CastRays(GameObject graspableObject)
     {
+
+        Debug.Log("CAST");
 
         UpdateRays(graspableObject.GetComponent<Collider>().bounds.center);
 

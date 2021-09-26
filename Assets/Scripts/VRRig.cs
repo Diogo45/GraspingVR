@@ -42,23 +42,6 @@ public class VRRig : MonoBehaviour
 
 
 
-    private void Update()
-    {
-        //if(InputHandler.instance.W == InputKey.Down)
-        //{
-        //    animator.speed += 0.01f;
-        //}
-
-        //if (InputHandler.instance.S == InputKey.Down)
-        //{
-        //    animator.speed -= 0.01f;
-        //}
-
-        // transform.position += transform.forward * (animator.speed * Time.deltaTime);
-        //legAnimation.speed = leftJoystick.axis.y;
-    }
-
-
     void FixedUpdate()
     {
         transform.position = headConstraint.position + headBodyOffset;
