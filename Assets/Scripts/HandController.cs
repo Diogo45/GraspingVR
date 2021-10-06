@@ -75,7 +75,8 @@ public class HandController : MonoBehaviour
     private void HandleGrip(HandType hand, bool value)
     {
 
-
+        if (hand != _handData.handType)
+            return;
 
         if (value && _graspableObject)
             onGrasp?.Invoke(true, _graspableObject);

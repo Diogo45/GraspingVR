@@ -168,11 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1404918961d99c242a9a32799b202266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Grip>k__BackingField:
-    actionPath: /actions/default/in/GrabGrip
-    needsReinit: 0
-  <rightHand>k__BackingField: 2
-  <debugGrip>k__BackingField: 0
+  <debugGripLeft>k__BackingField: 0
 --- !u!4 &246218997
 Transform:
   m_ObjectHideFlags: 0
@@ -1659,7 +1655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2a47094839f11429cc5010d2198bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _handData: {fileID: 11400000, guid: 42eb4fd3e6c7b8346be269275c0fce6f, type: 2}
+  _handData: {fileID: 11400000, guid: 2729d5aa7a70ff74fab85177a9feb3cf, type: 2}
   _handTriggerCollider: {fileID: 0}
   <UsePhysics>k__BackingField: 0
 --- !u!1 &4314446144323634315 stripped
