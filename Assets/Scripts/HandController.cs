@@ -72,8 +72,11 @@ public class HandController : MonoBehaviour
         }
     }
 
-    private void HandleGrip(bool value)
+    private void HandleGrip(HandType hand, bool value)
     {
+
+
+
         if (value && _graspableObject)
             onGrasp?.Invoke(true, _graspableObject);
         else
@@ -89,7 +92,7 @@ public class HandController : MonoBehaviour
     {
         graspedFingers++;
 
-        if (InputHandler.instance.debugGrip)
+        if (InputHandler.instance.debugGripLeft)
         {
             if (graspedFingers >= _handData.FingerData.Count)
                 Grasp(true);

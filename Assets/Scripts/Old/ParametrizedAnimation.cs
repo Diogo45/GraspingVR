@@ -354,7 +354,7 @@ public class ParametrizedAnimation : MonoBehaviour
 
         #region VRInput
 
-        Grasp = InputHandler.instance.Grip.GetStateDown(InputHandler.instance.rightHand);
+        //Grasp = InputHandler.instance.Grip.GetStateDown(InputHandler.instance.rightHand);
 
         ////Get the controllers, has to be done every frame if loses tracking
         //var rightHandedControllers = new List<UnityEngine.XR.InputDevice>();

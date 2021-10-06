@@ -107,7 +107,7 @@ public class FingerPoseController : MonoBehaviour
     {
         
 
-        if (InputHandler.instance.debugGrip)
+        if (InputHandler.instance.debugGripLeft)
         {
             flexTime += Time.deltaTime * flexAnimSpeed;
             curlTime += Time.deltaTime * curlAnimSpeed;

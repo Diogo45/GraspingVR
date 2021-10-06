@@ -379,6 +379,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3936717493441703733}
   - component: {fileID: 3936717493441703734}
+  - component: {fileID: 580295225862341531}
+  - component: {fileID: 1162746760627446434}
+  - component: {fileID: 1462093470}
   m_Layer: 0
   m_Name: VR Rig
   m_TagString: Untagged
@@ -420,6 +423,62 @@ MonoBehaviour:
   m_CameraYOffset: 1.36144
   m_TrackingSpace: 3
   m_TrackingOriginMode: -2147483648
+--- !u!114 &580295225862341531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3936717493441703735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a5df2202a8b96488c744be3bd0c33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Timeout: 10
+  m_XRRig: {fileID: 3936717493441703734}
+--- !u!114 &1162746760627446434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3936717493441703735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aca1fc346609b54dbb0adba4664854b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 0}
+  m_MoveSpeed: 1
+  m_EnableStrafe: 1
+  m_UseGravity: 1
+  m_GravityApplicationMode: 0
+  m_ForwardSource: {fileID: 0}
+  m_InputBinding: 0
+  m_Controllers: []
+  m_DeadzoneMin: 0.125
+  m_DeadzoneMax: 0.925
+--- !u!114 &1462093470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3936717493441703735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4f2c0214c9b494fa7eb5b8b2c02885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 0}
+  m_TurnAmount: 45
+  m_DebounceTime: 0.5
+  m_EnableTurnLeftRight: 1
+  m_EnableTurnAround: 1
+  m_TurnUsage: 0
+  m_Controllers: []
+  m_DeadZone: 0.75
 --- !u!1 &3936717493466113467
 GameObject:
   m_ObjectHideFlags: 0
