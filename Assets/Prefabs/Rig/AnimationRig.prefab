@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FingerId>k__BackingField: 2
+  <HandController>k__BackingField: {fileID: 907072376}
   <_bones>k__BackingField:
   - {fileID: 622761447685968864}
   - {fileID: 6012717961986864320}
@@ -497,6 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FingerId>k__BackingField: 3
+  <HandController>k__BackingField: {fileID: 907072376}
   <_bones>k__BackingField:
   - {fileID: 1299692585245047478}
   - {fileID: 1453785615384510527}
@@ -887,6 +889,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7602316472114061677}
+  - component: {fileID: 4314446144323634324}
+  - component: {fileID: 4314446144323634314}
   m_Layer: 0
   m_Name: mixamorig:RightHand
   m_TagString: Untagged
@@ -913,6 +917,36 @@ Transform:
   m_Father: {fileID: 8041899191426619856}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &4314446144323634324
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2343627834333061846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 0.05
+  m_Height: 0.21
+  m_Direction: 0
+  m_Center: {x: 0.1, y: -0.05, z: -0.01}
+--- !u!114 &4314446144323634314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2343627834333061846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b2a47094839f11429cc5010d2198bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <HandData>k__BackingField: {fileID: 11400000, guid: 2729d5aa7a70ff74fab85177a9feb3cf,
+    type: 2}
+  _handTriggerCollider: {fileID: 0}
+  <UsePhysics>k__BackingField: 0
 --- !u!1 &2692577381558873753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,7 +1954,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4915684109612961812}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7729bb03ad87e9c40a1fb0216eb114e5, type: 3}
   m_Name: 
@@ -1936,13 +1970,13 @@ MonoBehaviour:
     vrTarget: {fileID: 0}
     rigTarget: {fileID: 8546212443952525049}
     rigRotTarget: {fileID: 8546212443952525049}
-    trackingPosOffset: {x: 0, y: 0, z: -0.2}
+    trackingPosOffset: {x: 0, y: 0, z: 0}
     trackingRotOffset: {x: -60, y: -20, z: -240}
   RHand:
     vrTarget: {fileID: 0}
     rigTarget: {fileID: 2716576885828108628}
     rigRotTarget: {fileID: 2716576885828108628}
-    trackingPosOffset: {x: 0, y: 0, z: -0.2}
+    trackingPosOffset: {x: 0, y: 0, z: 0}
     trackingRotOffset: {x: -60, y: 20, z: 240}
   headConstraint: {fileID: 4912301006488605251}
   headBodyOffset: {x: 0, y: 0, z: 0}
@@ -2334,6 +2368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FingerId>k__BackingField: 4
+  <HandController>k__BackingField: {fileID: 907072376}
   <_bones>k__BackingField:
   - {fileID: 2742120563201114060}
   - {fileID: 8939677233408743641}
@@ -3256,6 +3291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FingerId>k__BackingField: 0
+  <HandController>k__BackingField: {fileID: 907072376}
   <_bones>k__BackingField:
   - {fileID: 2082108048640038893}
   - {fileID: 5589364774816564058}
@@ -3475,7 +3511,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8953225506134138153}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.05
   m_Height: 0.21
   m_Direction: 0
@@ -3492,8 +3528,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2a47094839f11429cc5010d2198bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _handData: {fileID: 11400000, guid: 42eb4fd3e6c7b8346be269275c0fce6f, type: 2}
-  <PhysicsHand>k__BackingField: {fileID: 0}
+  <HandData>k__BackingField: {fileID: 11400000, guid: 42eb4fd3e6c7b8346be269275c0fce6f,
+    type: 2}
+  _handTriggerCollider: {fileID: 0}
   <UsePhysics>k__BackingField: 0
 --- !u!1 &9043647156514254302
 GameObject:
@@ -3541,6 +3578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FingerId>k__BackingField: 1
+  <HandController>k__BackingField: {fileID: 907072376}
   <_bones>k__BackingField:
   - {fileID: 5186133637148075307}
   - {fileID: 8854121624914147442}

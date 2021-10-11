@@ -16,7 +16,7 @@ public class FingerPoseController : MonoBehaviour
 
 
     [field: SerializeField] public int FingerId { get; private set; }
-    public HandController _handController { get; private set; }
+    [field: SerializeField] public HandController HandController { get; private set; }
     private FingerRaycaster _raycaster;
 
     [field: SerializeField] public Transform[] _bones { get; private set; }
@@ -44,7 +44,7 @@ public class FingerPoseController : MonoBehaviour
 
         _fingerData = data;
 
-        _handController = handController;
+        HandController = handController;
         _raycaster = fingerRaycaster;
 
         Set();
@@ -85,7 +85,7 @@ public class FingerPoseController : MonoBehaviour
         // When building assign this as the finger controller is created
         //_handController = GetComponentInParent<HandController>();
 
-        if(!_raycaster)
+        if (!_raycaster)
             _raycaster = GetComponent<FingerRaycaster>();
 
         _fingerData.InitialRotations = new Quaternion[_bones.Length];
@@ -103,51 +103,41 @@ public class FingerPoseController : MonoBehaviour
         return log * 2d - 1d;
     }
 
-    private void Update()
+
+    private void OnGrasp(HandType handType, bool state, GameObject graspableObject)
     {
-        
 
-        if (InputHandler.instance.debugGripLeft)
-        {
-            flexTime += Time.deltaTime * flexAnimSpeed;
-            curlTime += Time.deltaTime * curlAnimSpeed;
-        }
-        else
-        {
-            flexTime -= Time.deltaTime * flexAnimSpeed;
-            curlTime -= Time.deltaTime * curlAnimSpeed;
-        }
+        if (handType != HandController.HandData.handType)
+            return;
 
+        StopAllCoroutines();
+        Reset();
 
-        flexTime = Mathf.Clamp01(flexTime);
-        curlTime = Mathf.Clamp01(curlTime);
-
-    }
-
-
-    private void OnGrasp(bool state, GameObject graspableObject)
-    {
         if (state)
         {
-
+            //Debug.Log("START ANIM " + handType);
             StartCoroutine(AnimateGrasp(true));
         }
         else
         {
-            StopAllCoroutines();
-            Reset();
             StartCoroutine(AnimateGrasp(false));
         }
     }
 
     private IEnumerator AnimateGrasp(bool direction)
     {
-        Debug.Log(_raycaster.Hits.Length);
+
+        //if (FingerId == 1)
+        //{
+        //    Debug.Log(_bones[0].localRotation + " " + _bones[1].localRotation + " " + _bones[2].localRotation);
+        //    Debug.Log(_raycaster.Hits[0].distance + " " + _raycaster.Hits[1].distance + " " + _raycaster.Hits[2].distance);
+        //}
+
+
 
         for (int i = 0; i < _bones.Length; i++)
         {
             //if (_phalanxOnFinalRotation[i]) continue;
-
             var initialRotation = _fingerData.InitialRotations[i];
             var finalRotation = _fingerData.FinalRotations[i];
 
@@ -169,19 +159,16 @@ public class FingerPoseController : MonoBehaviour
             else
                 _bones[i].localRotation = Quaternion.Slerp(initialRotation, adjustedFinalRotation, curlTime);
 
+
             if (direction)
             {
-                var angle = Quaternion.Angle(_bones[i].localRotation, adjustedFinalRotation);
-
-                if (angle <= 0f)
-                {
-                    _phalanxOnFinalRotation[i] = true;
-                }
-                else
-                {
-                    _phalanxOnFinalRotation[i] = false;
-                }
+                _phalanxOnFinalRotation[i] = CheckEndAnim(_bones[i].localRotation, adjustedFinalRotation);
             }
+            else
+            {
+                _phalanxOnFinalRotation[i] = CheckEndAnim(_bones[i].localRotation, initialRotation);
+            }
+
         }
 
         if (direction)
@@ -190,52 +177,54 @@ public class FingerPoseController : MonoBehaviour
 
             if (!notFinished)
             {
-                onEndPose?.Invoke(this);
                 yield break;
             }
         }
-        //else
-        //{
-        //    onEndPose?.Invoke();
-        //    yield break;
-        //}
+
+
+        if (direction)
+        {
+            flexTime += Time.deltaTime * flexAnimSpeed;
+            curlTime += Time.deltaTime * curlAnimSpeed;
+        }
+        else
+        {
+            flexTime -= Time.deltaTime * flexAnimSpeed;
+            curlTime -= Time.deltaTime * curlAnimSpeed;
+        }
+
+
+        flexTime = Mathf.Clamp01(flexTime);
+        curlTime = Mathf.Clamp01(curlTime);
+
+
 
         yield return new WaitForEndOfFrame();
         yield return AnimateGrasp(direction);
 
     }
 
- 
+    private bool CheckEndAnim( Quaternion rot, Quaternion target)
+    {
+       
+        float angle = Mathf.Abs(Quaternion.Angle(rot, target));
+
+        if (angle <= 0f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+        
+    }
+
 
     private void Reset()
     {
         _phalanxOnFinalRotation = new bool[_bones.Length];
-
-    }
-
-    private IEnumerator AnimateBonesToRest()
-    {
-
-
-        for (int i = 0; i < _bones.Length; i++)
-        {
-            var initialRotation = _fingerData.InitialRotations[i];
-            var finalRotation = _fingerData.FinalRotations[i];
-
-
-            if (i < _fingerData.flexGroupMaxIndex)
-                _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, flexTime);
-            else
-            {
-                _bones[i].localRotation = Quaternion.Slerp(initialRotation, finalRotation, curlTime);
-            }
-        }
-
-
-
-        yield return new WaitForEndOfFrame();
-        yield return AnimateBonesToRest();
-
 
     }
 

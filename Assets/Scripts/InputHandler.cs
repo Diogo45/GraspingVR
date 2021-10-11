@@ -1,36 +1,39 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
 using UnityEngine.XR;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.XR.Interaction.Toolkit;
+using XRController = UnityEngine.XR.Interaction.Toolkit.XRController;
+
 public class InputHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [System.Serializable]
+    public struct Hand
+    {
+        public XRController controller;
+        public XRDirectInteractor interactor;
+    }
+
 
     public static InputHandler instance;
 
 
-    //public SteamVR_Action_Vector2 leftJoystick;
-    //public SteamVR_Input_Sources leftHand;
+    [field: SerializeField] public Hand LeftHand { get; private set; }
+    [field: SerializeField] public Hand RighHand { get; private set; }
 
-    //[field: SerializeField]
-    //public SteamVR_Action_Boolean Grip { get; private set; }
 
-    //[field: SerializeField]
-    //public SteamVR_Input_Sources rightHand { get; private set; }
 
     [field: SerializeField]
     public bool debugGripLeft { get; private set; }
+    [field: SerializeField]
     public bool debugGripRight { get; private set; }
 
-    public delegate void OnGrip(HandType hand, bool value);
+    public delegate void OnGrip(XRBaseInteractable interactable, HandType hand, bool value);
     public static OnGrip onGrip;
 
     private InputDevice rightControllerDevice;
     private InputDevice leftControllerDevice;
-
-
-
 
     void Start()
     {
@@ -39,49 +42,46 @@ public class InputHandler : MonoBehaviour
         else
             Destroy(gameObject);
 
-        //Grip.onStateDown += Grip_onStateDown;
+        LeftHand.interactor.selectEntered.AddListener(GripStart);
+        RighHand.interactor.selectEntered.AddListener(GripStart);
 
-        InputDeviceCharacteristics right = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
-        InputDeviceCharacteristics left = InputDeviceCharacteristics.Left | InputDeviceCharacteristics.Controller;
-
-        var rightDevices = new List<InputDevice>();
-        var leftDevices = new List<InputDevice>();
-
-        InputDevices.GetDevicesWithCharacteristics(right, rightDevices);
-        InputDevices.GetDevicesWithCharacteristics(left, leftDevices);
-
-
-        rightControllerDevice = rightDevices[0];
-        leftControllerDevice = leftDevices[0];
-
-
+        LeftHand.interactor.selectExited.AddListener(GripEnd);
+        RighHand.interactor.selectExited.AddListener(GripEnd);
 
     }
 
-    //private void Grip_onStateDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
-    //{
-    //    debugGrip = !debugGrip;
-    //    onGrip?.Invoke(debugGrip);
-    //}
-
-    private void Update()
+    private void GripStart(SelectEnterEventArgs args)
     {
+        var controller = GetController(args.interactor);
 
-        if (rightControllerDevice.TryGetFeatureValue(CommonUsages.gripButton, out bool valueR))
-        {
-            debugGripRight = valueR;
-            onGrip?.Invoke(HandType.Left, true);
-        }
-
-
-        if (rightControllerDevice.TryGetFeatureValue(CommonUsages.gripButton, out bool valueL))
-        {
-            debugGripRight = valueL;
-            onGrip?.Invoke(HandType.Right, true);
-        }
-
+        onGrip?.Invoke(args.interactable, controller, true);
 
     }
+
+    private void GripEnd(SelectExitEventArgs args)
+    {
+        var controller = GetController(args.interactor);
+
+        onGrip?.Invoke(args.interactable, controller, false);
+   
+    }
+
+    private HandType GetController(XRBaseInteractor interactor)
+    {
+        if (interactor == LeftHand.interactor)
+        {
+            return HandType.Left;
+        }
+        else if (interactor == RighHand.interactor)
+        {
+            return HandType.Right;
+        }
+
+        return HandType.None;
+
+    }
+
+
 
 
 

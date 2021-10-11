@@ -6,7 +6,7 @@ using UnityEngine;
 public class FingerRaycaster : MonoBehaviour
 {
 
-    private FingerPoseController _fingerController;
+    private FingerPoseController FingerController;
 
 
     public (bool hit, Vector3 distance)[] Hits { get; private set; }
@@ -24,7 +24,7 @@ public class FingerRaycaster : MonoBehaviour
     {
         if (isInitialized) return;
 
-        _fingerController = fingerController;
+        FingerController = fingerController;
         Set();
 
         isInitialized = true;
@@ -34,11 +34,11 @@ public class FingerRaycaster : MonoBehaviour
     void Start()
     {
 
-        if (!_fingerController)
-            _fingerController = GetComponent<FingerPoseController>();
+        if (!FingerController)
+            FingerController = GetComponent<FingerPoseController>();
 
-        _bones = _fingerController._bones;
-        _rayOffsets = _fingerController._fingerData.RayOffsets;
+        _bones = FingerController._bones;
+        _rayOffsets = FingerController._fingerData.RayOffsets;
 
         Hits = new (bool hit, Vector3 distance)[_bones.Length];
 
@@ -56,8 +56,8 @@ public class FingerRaycaster : MonoBehaviour
 
     private void Set()
     {
-        _bones = _fingerController._bones;
-        _rayOffsets = _fingerController._fingerData.RayOffsets;
+        _bones = FingerController._bones;
+        _rayOffsets = FingerController._fingerData.RayOffsets;
 
         Hits = new (bool hit, Vector3 distance)[_bones.Length];
 
@@ -83,8 +83,13 @@ public class FingerRaycaster : MonoBehaviour
         }
     }
 
-    private void OnGrasp(bool state, GameObject graspableObject)
+    private void OnGrasp(HandType handType, bool state, GameObject graspableObject)
     {
+
+        if (handType != FingerController.HandController.HandData.handType)
+            return;
+
+
         if (state)
         {
             
@@ -100,7 +105,7 @@ public class FingerRaycaster : MonoBehaviour
     private void OnEndPose(FingerPoseController finger)
     {
 
-        if(finger == _fingerController)
+        if(finger == FingerController)
         {
             UpdateRays(Vector3.zero);
             StopAllCoroutines();
@@ -122,7 +127,7 @@ public class FingerRaycaster : MonoBehaviour
     private IEnumerator CastRays(GameObject graspableObject)
     {
 
-        Debug.Log("CAST");
+        //Debug.Log("CAST");
 
         UpdateRays(graspableObject.GetComponent<Collider>().bounds.center);
 
