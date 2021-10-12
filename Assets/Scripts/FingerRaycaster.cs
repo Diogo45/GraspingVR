@@ -38,7 +38,7 @@ public class FingerRaycaster : MonoBehaviour
             FingerController = GetComponent<FingerPoseController>();
 
         _bones = FingerController._bones;
-        _rayOffsets = FingerController._fingerData.RayOffsets;
+        _rayOffsets = FingerController.FingerData.RayOffsets;
 
         Hits = new (bool hit, Vector3 distance)[_bones.Length];
 
@@ -57,7 +57,7 @@ public class FingerRaycaster : MonoBehaviour
     private void Set()
     {
         _bones = FingerController._bones;
-        _rayOffsets = FingerController._fingerData.RayOffsets;
+        _rayOffsets = FingerController.FingerData.RayOffsets;
 
         Hits = new (bool hit, Vector3 distance)[_bones.Length];
 

@@ -5,58 +5,41 @@ using UnityEngine;
 
 public class FingerPoseController : MonoBehaviour
 {
+    #region Events
+    public delegate void OnEndPose(FingerPoseController finger);
+    public static OnEndPose onEndPose;
+    #endregion
 
     public enum PoseState
     {
         Rest, Ongoing, Ended, Interrupted
     }
 
-    public delegate void OnEndPose(FingerPoseController finger);
-    public static OnEndPose onEndPose;
-
-
     [field: SerializeField] public int FingerId { get; private set; }
     [field: SerializeField] public HandController HandController { get; private set; }
-    private FingerRaycaster _raycaster;
 
     [field: SerializeField] public Transform[] _bones { get; private set; }
-    [field: SerializeField] public FingerData _fingerData { get; private set; }
-
-    private float flexTime;
-    private float flexAnimSpeed = 2f;
-
-    private float curlTime;
-    private float curlAnimSpeed = 2f;
-
-    public bool _grasped { get; private set; }
-    private bool[] _phalanxOnFinalRotation;
-
+    [field: SerializeField] public FingerData FingerData { get; private set; }
 
     public PoseState poseState { get; private set; }
 
+    private FingerRaycaster _raycaster;
+
+    private float _flexTime;
+    private float _flexAnimSpeed = 2f;
+
+    private float _curlTime;
+    private float _curlAnimSpeed = 2f;
+
+    private bool[] _phalanxOnFinalRotation;
+
 
     private bool _isInitialized;
-    public void Initialize(int fingerId, FingerData data, HandController handController, FingerRaycaster fingerRaycaster)
-    {
-        if (_isInitialized) return;
-
-        FingerId = fingerId;
-
-        _fingerData = data;
-
-        HandController = handController;
-        _raycaster = fingerRaycaster;
-
-        Set();
-
-        _isInitialized = true;
-    }
-
 
     private void Set()
     {
 
-        var qtdPhalanxs = _fingerData.InitialRotations.Length;
+        var qtdPhalanxs = FingerData.InitialRotations.Length;
         _bones = new Transform[qtdPhalanxs];
 
         Transform t = transform;
@@ -69,12 +52,12 @@ public class FingerPoseController : MonoBehaviour
 
         poseState = PoseState.Rest;
 
-        _fingerData.InitialRotations = new Quaternion[_bones.Length];
+        FingerData.InitialRotations = new Quaternion[_bones.Length];
         _phalanxOnFinalRotation = new bool[_bones.Length];
 
         for (int i = 0; i < _bones.Length; i++)
         {
-            _fingerData.InitialRotations[i] = _bones[i].localRotation;
+            FingerData.InitialRotations[i] = _bones[i].localRotation;
         }
     }
 
@@ -82,25 +65,35 @@ public class FingerPoseController : MonoBehaviour
     {
         poseState = PoseState.Rest;
 
-        // When building assign this as the finger controller is created
-        //_handController = GetComponentInParent<HandController>();
+        if(!HandController)
+            HandController = GetComponentInParent<HandController>();
 
         if (!_raycaster)
             _raycaster = GetComponent<FingerRaycaster>();
 
-        _fingerData.InitialRotations = new Quaternion[_bones.Length];
+        FingerData.InitialRotations = new Quaternion[_bones.Length];
         _phalanxOnFinalRotation = new bool[_bones.Length];
 
         for (int i = 0; i < _bones.Length; i++)
         {
-            _fingerData.InitialRotations[i] = _bones[i].localRotation;
+            FingerData.InitialRotations[i] = _bones[i].localRotation;
         }
     }
 
-    private double Sigmoid(float distance)
+    public void Initialize(int fingerId, FingerData data, HandController handController, FingerRaycaster fingerRaycaster)
     {
-        var log = 1d / (1d + Math.Pow(Math.E, -distance));
-        return log * 2d - 1d;
+        if (_isInitialized) return;
+
+        FingerId = fingerId;
+
+        FingerData = data;
+
+        HandController = handController;
+        _raycaster = fingerRaycaster;
+
+        Set();
+
+        _isInitialized = true;
     }
 
 
@@ -111,53 +104,30 @@ public class FingerPoseController : MonoBehaviour
             return;
 
         StopAllCoroutines();
-        Reset();
+        ResetInternal();
 
-        if (state)
-        {
-            //Debug.Log("START ANIM " + handType);
-            StartCoroutine(AnimateGrasp(true));
-        }
-        else
-        {
-            StartCoroutine(AnimateGrasp(false));
-        }
+        StartCoroutine(Timer(state));
+        StartCoroutine(AnimateGrasp(state));
     }
 
     private IEnumerator AnimateGrasp(bool direction)
     {
 
-        //if (FingerId == 1)
-        //{
-        //    Debug.Log(_bones[0].localRotation + " " + _bones[1].localRotation + " " + _bones[2].localRotation);
-        //    Debug.Log(_raycaster.Hits[0].distance + " " + _raycaster.Hits[1].distance + " " + _raycaster.Hits[2].distance);
-        //}
-
-
-
         for (int i = 0; i < _bones.Length; i++)
         {
-            //if (_phalanxOnFinalRotation[i]) continue;
-            var initialRotation = _fingerData.InitialRotations[i];
-            var finalRotation = _fingerData.FinalRotations[i];
+            var initialRotation = FingerData.InitialRotations[i];
+            var finalRotation = initialRotation * FingerData.FinalRotations[i];
 
             var phalanxDistanceToObject = _raycaster.Hits[i].distance;
-
             var normalizedDistance = (float)Sigmoid(phalanxDistanceToObject.magnitude);
-
 
             Quaternion adjustedFinalRotation = Quaternion.identity;
 
-            if (i < _fingerData.flexGroupMaxIndex)
-                adjustedFinalRotation = Quaternion.Slerp(initialRotation, finalRotation, _fingerData.flexMultiplier * 1f * normalizedDistance);
-            else
-                adjustedFinalRotation = Quaternion.Slerp(initialRotation, finalRotation, _fingerData.curlMultiplier * 1f * normalizedDistance);
+            float multiplier = i < FingerData.flexGroupMaxIndex ? FingerData.flexMultiplier : FingerData.curlMultiplier;
+            float time = i < FingerData.flexGroupMaxIndex ? _flexTime : _curlTime;
 
-
-            if (i < _fingerData.flexGroupMaxIndex)
-                _bones[i].localRotation = Quaternion.Slerp(initialRotation, adjustedFinalRotation, flexTime);
-            else
-                _bones[i].localRotation = Quaternion.Slerp(initialRotation, adjustedFinalRotation, curlTime);
+            adjustedFinalRotation = Quaternion.Slerp(initialRotation, finalRotation, multiplier * 1f * normalizedDistance);
+            _bones[i].localRotation = Quaternion.Slerp(initialRotation, adjustedFinalRotation, time);
 
 
             if (direction)
@@ -171,58 +141,50 @@ public class FingerPoseController : MonoBehaviour
 
         }
 
-        if (direction)
+
+        var notFinished = Array.Exists(_phalanxOnFinalRotation, x => x == false);
+
+        if (!notFinished)
         {
-            var notFinished = Array.Exists(_phalanxOnFinalRotation, x => x == false);
-
-            if (!notFinished)
-            {
-                yield break;
-            }
+            yield break;
         }
-
-
-        if (direction)
-        {
-            flexTime += Time.deltaTime * flexAnimSpeed;
-            curlTime += Time.deltaTime * curlAnimSpeed;
-        }
-        else
-        {
-            flexTime -= Time.deltaTime * flexAnimSpeed;
-            curlTime -= Time.deltaTime * curlAnimSpeed;
-        }
-
-
-        flexTime = Mathf.Clamp01(flexTime);
-        curlTime = Mathf.Clamp01(curlTime);
-
-
 
         yield return new WaitForEndOfFrame();
         yield return AnimateGrasp(direction);
 
     }
 
-    private bool CheckEndAnim( Quaternion rot, Quaternion target)
+    private IEnumerator Timer(bool direction)
     {
-       
-        float angle = Mathf.Abs(Quaternion.Angle(rot, target));
 
-        if (angle <= 0f)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        float mult = direction ? 1f : -1f;
 
-        
+        _flexTime += mult * (Time.deltaTime * _flexAnimSpeed);
+        _curlTime += mult * (Time.deltaTime * _curlAnimSpeed);
+
+        _flexTime = Mathf.Clamp01(_flexTime);
+        _curlTime = Mathf.Clamp01(_curlTime);
+
+        yield return new WaitForEndOfFrame();
+        yield return Timer(direction);
     }
 
+    private bool CheckEndAnim(Quaternion rot, Quaternion target)
+    {
 
-    private void Reset()
+        float angle = Mathf.Abs(Quaternion.Angle(rot, target));
+
+        return angle <= 0f;
+
+    }
+
+    private double Sigmoid(float distance)
+    {
+        var log = 1d / (1d + Math.Pow(Math.E, -distance));
+        return log * 2d - 1d;
+    }
+
+    private void ResetInternal()
     {
         _phalanxOnFinalRotation = new bool[_bones.Length];
 

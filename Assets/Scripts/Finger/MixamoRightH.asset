@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93a02defb4615624bae737b6fe6dde85, type: 3}
-  m_Name: MixamoLeftHThumb
+  m_Name: MixamoRightH
   m_EditorClassIdentifier: 
   InitialRotations:
   - {x: 0, y: 0, z: 0, w: 1}
   - {x: 0, y: 0, z: 0, w: 1}
   - {x: 0, y: 0, z: 0, w: 1}
   FinalRotations:
-  - {x: 0.29045957, y: -0.07782841, z: 0.2468401, w: 0.9212198}
-  - {x: 0.09229596, y: 0.7010574, z: -0.09229596, w: -0.7010574}
-  - {x: 0.09229596, y: 0.7010574, z: -0.09229596, w: -0.7010574}
+  - {x: 0, y: 0, z: -0.70710677, w: 0.70710677}
+  - {x: 0, y: 0, z: -0.70710677, w: 0.70710677}
+  - {x: 0, y: 0, z: -0.70710677, w: 0.70710677}
   RayOffsets:
   - {x: -0.25, y: -0.1, z: 0}
   - {x: -0.25, y: -0.1, z: 0}

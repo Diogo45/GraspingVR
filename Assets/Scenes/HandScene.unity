@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 26849.773, g: 31927.844, b: 37748.312, a: 1}
+  m_IndirectSpecularColor: {r: 26848.324, g: 31928.61, b: 37746.72, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1530,11 +1530,47 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4314446143369923603, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: <FingerData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
+        type: 2}
+    - target: {fileID: 4314446143474792087, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: <FingerData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
+        type: 2}
+    - target: {fileID: 4314446144080975801, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: <FingerData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
+        type: 2}
+    - target: {fileID: 4314446144217608614, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: <FingerData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
+        type: 2}
+    - target: {fileID: 4314446144711055278, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: <FingerData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: b3ed84cdba826b14ba98b48495ccfd13,
+        type: 2}
     - target: {fileID: 4915684109612961812, guid: f4cb6261c22650146bc02631b43d84c4,
         type: 3}
       propertyPath: m_Name
       value: AnimationRig
       objectReference: {fileID: 0}
+    - target: {fileID: 5125271364661195595, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: <FingerData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: b452e6823d2d7a6419ca3f6d1d346b99,
+        type: 2}
     - target: {fileID: 5725152697832901294, guid: f4cb6261c22650146bc02631b43d84c4,
         type: 3}
       propertyPath: m_RootOrder
@@ -1590,6 +1626,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6135711101852889962, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: <FingerData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: b452e6823d2d7a6419ca3f6d1d346b99,
+        type: 2}
+    - target: {fileID: 7087406141374003134, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: <FingerData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: b452e6823d2d7a6419ca3f6d1d346b99,
+        type: 2}
     - target: {fileID: 7398805713299591707, guid: f4cb6261c22650146bc02631b43d84c4,
         type: 3}
       propertyPath: head.vrTarget
@@ -1605,6 +1653,18 @@ PrefabInstance:
       propertyPath: RHand.vrTarget
       value: 
       objectReference: {fileID: 1584198178}
+    - target: {fileID: 7577764290426649624, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: <FingerData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: d8c2eca3d9a4bf941b93c800214c4e3f,
+        type: 2}
+    - target: {fileID: 8422670317927167522, guid: f4cb6261c22650146bc02631b43d84c4,
+        type: 3}
+      propertyPath: <FingerData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: b452e6823d2d7a6419ca3f6d1d346b99,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4cb6261c22650146bc02631b43d84c4, type: 3}
 --- !u!4 &4314446144323634308 stripped

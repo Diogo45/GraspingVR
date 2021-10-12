@@ -111,8 +111,7 @@ MonoBehaviour:
   - {fileID: 622761447685968864}
   - {fileID: 6012717961986864320}
   - {fileID: 1448125389475261599}
-  <_fingerData>k__BackingField: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
-    type: 2}
+  <FingerData>k__BackingField: {fileID: 0}
 --- !u!114 &567126722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +181,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2657966257123742592}
+  - component: {fileID: 7577764290426649624}
+  - component: {fileID: 491857510023240553}
   m_Layer: 0
   m_Name: mixamorig:RightHandThumb1
   m_TagString: Untagged
@@ -204,6 +205,38 @@ Transform:
   m_Father: {fileID: 7602316472114061677}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7577764290426649624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221447670769308563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5ba53f9d6fe5a459386264245733cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <FingerId>k__BackingField: 4
+  <HandController>k__BackingField: {fileID: 4314446144323634314}
+  <_bones>k__BackingField:
+  - {fileID: 2657966257123742592}
+  - {fileID: 2000363222693068316}
+  - {fileID: 7761601191184239126}
+  <FingerData>k__BackingField: {fileID: 11400000, guid: b3ed84cdba826b14ba98b48495ccfd13,
+    type: 2}
+--- !u!114 &491857510023240553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221447670769308563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7df02e1839e18498a1b0e14a50005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &359683255792272511
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,8 +536,7 @@ MonoBehaviour:
   - {fileID: 1299692585245047478}
   - {fileID: 1453785615384510527}
   - {fileID: 3912262939807001516}
-  <_fingerData>k__BackingField: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
-    type: 2}
+  <FingerData>k__BackingField: {fileID: 0}
 --- !u!114 &1938282579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,7 +977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <HandData>k__BackingField: {fileID: 11400000, guid: 2729d5aa7a70ff74fab85177a9feb3cf,
     type: 2}
-  _handTriggerCollider: {fileID: 0}
+  _handTriggerCollider: {fileID: 4314446144323634324}
   <UsePhysics>k__BackingField: 0
 --- !u!1 &2692577381558873753
 GameObject:
@@ -1419,6 +1451,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1341382211976896025}
+  - component: {fileID: 6135711101852889962}
+  - component: {fileID: 5145971442273573951}
   m_Layer: 0
   m_Name: mixamorig:RightHandIndex1
   m_TagString: Untagged
@@ -1442,6 +1476,38 @@ Transform:
   m_Father: {fileID: 7602316472114061677}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6135711101852889962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3366010075703547646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5ba53f9d6fe5a459386264245733cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <FingerId>k__BackingField: 0
+  <HandController>k__BackingField: {fileID: 4314446144323634314}
+  <_bones>k__BackingField:
+  - {fileID: 1341382211976896025}
+  - {fileID: 4447608130854152597}
+  - {fileID: 5629669492753863295}
+  <FingerData>k__BackingField: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
+    type: 2}
+--- !u!114 &5145971442273573951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3366010075703547646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7df02e1839e18498a1b0e14a50005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3387630324133535694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,6 +2058,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4960549291273080671}
+  - component: {fileID: 7087406141374003134}
+  - component: {fileID: 7276733522716657706}
   m_Layer: 0
   m_Name: mixamorig:RightHandPinky1
   m_TagString: Untagged
@@ -2014,6 +2082,38 @@ Transform:
   m_Father: {fileID: 7602316472114061677}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7087406141374003134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4957691591345854820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5ba53f9d6fe5a459386264245733cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <FingerId>k__BackingField: 2
+  <HandController>k__BackingField: {fileID: 4314446144323634314}
+  <_bones>k__BackingField:
+  - {fileID: 4960549291273080671}
+  - {fileID: 4964657031076095914}
+  - {fileID: 7244440527139463370}
+  <FingerData>k__BackingField: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
+    type: 2}
+--- !u!114 &7276733522716657706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4957691591345854820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7df02e1839e18498a1b0e14a50005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4992456281406709601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,8 +2473,7 @@ MonoBehaviour:
   - {fileID: 2742120563201114060}
   - {fileID: 8939677233408743641}
   - {fileID: 3798771611120398268}
-  <_fingerData>k__BackingField: {fileID: 11400000, guid: b3ed84cdba826b14ba98b48495ccfd13,
-    type: 2}
+  <FingerData>k__BackingField: {fileID: 0}
 --- !u!114 &655387576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,6 +2702,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3140237179555746721}
+  - component: {fileID: 8422670317927167522}
+  - component: {fileID: 7857441257815313890}
   m_Layer: 0
   m_Name: mixamorig:RightHandRing1
   m_TagString: Untagged
@@ -2626,6 +2727,38 @@ Transform:
   m_Father: {fileID: 7602316472114061677}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8422670317927167522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246065662388532335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5ba53f9d6fe5a459386264245733cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <FingerId>k__BackingField: 3
+  <HandController>k__BackingField: {fileID: 4314446144323634314}
+  <_bones>k__BackingField:
+  - {fileID: 3140237179555746721}
+  - {fileID: 3530813658790678483}
+  - {fileID: 948055743011678158}
+  <FingerData>k__BackingField: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
+    type: 2}
+--- !u!114 &7857441257815313890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246065662388532335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7df02e1839e18498a1b0e14a50005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6397444408663113572
 GameObject:
   m_ObjectHideFlags: 0
@@ -3222,6 +3355,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 417296764706509528}
+  - component: {fileID: 5125271364661195595}
+  - component: {fileID: 3039561663901721828}
   m_Layer: 0
   m_Name: mixamorig:RightHandMiddle1
   m_TagString: Untagged
@@ -3245,6 +3380,38 @@ Transform:
   m_Father: {fileID: 7602316472114061677}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5125271364661195595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7992024566918589594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5ba53f9d6fe5a459386264245733cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <FingerId>k__BackingField: 1
+  <HandController>k__BackingField: {fileID: 4314446144323634314}
+  <_bones>k__BackingField:
+  - {fileID: 417296764706509528}
+  - {fileID: 3800782804420840906}
+  - {fileID: 3720883807948822277}
+  <FingerData>k__BackingField: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
+    type: 2}
+--- !u!114 &3039561663901721828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7992024566918589594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7df02e1839e18498a1b0e14a50005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8017337494299966739
 GameObject:
   m_ObjectHideFlags: 0
@@ -3296,8 +3463,7 @@ MonoBehaviour:
   - {fileID: 2082108048640038893}
   - {fileID: 5589364774816564058}
   - {fileID: 7607596823536564043}
-  <_fingerData>k__BackingField: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
-    type: 2}
+  <FingerData>k__BackingField: {fileID: 0}
 --- !u!114 &514447743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3583,8 +3749,7 @@ MonoBehaviour:
   - {fileID: 5186133637148075307}
   - {fileID: 8854121624914147442}
   - {fileID: 8810493599174231683}
-  <_fingerData>k__BackingField: {fileID: 11400000, guid: cb32b751cf34e6c44969d5b213359382,
-    type: 2}
+  <FingerData>k__BackingField: {fileID: 0}
 --- !u!114 &2084781183
 MonoBehaviour:
   m_ObjectHideFlags: 0
