@@ -6,7 +6,7 @@ using UnityEngine;
 public class FingerData  : ScriptableObject
 {
 
-    public Quaternion[] InitialRotations;
+    //public Quaternion[] InitialRotations;
 
     public Quaternion[] FinalRotations;
 

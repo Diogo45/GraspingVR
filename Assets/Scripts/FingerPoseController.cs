@@ -21,6 +21,9 @@ public class FingerPoseController : MonoBehaviour
     [field: SerializeField] public Transform[] _bones { get; private set; }
     [field: SerializeField] public FingerData FingerData { get; private set; }
 
+    public Quaternion[] InitialRotations { get; private set; }
+
+
     public PoseState poseState { get; private set; }
 
     private FingerRaycaster _raycaster;
@@ -39,7 +42,7 @@ public class FingerPoseController : MonoBehaviour
     private void Set()
     {
 
-        var qtdPhalanxs = FingerData.InitialRotations.Length;
+        var qtdPhalanxs = FingerData.FinalRotations.Length;
         _bones = new Transform[qtdPhalanxs];
 
         Transform t = transform;
@@ -52,12 +55,12 @@ public class FingerPoseController : MonoBehaviour
 
         poseState = PoseState.Rest;
 
-        FingerData.InitialRotations = new Quaternion[_bones.Length];
+        InitialRotations = new Quaternion[_bones.Length];
         _phalanxOnFinalRotation = new bool[_bones.Length];
 
         for (int i = 0; i < _bones.Length; i++)
         {
-            FingerData.InitialRotations[i] = _bones[i].localRotation;
+            InitialRotations[i] = _bones[i].localRotation;
         }
     }
 
@@ -71,13 +74,19 @@ public class FingerPoseController : MonoBehaviour
         if (!_raycaster)
             _raycaster = GetComponent<FingerRaycaster>();
 
-        FingerData.InitialRotations = new Quaternion[_bones.Length];
+        InitialRotations = new Quaternion[_bones.Length];
         _phalanxOnFinalRotation = new bool[_bones.Length];
 
         for (int i = 0; i < _bones.Length; i++)
         {
-            FingerData.InitialRotations[i] = _bones[i].localRotation;
+            InitialRotations[i] = _bones[i].localRotation;
+            Debug.Log(_bones[i].localRotation + " " + InitialRotations[i]);
+
+
         }
+
+        
+
     }
 
     public void Initialize(int fingerId, FingerData data, HandController handController, FingerRaycaster fingerRaycaster)
@@ -115,7 +124,7 @@ public class FingerPoseController : MonoBehaviour
 
         for (int i = 0; i < _bones.Length; i++)
         {
-            var initialRotation = FingerData.InitialRotations[i];
+            var initialRotation = InitialRotations[i];
             var finalRotation = initialRotation * FingerData.FinalRotations[i];
 
             var phalanxDistanceToObject = _raycaster.Hits[i].distance;
@@ -164,6 +173,11 @@ public class FingerPoseController : MonoBehaviour
 
         _flexTime = Mathf.Clamp01(_flexTime);
         _curlTime = Mathf.Clamp01(_curlTime);
+
+        if(direction)
+            _flexTime = _curlTime = 1f;
+        else
+            _flexTime = _curlTime = 0f;
 
         yield return new WaitForEndOfFrame();
         yield return Timer(direction);
